@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6pv3254isdg1"]
+
+[ext_resource type="Script" uid="uid://c5ralwjebejgm" path="res://gameplay/note.gd" id="1_doocs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rf3o7"]
+size = Vector2(42, 42)
+
+[node name="Note" type="Node2D"]
+scale = Vector2(1, 0.5)
+script = ExtResource("1_doocs")
+metadata/speed = 0.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rf3o7")
+
+[node name="ColorRect" type="ColorRect" parent="Area2D/CollisionShape2D"]
+offset_left = -21.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 21.0
+color = Color(0.613569, 0.449865, 0.135709, 1)
+metadata/_edit_use_anchors_ = true
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
