@@ -77,11 +77,11 @@ func _ready():
 		lane.timings = map_lanes[i]
 		lane.lane_num = i
 		lane.position = Vector2(pixels_per_lane + i * pixels_per_lane, 35)
-		lane.note_miss.connect(_on_note_miss)
-		lane.note_hit.connect(_on_note_hit)
-		lane.note_destroyed.connect(_on_note_destroyed)
+		lane.get_node("Key").note_miss.connect(_on_note_miss)
+		lane.get_node("Key").note_hit.connect(_on_note_hit)
+		#lane.note_destroyed.connect(_on_note_destroyed)
 		lane.beatcounter_too_large.connect(_on_beatcounter_too_large)
-		self.add_child(lane)
+		$LaneContainer.add_child(lane)
 
 func _on_note_destroyed(lane, note):
 	print("note destoyed apparently ok cool")

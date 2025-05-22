@@ -4,13 +4,16 @@
 [ext_resource type="Script" uid="uid://xox1c4a15mf8" path="res://gameplay/score_counter.gd" id="2_wybys"]
 [ext_resource type="Script" uid="uid://dppk1qjafrkmq" path="res://gameplay/combo_counter.gd" id="2_ytvs4"]
 [ext_resource type="LabelSettings" uid="uid://bimv20nlm4e06" path="res://gameplay/HUDLabels.tres" id="3_ibnmv"]
-[ext_resource type="Script" uid="uid://g8tb4bx2qivh" path="res://gameplay/song_player.gd" id="5_ibnmv"]
+
+[sub_resource type="GDScript" id="GDScript_wwfg7"]
+script/source = "extends Node2D
+"
 
 [node name="Play" type="Node2D"]
 script = ExtResource("1_yepx1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -324)
+offset = Vector2(552, 0)
 limit_left = 0
 limit_top = 0
 limit_right = 600
@@ -18,17 +21,17 @@ limit_bottom = 324
 limit_smoothed = true
 
 [node name="SongPlayer" type="AudioStreamPlayer2D" parent="."]
-script = ExtResource("5_ibnmv")
 
 [node name="CharacterContainer" type="Node2D" parent="."]
 
 [node name="LaneContainer" type="Node2D" parent="."]
+script = SubResource("GDScript_wwfg7")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1148.0
+offset_bottom = 645.0
 
 [node name="ComboCounter" type="Label" parent="HUD"]
 layout_mode = 1

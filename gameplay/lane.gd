@@ -1,11 +1,7 @@
 extends Node2D
 
-signal note_destroyed(lane_node: Node, note: Node)
-signal note_hit(lane_node: Node, note: Node)
-signal note_miss(lane_node: Node, note: Node)
-signal beatcounter_too_large(lane_node: Node)
-
 var NoteScene = preload("res://gameplay/note.tscn")
+signal beatcounter_too_large(lane_node: Node)
 
 var timings: Array
 var current_beat: int = 0
@@ -47,24 +43,10 @@ func _process(delta:float):
 	if should_count_sec: update_sec_since_map_start()
 	if should_do_spawns: do_spawns()
 	for child in $NoteContainer.get_children():
-		eval_note(child)
+		$Key.eval_note(child, lane_num)
 
 func spawn_note(speed: float):
 	var note_instance = NoteScene.instantiate()
 	note_instance.position = Vector2(0, 700)
 	note_instance.speed = speed
 	$NoteContainer.add_child(note_instance)
-
-func eval_note(node):
-	var key = "key%s" % lane_num
-	var is_pressed = Input.is_action_pressed(key)
-	var hit_calc = node.position.y + ((hit_window / 2) - forgiveness)
-	if abs(hit_calc) <= hit_window and is_pressed:
-		note_hit.emit(self, node)
-		note_destroyed.emit(self, node)
-		node.queue_free()
-
-	elif hit_calc <= hit_window:
-		note_miss.emit(self, node)
-		note_destroyed.emit(self, node)
-		node.queue_free()
