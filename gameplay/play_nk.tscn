@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dluf6uljoqua"]
+[gd_scene load_steps=7 format=3 uid="uid://dluf6uljoqua"]
 
 [ext_resource type="Script" uid="uid://d2rhe2lhduaq7" path="res://gameplay/play_nk.gd" id="1_yepx1"]
+[ext_resource type="Script" uid="uid://ybxw0qyet66d" path="res://gameplay/character_container.gd" id="2_ibnmv"]
 [ext_resource type="Script" uid="uid://xox1c4a15mf8" path="res://gameplay/score_counter.gd" id="2_wybys"]
 [ext_resource type="Script" uid="uid://dppk1qjafrkmq" path="res://gameplay/combo_counter.gd" id="2_ytvs4"]
 [ext_resource type="LabelSettings" uid="uid://bimv20nlm4e06" path="res://gameplay/HUDLabels.tres" id="3_ibnmv"]
@@ -20,12 +21,13 @@ limit_right = 600
 limit_bottom = 324
 limit_smoothed = true
 
-[node name="SongPlayer" type="AudioStreamPlayer2D" parent="."]
-
 [node name="CharacterContainer" type="Node2D" parent="."]
+script = ExtResource("2_ibnmv")
 
 [node name="LaneContainer" type="Node2D" parent="."]
 script = SubResource("GDScript_wwfg7")
+
+[node name="SongPlayer" type="AudioStreamPlayer2D" parent="."]
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3

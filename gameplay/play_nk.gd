@@ -1,5 +1,7 @@
 extends Node2D
 
+signal note_judgement(score:int, note:Node, lane:Node)
+
 var num_keys: int = 0
 var LaneScene = preload("res://gameplay/lane.tscn")
 signal map_fully_ended
@@ -92,10 +94,14 @@ func _on_note_miss(lane, note):
 	$HUD/ScoreCounter.add_score(-note.speed)
 	$HUD/ComboCounter.set_combo(0)
 
+	note_judgement.emit(-note.speed, note, lane)
+
 func _on_note_hit(lane, note):
 	print("YOU DO GOOD")
 	$HUD/ScoreCounter.add_score(+note.speed)
 	$HUD/ComboCounter.add_combo(+1)
+
+	note_judgement.emit(+note.speed, note, lane)
 
 func _on_beatcounter_too_large(lane):
 	print("THE BEATCOUNTER IS TOO LARGE")
