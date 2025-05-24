@@ -18,6 +18,3 @@ func secondary():
 func _ready():
 	current_scene = get_tree().current_scene
 	init()
-
-func _on_judgement(score:int, note:Node, lane:Node):
-	pass

@@ -1,7 +1,6 @@
 extends KURO_Character
 
-var dysphoric_reserve: int = 0
-var euphoric_reserve: int = 0
+var reserve: int = 0
 var motivation: float = 0
 
 const STATE_VIOLET_EUPHORIC = -1.0
@@ -38,4 +37,4 @@ func _on_secondary_end():
 	motivation = 0.0
 
 func _on_judgement(score:int, note:Node, lane:Node):
-	pass
+	reserve += score

@@ -1,6 +1,6 @@
 extends Node2D
 
-var NoteScene = preload("res://gameplay/note.tscn")
+var NoteScene = preload("res://gameplay/mod_note/note.tscn")
 signal beatcounter_too_large(lane_node: Node)
 
 var timings: Array
@@ -14,7 +14,7 @@ var lane_num: int
 var sec_since_start: float = 1.0
 var last_update_time: int = 0  # in microseconds
 
-func _ready():
+func _init():
 	print("Lane ready %s" % lane_num)
 
 var should_count_sec: bool = true

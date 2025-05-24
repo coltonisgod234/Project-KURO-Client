@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfemxmo7iwyfg"]
+
+[ext_resource type="Script" uid="uid://c1fm0wu2mcgdj" path="res://gameplay/mod_management/chart_parser.gd" id="1_h7ufy"]
+
+[node name="ChartParser" type="Node2D"]
+script = ExtResource("1_h7ufy")

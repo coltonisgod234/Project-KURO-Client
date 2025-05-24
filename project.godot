@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="project KURO (godot)"
-run/main_scene="uid://dluf6uljoqua"
+run/main_scene="uid://c52go1avivc2k"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://textures/icon.svg"
 
