@@ -8,12 +8,15 @@ size = Vector2(48, 70)
 
 [node name="Lane" type="Node2D"]
 script = ExtResource("1_phwy2")
+pixels_per_lane = 48.0
+forgiveness = -35
 metadata/lane_number = 0
 metadata/active = true
 metadata/t = []
 
 [node name="Key" type="Area2D" parent="."]
 script = ExtResource("2_8ntnh")
+note_miss_line = 0
 
 [node name="KeyShape" type="CollisionShape2D" parent="Key"]
 shape = SubResource("RectangleShape2D_6ma31")

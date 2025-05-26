@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://wwfel2l5xjg6"]
-
-[ext_resource type="Script" uid="uid://cymkg0d4amt73" path="res://gameplay/mod_management/lane_management.gd" id="1_k15km"]
-
-[node name="LaneManagement" type="Node2D"]
-script = ExtResource("1_k15km")
-dependency_name = "lanemgr"
-dependencies = Array[String](["chartparser"])

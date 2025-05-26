@@ -1,0 +1,63 @@
+{
+  "work": {
+	"name": {
+	  "en_US": "Testing Map"
+	}
+  },
+  "artist": {
+	"name": {
+	  "en_US": "Testing Artist"
+	}
+  },
+  "audio": "/home/colton/project-kuro-(godot)/testdata/hey_william.ogg",
+  "lanes": [
+	{
+	  "notes": [
+		{
+		  "time": 5.3,
+		  "speed": 600
+		},
+		{
+		  "time": 6.0,
+		  "speed": 600
+		}
+	  ]
+	},
+	{
+	  "notes": [
+		{
+		  "time": 5.5,
+		  "speed": 600
+		},
+		{
+		  "time": 6.1,
+		  "speed": 600
+		}
+	  ]
+	},
+	{
+	  "notes": [
+		{
+		  "time": 5.6,
+		  "speed": 600
+		},
+		{
+		  "time": 6.2,
+		  "speed": 600
+		}
+	  ]
+	},
+	{
+	  "notes": [
+		{
+		  "time": 5.7,
+		  "speed": 600
+		},
+		{
+		  "time": 6.3,
+		  "speed": 600
+		}
+	  ]
+	},
+  ]
+}

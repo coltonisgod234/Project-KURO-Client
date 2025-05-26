@@ -1,21 +1,21 @@
 extends Node2D
 
-var NoteScene = preload("res://gameplay/mod_note/note.tscn")
+var NoteScene = Scenes.Note
 signal beatcounter_too_large(lane_node: Node)
 
 var timings: Array
 var current_beat: int = 0
-var lane_num: int
+var lane_num: int = 0
 
-@export var pixels_per_lane:int = self.scale.y
+@export var pixels_per_lane:float = self.scale.y
 @export var forgiveness:int = 0
 @export var hit_window:int = 70
 
 var sec_since_start: float = 1.0
 var last_update_time: int = 0  # in microseconds
 
-func _init():
-	print("Lane ready %s" % lane_num)
+func _ready():
+	print("[Lane%d] ready!" % lane_num)
 
 var should_count_sec: bool = true
 func update_sec_since_map_start():
@@ -34,15 +34,16 @@ func do_spawns():
 	var this_ittr = timings[current_beat]
 	var time = this_ittr["time"]
 	var spd = this_ittr["speed"]
-	if time < sec_since_start:
-		print("%s LANE SPAWNING AND BEAT IS NOW %s" % [lane_num, current_beat])
+	if time <= sec_since_start:
+		print("[Lane%s] Spawning, beat_counter is now %s" % [lane_num, current_beat])
 		spawn_note(spd)
 		current_beat += 1
 
 func _process(delta:float):
-	if should_count_sec: update_sec_since_map_start()
-	if should_do_spawns: do_spawns()
+	update_sec_since_map_start()
+	do_spawns()
 	for child in $NoteContainer.get_children():
+		#print("Eval note on %s" % child)
 		$Key.eval_note(child, lane_num)
 
 func spawn_note(speed: float):

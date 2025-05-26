@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ybxw0qyet66d" path="res://scrap/character_container.gd" id="2_ibnmv"]
 [ext_resource type="Script" uid="uid://xox1c4a15mf8" path="res://scrap/score_counter.gd" id="2_wybys"]
 [ext_resource type="Script" uid="uid://dppk1qjafrkmq" path="res://scrap/combo_counter.gd" id="2_ytvs4"]
-[ext_resource type="LabelSettings" uid="uid://bimv20nlm4e06" path="res://scrap/HUDLabels.tres" id="3_ibnmv"]
+[ext_resource type="LabelSettings" uid="uid://bimv20nlm4e06" path="res://gameplay/mod_HUD/HUDLabels.tres" id="3_ibnmv"]
 
 [sub_resource type="GDScript" id="GDScript_wwfg7"]
 script/source = "extends Node2D

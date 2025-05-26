@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgpc5uhrgjc2r"]
+
+[ext_resource type="Script" uid="uid://df5w3pd3rwhv0" path="res://gameplay/mod_characters/basecharacter.gd" id="1_1ouy2"]
+[ext_resource type="Script" uid="uid://clp2aeren8ktj" path="res://gameplay/mod_characters/ability_stun.gd" id="1_4ho36"]
+[ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="2_hf5e4"]
+
+[node name="Character" type="Node2D"]
+script = ExtResource("1_1ouy2")
+
+[node name="AbilityStun" type="Timer" parent="."]
+script = ExtResource("1_4ho36")
+
+[node name="Primary" type="Node2D" parent="."]
+
+[node name="Cooldown" type="Timer" parent="Primary"]
+script = ExtResource("2_hf5e4")
+
+[node name="Secondary" type="Node2D" parent="."]
+
+[node name="Cooldown" type="Timer" parent="Secondary"]
+script = ExtResource("2_hf5e4")

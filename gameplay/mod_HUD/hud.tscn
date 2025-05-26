@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://djcxvq13l3rs3"]
+
+[ext_resource type="Script" uid="uid://bs62r7q6oy7r8" path="res://gameplay/mod_HUD/hud_glue.gd" id="1_4m2i6"]
+[ext_resource type="Script" uid="uid://dguotagi046b" path="res://gameplay/mod_HUD/ui_counter.gd" id="2_68fa7"]
+[ext_resource type="LabelSettings" uid="uid://bimv20nlm4e06" path="res://gameplay/mod_HUD/HUDLabels.tres" id="2_siuup"]
+
+[sub_resource type="Animation" id="Animation_mto6d"]
+resource_name = "counter_up"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.11, 1.11), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s1eeb"]
+_data = {
+&"counter_up": SubResource("Animation_mto6d")
+}
+
+[sub_resource type="Animation" id="Animation_siuup"]
+resource_name = "counter_up"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 2.21914, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.11, 1.11), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ggnby"]
+_data = {
+&"counter_up": SubResource("Animation_siuup")
+}
+
+[node name="UiBase" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_4m2i6")
+
+[node name="ScoreCounter" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -67.0
+offset_right = 1.0
+grow_vertical = 0
+label_settings = ExtResource("2_siuup")
+script = ExtResource("2_68fa7")
+text_template = "%d!"
+globals_export_name = "Score"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ScoreCounter"]
+libraries = {
+&"": SubResource("AnimationLibrary_s1eeb")
+}
+
+[node name="ComboCounter" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+label_settings = ExtResource("2_siuup")
+script = ExtResource("2_68fa7")
+text_template = "%dx"
+globals_export_name = "Combo"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ComboCounter"]
+libraries = {
+&"": SubResource("AnimationLibrary_ggnby")
+}

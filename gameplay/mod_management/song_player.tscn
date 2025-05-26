@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://3rxdf3tto8ft"]
+
+[ext_resource type="Script" uid="uid://dcueepiek44tv" path="res://gameplay/mod_management/song_player.gd" id="1_8k5qd"]
+
+[node name="SongPlayer" type="Node2D"]
+script = ExtResource("1_8k5qd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

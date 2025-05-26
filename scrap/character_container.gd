@@ -2,13 +2,7 @@ extends Node2D
 
 func load_character(scene_path):
 	var character = load(scene_path)
-	var scene = character.instantiate()
-	var required = scene.root.get_deps()
-	var deps = {}
-	for dep_name in required:
-		deps[dep_name] = fetch_dependency(dep_name)
-
-	self.add_child(scene)
+	self.add_child(character)
 
 var mode = "game"
 var selected_character = null

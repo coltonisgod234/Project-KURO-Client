@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bufhyp0xh6egr"]
+
+[ext_resource type="Script" uid="uid://dnriv2vlty64e" path="res://gameplay/mod_characters/character_manager.gd" id="1_kvcu0"]
+
+[node name="CharacterManager" type="Node2D"]
+script = ExtResource("1_kvcu0")

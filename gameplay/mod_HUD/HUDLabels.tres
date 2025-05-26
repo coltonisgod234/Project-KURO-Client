@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bimv20nlm4e06"]
+
+[sub_resource type="SystemFont" id="SystemFont_1xtlr"]
+
+[resource]
+line_spacing = 1.65
+font = SubResource("SystemFont_1xtlr")
+font_size = 48

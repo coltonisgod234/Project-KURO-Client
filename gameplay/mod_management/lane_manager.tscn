@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb8fn3l3brtd"]
+
+[ext_resource type="Script" uid="uid://c6kl5aw7yddhb" path="res://gameplay/mod_management/lane_manager.gd" id="1_nv6lu"]
+
+[node name="LaneManager" type="Node2D"]
+script = ExtResource("1_nv6lu")
+globals_export_name = "LaneManager"
