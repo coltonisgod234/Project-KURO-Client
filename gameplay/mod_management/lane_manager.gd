@@ -1,11 +1,11 @@
-#extends KURO_Component
-extends Node2D
+extends KURO_Component
+#extends Node2D
 
 signal note_judged(lane: Node2D, note: Node2D, real_judge, nonfabricated_judge)
 
 var allow_miss := true
 
-func _ready():
+func kuro_init():
 	print("[LaneManager] Lane Manager ready")
 
 #func kuro_initalize():

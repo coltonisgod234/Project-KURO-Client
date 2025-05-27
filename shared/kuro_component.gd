@@ -5,11 +5,12 @@ signal component_ready(component, globals_export_name)
 @export var globals_export_name := ""
 var initalized_yet := false
 
-func kuro_initialize():
+func kuro_init():
 	pass
 
 func _ready():
 	print("[KURO_Component] Exporting to %s" % globals_export_name)
-	kuro_initialize()
-	self.component_ready.emit()
+	Globals.exports[globals_export_name] = self
+	self.kuro_init()
+	self.component_ready.emit(self, globals_export_name)
 	initalized_yet = true

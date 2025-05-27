@@ -2,8 +2,9 @@ extends KURO_Component
 #extends Control
 
 var lane_manager = null
-func kuro_initalize():
-	Globals.LaneManager.note_judged.connect(_on_note_judged)
+func kuro_init():
+	await Globals.wait_for_component("LaneManager")
+	Globals.exports["LaneManager"].note_judged.connect(_on_note_judged)
 	#init_ComboCounter()
 	#init_ScoreCounter()
 	return

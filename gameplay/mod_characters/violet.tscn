@@ -5,6 +5,7 @@
 
 [node name="Violet" type="Node2D"]
 script = ExtResource("1_d5g55")
+globals_export_name = "Violet0"
 
 [node name="AbilityStun" type="Timer" parent="."]
 script = ExtResource("3_kgw7j")

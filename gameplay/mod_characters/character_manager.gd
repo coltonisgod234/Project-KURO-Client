@@ -1,9 +1,7 @@
-extends Node2D
+extends KURO_Component
 
-var lane_manager = null
 func load_character(scene):
 	var character = scene.instantiate()
-	character.lane_manager = lane_manager
 	self.add_child(character)
 
 var mode = "game"
@@ -58,6 +56,6 @@ func _process(_delta: float):
 	handle_character_mode()
 	handle_ability_mode(num_lanes)
 
-func _ready():
+func kuro_init():
 	num_lanes = 4
 	#load_character("res://gameplay/Characters/violet.tscn")

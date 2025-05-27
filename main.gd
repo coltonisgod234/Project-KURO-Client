@@ -5,18 +5,16 @@ var map_song = MapParser.parse_map_songfile(map)
 var map_num_keys = MapParser.parse_map_num_lanes(map)
 
 var character_manager = null
-func init_CharacterManager(lane_manager):
+func init_CharacterManager():
 	print("[Main] Initalizing CharacterManager...")
 	character_manager = Scenes.CharacterManager.instantiate()
-	character_manager.lane_manager = lanemgr
 	self.add_child(character_manager)
 	character_manager.load_character(Scenes.CharacterViolet)
 
 var hud = null
-func init_HUD(lane_manager):
+func init_HUD():
 	print("[Main] Initalizing HUD...")
 	hud = Scenes.HUD.instantiate()
-	hud.lane_manager = lane_manager
 	self.add_child(hud)
 
 var lanemgr = null
@@ -39,5 +37,5 @@ func _ready():
 	print("[Main] Parsed map: %s | %s | audiofile is %s | %s keys" % [map, map_timings, map_song, map_num_keys])
 	init_LaneManager()
 	init_SongPlayer()
-	init_HUD(lanemgr)
-	init_CharacterManager(lanemgr)
+	init_HUD()
+	init_CharacterManager()

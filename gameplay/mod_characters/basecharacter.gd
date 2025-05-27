@@ -1,10 +1,7 @@
-extends Node2D
+#extends Node2D
+extends KURO_Component
 class_name KURO_Character
 
-var priority: int = -1
-var lane_manager = null
-
-var current_scene = null
 func primary():
 	if $AbilityStun.is_stunned(): return
 	if $Primary/Cooldown.is_stunned(): return

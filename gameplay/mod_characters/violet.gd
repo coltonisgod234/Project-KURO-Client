@@ -49,15 +49,19 @@ func _process(_delta:float):
 	motivation = lerp(motivation, state, motivation_speed * _delta)
 	#print(motivation)
 
-func _ready():
-	lane_manager.note_judged.connect(_on_judgement)
+func kuro_init():
+	print("[Violet] me waiting for bro")
+	await Globals.wait_for_component("LaneManager")
+	Globals.exports["LaneManager"].note_judged.connect(_on_judgement)
+	print("[Violet] in the thing")
 	$Secondary/ExitTimer.timeout.connect(_on_secondary_end)
 
 func _on_secondary_end():
 	toggle_state()
 	is_in_secondary = false
-	Globals.Score.add_count((note_hit_counter * motivation) * reserve)
+	Globals.exports["Score"].add_count((note_hit_counter * motivation) * reserve)
 	note_hit_counter = 0
+	$Secondary/ExitTimer.stop()
 
 func _on_judgement(lane: Node2D, note: Node2D, judge:int, nonfabricated:int):
 	if is_in_secondary:

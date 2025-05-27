@@ -4,7 +4,7 @@ signal counter_changed(old_count, new_count)
 var count := 0.0
 @export var text_template := "%d"
 
-func kuro_initalize():
+func kuro_init():
 	set_count(0)
 
 func update(old_count):
