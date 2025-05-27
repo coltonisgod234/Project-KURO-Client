@@ -27,19 +27,3 @@ script = ExtResource("3_kgw7j")
 
 [node name="ExitTimer" type="Timer" parent="SecondaryA"]
 script = ExtResource("3_kgw7j")
-
-[node name="HUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PrimaryStunBar" type="ProgressBar" parent="HUD"]
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
-
-[node name="SecondaryAStunBar" type="ProgressBar" parent="HUD"]
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
