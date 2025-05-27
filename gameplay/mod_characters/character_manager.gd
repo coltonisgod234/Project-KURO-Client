@@ -22,30 +22,30 @@ func handle_character_mode():
 			return
 
 func handle_ability_mode(num_keys:int):
-	if Input.is_action_just_pressed("Ability") and mode != "ability":
+	if Input.is_action_just_pressed("Ability") and mode != "ability" and selected_character != null:
 		mode = "ability"
 		print("[CharacterManager] SELECTING ability")
 		return
 	
-	if Input.is_action_just_pressed("key0") and mode == "ability":
+	if Input.is_action_just_pressed("key0") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] SELECTED ability PRIMARY")
 		selected_character.primary()
 		mode = "game"
 		return
 
-	if Input.is_action_just_pressed("key1") and mode == "ability":
+	if Input.is_action_just_pressed("key1") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] RAN ability SECONDARY 1")
 		selected_character.secondaryA()
 		mode = "game"
 		return
 
-	if Input.is_action_just_pressed("key2") and mode == "ability":
+	if Input.is_action_just_pressed("key2") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] RAN ability SECONDARY 2")
 		selected_character.secondaryB()
 		mode = "game"
 		return
 
-	if Input.is_action_just_pressed("key1") and mode == "ability":
+	if Input.is_action_just_pressed("key1") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] RAN ability SECONDARY 3")
 		selected_character.secondaryC()
 		mode = "game"

@@ -7,7 +7,6 @@ var motivation_speed: float = 0.1
 const STATE_VIOLET_EUPHORIC = -1.0
 const STATE_VIOLET_DYSPHORIC = 1.0
 var state = STATE_VIOLET_EUPHORIC
-var is_in_secondary := false
 var note_hit_counter := 0
 
 func toggle_state():
@@ -24,26 +23,23 @@ func toggle_state():
 func primary():
 	if $AbilityStun.is_stunned(): return
 	if $Primary/Cooldown.is_stunned(): return
+	print("[Violet] Violet pri nostun, contin.")
 	toggle_state()
 
 func secondaryA():
 	print("[Violet] Violet secA executed")
 	if $AbilityStun.is_stunned(): return
-	if $Secondary/Cooldown.is_stunned(): return
-	
+	if $SecondaryA/Cooldown.is_stunned(): return
 	print("[Violet] Violet secA nostun, contin.")
-	motivation = -1.0
-	$Secondary/ExitTimer.stun_for(3.0)
-	is_in_secondary = true
-	print("[Violet] Violet secA active")
+	$SecondaryA.activate()
 
 func secondaryB():
 	if $AbilityStun.is_stunned(): return
-	if $Secondary/Cooldown.is_stunned(): return
+	if $SecondaryA/Cooldown.is_stunned(): return
 
 func secondaryC():
 	if $AbilityStun.is_stunned(): return
-	if $Secondary/Cooldown.is_stunned(): return
+	if $SecondaryA/Cooldown.is_stunned(): return
 
 func _process(_delta:float):
 	motivation = lerp(motivation, state, motivation_speed * _delta)
@@ -51,19 +47,5 @@ func _process(_delta:float):
 
 func kuro_init():
 	print("[Violet] me waiting for bro")
-	await Globals.wait_for_component("LaneManager")
-	Globals.exports["LaneManager"].note_judged.connect(_on_judgement)
 	print("[Violet] in the thing")
-	$Secondary/ExitTimer.timeout.connect(_on_secondary_end)
-
-func _on_secondary_end():
-	toggle_state()
-	is_in_secondary = false
-	Globals.exports["Score"].add_count((note_hit_counter * motivation) * reserve)
-	note_hit_counter = 0
-	$Secondary/ExitTimer.stop()
-
-func _on_judgement(lane: Node2D, note: Node2D, judge:int, nonfabricated:int):
-	if is_in_secondary:
-		reserve += note.speed
-		note_hit_counter += 1
+	

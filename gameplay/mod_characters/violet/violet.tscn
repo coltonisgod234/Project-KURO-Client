@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy7o87heqfp3x"]
+
+[ext_resource type="Script" uid="uid://b6c0p3k85ffnj" path="res://gameplay/mod_characters/violet/violet.gd" id="1_d5g55"]
+[ext_resource type="Script" uid="uid://p5rrs66h4m1h" path="res://gameplay/mod_characters/violet/primary.gd" id="3_gyg6r"]
+[ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="3_kgw7j"]
+[ext_resource type="Script" uid="uid://hg33pcxmdi8n" path="res://gameplay/mod_characters/violet/secondary_a.gd" id="4_72dhn"]
+
+[node name="Violet" type="Node2D"]
+script = ExtResource("1_d5g55")
+
+[node name="AbilityStun" type="Timer" parent="."]
+script = ExtResource("3_kgw7j")
+
+[node name="Primary" type="Node2D" parent="." node_paths=PackedStringArray("export_under")]
+script = ExtResource("3_gyg6r")
+ability_name = "Transition"
+export_under = NodePath("..")
+
+[node name="Cooldown" type="Timer" parent="Primary"]
+script = ExtResource("3_kgw7j")
+
+[node name="SecondaryA" type="Node2D" parent="."]
+script = ExtResource("4_72dhn")
+
+[node name="Cooldown" type="Timer" parent="SecondaryA"]
+script = ExtResource("3_kgw7j")
+
+[node name="ExitTimer" type="Timer" parent="SecondaryA"]
+script = ExtResource("3_kgw7j")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PrimaryStunBar" type="ProgressBar" parent="HUD"]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="SecondaryAStunBar" type="ProgressBar" parent="HUD"]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
