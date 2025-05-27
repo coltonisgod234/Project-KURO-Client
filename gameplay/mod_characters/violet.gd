@@ -8,6 +8,7 @@ const STATE_VIOLET_EUPHORIC = -1.0
 const STATE_VIOLET_DYSPHORIC = 1.0
 var state = STATE_VIOLET_EUPHORIC
 var is_in_secondary := false
+var note_hit_counter := 0
 
 func toggle_state():
 	if state == STATE_VIOLET_EUPHORIC:
@@ -26,11 +27,15 @@ func primary():
 	toggle_state()
 
 func secondaryA():
+	print("[Violet] Violet secA executed")
 	if $AbilityStun.is_stunned(): return
 	if $Secondary/Cooldown.is_stunned(): return
+	
+	print("[Violet] Violet secA nostun, contin.")
 	motivation = -1.0
-	$Secondary/ExitTimer.start(3.0)
+	$Secondary/ExitTimer.stun_for(3.0)
 	is_in_secondary = true
+	print("[Violet] Violet secA active")
 
 func secondaryB():
 	if $AbilityStun.is_stunned(): return
@@ -44,15 +49,17 @@ func _process(_delta:float):
 	motivation = lerp(motivation, state, motivation_speed * _delta)
 	#print(motivation)
 
-func init():
-	Globals.LaneManager.note_judged.connect(_on_judgement)
+func _ready():
+	lane_manager.note_judged.connect(_on_judgement)
 	$Secondary/ExitTimer.timeout.connect(_on_secondary_end)
 
 func _on_secondary_end():
 	toggle_state()
 	is_in_secondary = false
-	Globals.Score.add_count()
+	Globals.Score.add_count((note_hit_counter * motivation) * reserve)
+	note_hit_counter = 0
 
 func _on_judgement(lane: Node2D, note: Node2D, judge:int, nonfabricated:int):
 	if is_in_secondary:
 		reserve += note.speed
+		note_hit_counter += 1

@@ -9,7 +9,7 @@ func kuro_initialize():
 	pass
 
 func _ready():
-	print("Exporting to %s" % globals_export_name)
+	print("[KURO_Component] Exporting to %s" % globals_export_name)
 	kuro_initialize()
 	self.component_ready.emit()
 	initalized_yet = true

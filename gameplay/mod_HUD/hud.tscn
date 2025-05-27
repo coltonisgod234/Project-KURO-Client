@@ -52,6 +52,7 @@ anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 script = ExtResource("1_4m2i6")
+globals_export_name = "UiBase"
 
 [node name="ScoreCounter" type="Label" parent="."]
 layout_mode = 1
