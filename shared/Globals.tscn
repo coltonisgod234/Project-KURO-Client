@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfft4xxr0b4u1"]
+
+[ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="1_o8xd4"]
+
+[node name="Globals" type="Node2D" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("1_o8xd4")
+sg = NodePath(".")
+export_under = NodePath(".")

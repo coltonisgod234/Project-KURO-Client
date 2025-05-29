@@ -33,6 +33,12 @@ func ExportUnder(parent, me_myself_and_i, name=null):
 signal component_ready(component, globals_export_name)
 @export var export_name: String
 @export var export_under: Node
+enum ExportModes {
+	EXPORT_CHOSEN,
+	EXPORT_PARENT,
+	EXPORT_ROOT
+}
+@export var export_mode: ExportModes
 var exports := {}
 var initalized_yet := false
 
@@ -40,10 +46,13 @@ func kuro_init():
 	pass
 
 func _ready():
-	if export_under == null:
-		Globals.ExportUnder(Globals, self, export_name)
-	else:
-		Globals.ExportUnder(export_under, self, export_name)
+	match export_mode:
+		ExportModes.EXPORT_CHOSEN:
+			Globals.ExportUnder(Globals, self, export_name)
+		ExportModes.EXPORT_PARENT:
+			Globals.ExportUnder(get_parent(), self, export_name)
+		ExportModes.EXPORT_ROOT:
+			Globals.ExportUnder(export_under, self, export_name)
 
 	self.kuro_init()
 	self.component_ready.emit(self, export_name)

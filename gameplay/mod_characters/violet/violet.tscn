@@ -11,7 +11,7 @@
 [node name="Violet" type="Node2D" node_paths=PackedStringArray("sg")]
 script = ExtResource("1_d5g55")
 sg = NodePath(".")
-export_name = "Violet"
+export_mode = 1
 
 [node name="AbilityStun" type="Timer" parent="."]
 one_shot = true
