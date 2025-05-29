@@ -2,27 +2,22 @@
 
 [ext_resource type="Script" uid="uid://df5w3pd3rwhv0" path="res://gameplay/mod_characters/basecharacter.gd" id="1_1ouy2"]
 [ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="2_hf5e4"]
-[ext_resource type="Script" uid="uid://fhbqlgk7i0p" path="res://gameplay/mod_characters/character_hud.gd" id="3_yu14t"]
+
+[sub_resource type="GDScript" id="GDScript_cjvcv"]
+script/source = "extends KURO_Component
+
+@export var check: Node
+
+func kuro_init():
+	await self.wait_till_init(check)
+
+func _process(delta):
+	#print(check.time_left)
+	self.value = check.time_left
+"
 
 [node name="Character" type="Node2D"]
 script = ExtResource("1_1ouy2")
-
-[node name="HUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_yu14t")
-
-[node name="PrimaryStunBar" type="ProgressBar" parent="HUD"]
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
-
-[node name="SecondaryStunBar" type="ProgressBar" parent="HUD"]
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
 
 [node name="AbilityStun" type="Timer" parent="."]
 script = ExtResource("2_hf5e4")
@@ -36,3 +31,29 @@ script = ExtResource("2_hf5e4")
 
 [node name="Cooldown" type="Timer" parent="SecondaryA"]
 script = ExtResource("2_hf5e4")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PrimaryStunBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "export_under")]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+fill_mode = 1
+script = SubResource("GDScript_cjvcv")
+check = NodePath("../../Primary/Cooldown")
+export_name = "PrimaryStunBar"
+export_under = NodePath("..")
+
+[node name="SecondaryAStunBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "export_under")]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+fill_mode = 1
+script = SubResource("GDScript_cjvcv")
+check = NodePath("../../SecondaryA/Cooldown")
+export_name = "SecondaryAStunBar"
+export_under = NodePath("..")

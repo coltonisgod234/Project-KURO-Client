@@ -9,7 +9,7 @@ func init_CharacterManager():
 	print("[Main] Initalizing CharacterManager...")
 	character_manager = Scenes.CharacterManager.instantiate()
 	self.add_child(character_manager)
-	character_manager.load_character(Scenes.CharacterViolet)
+	character_manager.load_character(Scenes.CharacterViolet, 1)
 
 var hud = null
 func init_HUD():

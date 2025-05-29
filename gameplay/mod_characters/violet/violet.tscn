@@ -1,29 +1,192 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy7o87heqfp3x"]
+[gd_scene load_steps=8 format=3 uid="uid://cy7o87heqfp3x"]
 
 [ext_resource type="Script" uid="uid://b6c0p3k85ffnj" path="res://gameplay/mod_characters/violet/violet.gd" id="1_d5g55"]
 [ext_resource type="Script" uid="uid://p5rrs66h4m1h" path="res://gameplay/mod_characters/violet/primary.gd" id="3_gyg6r"]
 [ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="3_kgw7j"]
 [ext_resource type="Script" uid="uid://hg33pcxmdi8n" path="res://gameplay/mod_characters/violet/secondary_a.gd" id="4_72dhn"]
+[ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="5_1v4fr"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="6_c3i78"]
+[ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/character_bar.gd" id="6_qpnhd"]
 
-[node name="Violet" type="Node2D"]
+[node name="Violet" type="Node2D" node_paths=PackedStringArray("sg")]
 script = ExtResource("1_d5g55")
+sg = NodePath(".")
+export_name = "Violet"
 
 [node name="AbilityStun" type="Timer" parent="."]
+one_shot = true
 script = ExtResource("3_kgw7j")
 
-[node name="Primary" type="Node2D" parent="." node_paths=PackedStringArray("export_under")]
+[node name="Primary" type="Node2D" parent="." node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("3_gyg6r")
 ability_name = "Transition"
+sg = NodePath("..")
+export_name = "Primary"
 export_under = NodePath("..")
 
 [node name="Cooldown" type="Timer" parent="Primary"]
+one_shot = true
 script = ExtResource("3_kgw7j")
 
-[node name="SecondaryA" type="Node2D" parent="."]
+[node name="SecondaryA" type="Node2D" parent="." node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("4_72dhn")
-
-[node name="Cooldown" type="Timer" parent="SecondaryA"]
-script = ExtResource("3_kgw7j")
+ability_name = "Reflect"
+sg = NodePath("..")
+export_under = NodePath("..")
 
 [node name="ExitTimer" type="Timer" parent="SecondaryA"]
+one_shot = true
 script = ExtResource("3_kgw7j")
+
+[node name="HUD" type="VBoxContainer" parent="." node_paths=PackedStringArray("sg", "export_under")]
+custom_minimum_size = Vector2(0, 8)
+offset_right = 200.0
+offset_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 3
+script = ExtResource("5_1v4fr")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="CharacterName" type="Label" parent="HUD"]
+layout_mode = 2
+text = "Violet"
+metadata/_edit_use_anchors_ = true
+
+[node name="LifeBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = ExtResource("6_c3i78")
+max_value = 1.0
+allow_greater = true
+allow_lesser = true
+fill_mode = 1
+show_percentage = false
+script = ExtResource("6_qpnhd")
+property_name = "life"
+check = NodePath("../..")
+sg = NodePath("../..")
+export_under = NodePath("..")
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="Label" parent="HUD/LifeBar"]
+layout_mode = 1
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 97.0
+offset_bottom = 27.0
+theme = ExtResource("6_c3i78")
+text = "Life"
+
+[node name="PrimaryStunBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = ExtResource("6_c3i78")
+max_value = 1.0
+allow_greater = true
+allow_lesser = true
+fill_mode = 1
+show_percentage = false
+script = ExtResource("6_qpnhd")
+property_name = "time_left"
+check = NodePath("../../Primary/Cooldown")
+sg = NodePath("../..")
+export_under = NodePath("..")
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="Label" parent="HUD/PrimaryStunBar"]
+layout_mode = 1
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 97.0
+offset_bottom = 27.0
+theme = ExtResource("6_c3i78")
+text = "Primary"
+
+[node name="Max" type="Label" parent="HUD/PrimaryStunBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_top = -4.0
+offset_bottom = 20.0
+grow_horizontal = 0
+theme = ExtResource("6_c3i78")
+text = "1s"
+
+[node name="SecondaryAStunBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = ExtResource("6_c3i78")
+max_value = 3.0
+allow_greater = true
+allow_lesser = true
+fill_mode = 1
+show_percentage = false
+script = ExtResource("6_qpnhd")
+property_name = "time_left"
+check = NodePath("../../SecondaryA/ExitTimer")
+sg = NodePath("../..")
+export_under = NodePath("..")
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="Label" parent="HUD/SecondaryAStunBar"]
+layout_mode = 1
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 96.0
+offset_bottom = 27.0
+theme = ExtResource("6_c3i78")
+text = "Secondary A"
+
+[node name="Max" type="Label" parent="HUD/SecondaryAStunBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_top = -4.0
+offset_bottom = 20.0
+grow_horizontal = 0
+theme = ExtResource("6_c3i78")
+text = "3s"
+
+[node name="MotivationBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = ExtResource("6_c3i78")
+min_value = -1.0
+max_value = 1.0
+allow_greater = true
+allow_lesser = true
+fill_mode = 1
+show_percentage = false
+script = ExtResource("6_qpnhd")
+property_name = "motivation"
+check = NodePath("../..")
+sg = NodePath("../..")
+export_under = NodePath("../..")
+metadata/_edit_use_anchors_ = true
+
+[node name="Min" type="Label" parent="HUD/MotivationBar"]
+layout_mode = 1
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 98.0
+offset_bottom = 27.0
+theme = ExtResource("6_c3i78")
+text = "Dysphoric"
+
+[node name="Max" type="Label" parent="HUD/MotivationBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -69.0
+offset_top = -4.0
+offset_bottom = 20.0
+grow_horizontal = 0
+theme = ExtResource("6_c3i78")
+text = "Euphoric"

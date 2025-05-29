@@ -1,7 +1,8 @@
 extends KURO_Component
 
-func load_character(scene):
+func load_character(scene, character_num):
 	var character = scene.instantiate()
+	character.position = Vector2(80 + character_num * 200, 0)
 	self.add_child(character)
 
 var mode = "game"
