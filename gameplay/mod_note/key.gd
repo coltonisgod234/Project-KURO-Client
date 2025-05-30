@@ -6,17 +6,23 @@ signal note_destroyed(lane_node: Node, note: Node)
 signal note_hit(lane_node: Node, note: Node)
 signal note_miss(lane_node: Node, note: Node)
 
+func hit(node, lane_num):
+	note_hit.emit(self, node)
+	note_destroyed.emit(self, node)
+	node.queue_free()
+
+func miss(node, lane_num):
+	note_miss.emit(self, node)
+	note_destroyed.emit(self, node)
+	node.queue_free()
+
 func eval_note(node, lane_num):
 	var key = "key%s" % lane_num
 	var is_pressed = Input.is_action_pressed(key)
 	if self.overlaps_area(node.get_node("Area")):
 		#print("NODE IS OVERLAPPING")
 		if is_pressed:
-			note_hit.emit(self, node)
-			note_destroyed.emit(self, node)
-			node.queue_free()
+			hit(node, lane_num)
 
 	elif node.position.y < 0:
-		note_miss.emit(self, node)
-		note_destroyed.emit(self, node)
-		node.queue_free()
+		miss(node, lane_num)

@@ -8,9 +8,6 @@ var allow_miss := true
 func kuro_init():
 	print("[LaneManager] Lane Manager ready")
 
-#func kuro_initalize():
-#	print("[LaneManager] Lane Manager ready")
-
 func spawn_lane(i, map_lanes, pixels_per_lane):
 	print("[LaneManager] Initalizing Lane #%d" % i)
 	var lane = Scenes.Lane.instantiate()

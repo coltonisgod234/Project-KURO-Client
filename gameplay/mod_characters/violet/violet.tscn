@@ -10,6 +10,8 @@
 
 [node name="Violet" type="Node2D" node_paths=PackedStringArray("sg")]
 script = ExtResource("1_d5g55")
+default_motivation_spd = 0.1
+positive_effect_threshold = 0.5
 sg = NodePath(".")
 export_mode = 1
 
@@ -30,6 +32,8 @@ script = ExtResource("3_kgw7j")
 
 [node name="SecondaryA" type="Node2D" parent="." node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("4_72dhn")
+miss_damage_modifier = 0.01
+strength = 1.75
 ability_name = "Reflect"
 sg = NodePath("..")
 export_under = NodePath("..")
@@ -39,7 +43,7 @@ one_shot = true
 script = ExtResource("3_kgw7j")
 
 [node name="HUD" type="VBoxContainer" parent="." node_paths=PackedStringArray("sg", "export_under")]
-custom_minimum_size = Vector2(0, 8)
+custom_minimum_size = Vector2(0, 24)
 offset_right = 200.0
 offset_bottom = 200.0
 size_flags_horizontal = 3
@@ -50,34 +54,10 @@ sg = NodePath("..")
 export_under = NodePath("..")
 
 [node name="CharacterName" type="Label" parent="HUD"]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 text = "Violet"
 metadata/_edit_use_anchors_ = true
-
-[node name="LifeBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
-theme = ExtResource("6_c3i78")
-max_value = 1.0
-allow_greater = true
-allow_lesser = true
-fill_mode = 1
-show_percentage = false
-script = ExtResource("6_qpnhd")
-property_name = "life"
-check = NodePath("../..")
-sg = NodePath("../..")
-export_under = NodePath("..")
-metadata/_edit_use_anchors_ = true
-
-[node name="Name" type="Label" parent="HUD/LifeBar"]
-layout_mode = 1
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 97.0
-offset_bottom = 27.0
-theme = ExtResource("6_c3i78")
-text = "Life"
 
 [node name="PrimaryStunBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 custom_minimum_size = Vector2(0, 24)
@@ -100,9 +80,9 @@ layout_mode = 1
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 97.0
-offset_bottom = 27.0
+offset_bottom = 25.0
 theme = ExtResource("6_c3i78")
-text = "Primary"
+text = "1   Transition"
 
 [node name="Max" type="Label" parent="HUD/PrimaryStunBar"]
 layout_mode = 1
@@ -137,9 +117,9 @@ layout_mode = 1
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 96.0
-offset_bottom = 27.0
+offset_bottom = 25.0
 theme = ExtResource("6_c3i78")
-text = "Secondary A"
+text = "2   Reflect"
 
 [node name="Max" type="Label" parent="HUD/SecondaryAStunBar"]
 layout_mode = 1
@@ -153,15 +133,75 @@ grow_horizontal = 0
 theme = ExtResource("6_c3i78")
 text = "3s"
 
+[node name="SecondaryCStunBar" type="ProgressBar" parent="HUD"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = ExtResource("6_c3i78")
+max_value = 1.0
+allow_greater = true
+allow_lesser = true
+fill_mode = 1
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="SecondaryBStunBar" type="ProgressBar" parent="HUD"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = ExtResource("6_c3i78")
+max_value = 1.0
+allow_greater = true
+allow_lesser = true
+fill_mode = 1
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="HSeparator" type="HSeparator" parent="HUD"]
+layout_mode = 2
+theme = ExtResource("6_c3i78")
+
+[node name="LifeBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = ExtResource("6_c3i78")
+allow_greater = true
+allow_lesser = true
+script = ExtResource("6_qpnhd")
+property_name = "life"
+check = NodePath("../..")
+sg = NodePath("../..")
+export_under = NodePath("..")
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="Label" parent="HUD/LifeBar"]
+layout_mode = 1
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 97.0
+offset_bottom = 25.0
+theme = ExtResource("6_c3i78")
+text = "Life"
+
+[node name="Max" type="Label" parent="HUD/LifeBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_top = -4.0
+offset_bottom = 20.0
+grow_horizontal = 0
+theme = ExtResource("6_c3i78")
+text = "100"
+
 [node name="MotivationBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
+size_flags_vertical = 4
 theme = ExtResource("6_c3i78")
 min_value = -1.0
 max_value = 1.0
 allow_greater = true
 allow_lesser = true
-fill_mode = 1
 show_percentage = false
 script = ExtResource("6_qpnhd")
 property_name = "motivation"
@@ -170,12 +210,21 @@ sg = NodePath("../..")
 export_under = NodePath("../..")
 metadata/_edit_use_anchors_ = true
 
+[node name="Stay" type="ColorRect" parent="HUD/MotivationBar"]
+layout_mode = 0
+offset_left = 68.0
+offset_right = 116.07
+offset_bottom = 24.0
+scale = Vector2(0.977655, 0.984694)
+theme = ExtResource("6_c3i78")
+color = Color(0.942569, 0.148318, 0.49481, 0.823529)
+
 [node name="Min" type="Label" parent="HUD/MotivationBar"]
 layout_mode = 1
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 98.0
-offset_bottom = 27.0
+offset_bottom = 25.0
 theme = ExtResource("6_c3i78")
 text = "Dysphoric"
 
@@ -190,3 +239,12 @@ offset_bottom = 20.0
 grow_horizontal = 0
 theme = ExtResource("6_c3i78")
 text = "Euphoric"
+
+[node name="Nomiss" type="ColorRect" parent="HUD/MotivationBar"]
+layout_mode = 0
+offset_left = 115.0
+offset_right = 150.0
+offset_bottom = 24.0
+scale = Vector2(0.977655, 0.984694)
+theme = ExtResource("6_c3i78")
+color = Color(1, 0.38, 0.597, 0.784314)

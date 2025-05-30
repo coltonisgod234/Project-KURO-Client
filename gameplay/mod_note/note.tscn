@@ -22,5 +22,3 @@ offset_right = 21.0
 offset_bottom = 21.0
 color = Color(0.613569, 0.449865, 0.135709, 1)
 metadata/_edit_use_anchors_ = true
-
-[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

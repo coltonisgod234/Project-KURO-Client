@@ -14,6 +14,24 @@ var lane_num: int = 0
 var sec_since_start: float = 1.0
 var last_update_time: int = 0  # in microseconds
 
+func get_current_beat():
+	if current_beat == len(timings):
+		#print("Not spawning because the number got to big!!")
+		beatcounter_too_large.emit(self)
+		return
+
+	return timings[current_beat]
+
+func fabricate_handle(judge_type, note=null):
+	if note == null:
+		note = get_current_beat()
+
+	match judge_type:
+		Globals.JUDGE_HIT:
+			$Key.hit(note, lane_num)
+		Globals.JUDGE_MISS:
+			$Key.miss(note, lane_num)
+
 func _ready():
 	print("[Lane%d] ready!" % lane_num)
 
@@ -26,17 +44,14 @@ func update_sec_since_map_start():
 
 var should_do_spawns: bool = true
 func do_spawns():
-	if current_beat == len(timings):
-		#print("Not spawning because the number got to big!!")
-		beatcounter_too_large.emit(self)
-		return
+	var this_ittr = get_current_beat()
+	if this_ittr == null: return
 
-	var this_ittr = timings[current_beat]
 	var time = this_ittr["time"]
 	var spd = this_ittr["speed"]
 	if time <= sec_since_start:
 		print("[Lane%s] Spawning, beat_counter is now %s" % [lane_num, current_beat])
-		spawn_note(spd)
+		spawn_note(spd, time)
 		current_beat += 1
 
 func _process(delta:float):
@@ -46,8 +61,9 @@ func _process(delta:float):
 		#print("Eval note on %s" % child)
 		$Key.eval_note(child, lane_num)
 
-func spawn_note(speed: float):
+func spawn_note(speed: float, time: float):
 	var note_instance = NoteScene.instantiate()
 	note_instance.position = Vector2(0, 700)
 	note_instance.speed = speed
+	note_instance.time = time
 	$NoteContainer.add_child(note_instance)

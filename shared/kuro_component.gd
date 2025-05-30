@@ -26,7 +26,7 @@ func ExportUnder(parent, me_myself_and_i, name=null):
 
 	if name == "":
 		name = me_myself_and_i.name
-	
+
 	print("[%s] (BASE) Exporting... %s UNDER %s AS %s" % [self.name, me_myself_and_i.name, parent.name, name])
 	parent.exports.set(name, me_myself_and_i)
 
@@ -36,7 +36,8 @@ signal component_ready(component, globals_export_name)
 enum ExportModes {
 	EXPORT_CHOSEN,
 	EXPORT_PARENT,
-	EXPORT_ROOT
+	EXPORT_ROOT,
+	EXPORT_DONT
 }
 @export var export_mode: ExportModes
 var exports := {}
@@ -48,11 +49,13 @@ func kuro_init():
 func _ready():
 	match export_mode:
 		ExportModes.EXPORT_CHOSEN:
-			Globals.ExportUnder(Globals, self, export_name)
+			Globals.ExportUnder(export_under, self, export_name)
 		ExportModes.EXPORT_PARENT:
 			Globals.ExportUnder(get_parent(), self, export_name)
 		ExportModes.EXPORT_ROOT:
-			Globals.ExportUnder(export_under, self, export_name)
+			Globals.ExportUnder(Globals, self, export_name)
+		ExportModes.EXPORT_DONT:
+			pass
 
 	self.kuro_init()
 	self.component_ready.emit(self, export_name)

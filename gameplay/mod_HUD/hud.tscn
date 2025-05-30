@@ -53,8 +53,9 @@ offset_right = 1152.0
 offset_bottom = 648.0
 script = ExtResource("1_4m2i6")
 export_name = "MainHUD"
+export_mode = 2
 
-[node name="ScoreCounter" type="Label" parent="." node_paths=PackedStringArray("export_under")]
+[node name="ScoreCounter" type="Label" parent="." node_paths=PackedStringArray("sg", "export_under")]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -65,6 +66,7 @@ grow_vertical = 0
 label_settings = ExtResource("2_siuup")
 script = ExtResource("2_68fa7")
 text_template = "%d!"
+sg = NodePath("..")
 export_name = "Score"
 export_under = NodePath("..")
 
@@ -73,7 +75,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_s1eeb")
 }
 
-[node name="ComboCounter" type="Label" parent="." node_paths=PackedStringArray("export_under")]
+[node name="ComboCounter" type="Label" parent="." node_paths=PackedStringArray("sg", "export_under")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -87,6 +89,7 @@ grow_vertical = 0
 label_settings = ExtResource("2_siuup")
 script = ExtResource("2_68fa7")
 text_template = "%dx"
+sg = NodePath("..")
 export_name = "Combo"
 export_under = NodePath("..")
 
