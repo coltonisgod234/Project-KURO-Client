@@ -5,13 +5,10 @@ var is_in_secondary := false
 @export var strength: float
 
 func kuro_init():
-	print("[Violet] INIT\n")
 	await Globals.wait_for_component("LaneManager")
 	Globals.exports.get("LaneManager").note_judged.connect(_on_judgement)
-	print("[Violet] CONNECT LANEMGR\n")
 
 	await Globals.exports.get("MainHUD").wait_for_component("Score")
-	print("Exit timer thingy\n\n", $ExitTimer)
 	$ExitTimer.timeout.connect(_on_secondary_end)
 
 func activate():
@@ -23,11 +20,11 @@ func activate():
 func _on_secondary_end():
 	sg.toggle_state()
 	print("[Violet] Secondary is done!")
-	Globals.exports.get("MainHUD").exports.get("Score").add_count(
-		sg.note_hit_counter *
+	$Executor.apply_argument("AddScore", "amount", (sg.note_hit_counter *
 		strength *
-		sg.reserve
+		sg.reserve)
 	)
+	$Executor.apply_effect("AddScore")
 
 	sg.note_hit_counter = 0
 	is_in_secondary = false

@@ -5,7 +5,7 @@ func stun_for(t: float):
 	self.stop()
 	self.wait_time = t
 	self.start()
-	print("Waiting for %s" % t)
+	print("[Cooldown.gd] Waiting for %s" % t)
 
 func is_stunned():
 	if self.is_stopped():

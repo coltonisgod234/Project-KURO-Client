@@ -1,5 +1,8 @@
 extends KURO_Component
 
+func get_character(character_num):
+	return $CharacterHolder.exports.get(character_num)
+
 func load_character(scene, character_num):
 	var character = scene.instantiate()
 	character.position = Vector2(80 + character_num * 210, 0)

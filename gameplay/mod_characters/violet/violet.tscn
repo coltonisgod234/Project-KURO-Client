@@ -1,19 +1,34 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy7o87heqfp3x"]
+[gd_scene load_steps=11 format=3 uid="uid://cy7o87heqfp3x"]
 
 [ext_resource type="Script" uid="uid://b6c0p3k85ffnj" path="res://gameplay/mod_characters/violet/violet.gd" id="1_d5g55"]
 [ext_resource type="Script" uid="uid://p5rrs66h4m1h" path="res://gameplay/mod_characters/violet/primary.gd" id="3_gyg6r"]
 [ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="3_kgw7j"]
+[ext_resource type="Script" uid="uid://bvomr8fnr6agf" path="res://gameplay/mod_effect/missable.gd" id="3_yvjxr"]
 [ext_resource type="Script" uid="uid://hg33pcxmdi8n" path="res://gameplay/mod_characters/violet/secondary_a.gd" id="4_72dhn"]
 [ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="5_1v4fr"]
+[ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="5_c3i78"]
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="6_c3i78"]
 [ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/character_bar.gd" id="6_qpnhd"]
+[ext_resource type="Script" uid="uid://v24x2ij0j8in" path="res://gameplay/mod_effect/addscore.gd" id="6_sy680"]
 
 [node name="Violet" type="Node2D" node_paths=PackedStringArray("sg")]
 script = ExtResource("1_d5g55")
 default_motivation_spd = 0.1
+state = 1.0
 positive_effect_threshold = 0.5
 sg = NodePath(".")
 export_mode = 1
+
+[node name="Executor" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("5_c3i78")
+sg = NodePath("..")
+export_under = NodePath("..")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="SetMissable" type="Node" parent="Executor" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("3_yvjxr")
+sg = NodePath("../..")
+export_under = NodePath("..")
 
 [node name="AbilityStun" type="Timer" parent="."]
 one_shot = true
@@ -42,13 +57,24 @@ export_under = NodePath("..")
 one_shot = true
 script = ExtResource("3_kgw7j")
 
+[node name="Executor" type="Node" parent="SecondaryA" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("5_c3i78")
+sg = NodePath("../..")
+export_under = NodePath("..")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="AddScore" type="Node" parent="SecondaryA/Executor" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("6_sy680")
+amount_range_high = -1
+sg = NodePath("../../..")
+export_under = NodePath("..")
+
 [node name="HUD" type="VBoxContainer" parent="." node_paths=PackedStringArray("sg", "export_under")]
 custom_minimum_size = Vector2(0, 24)
 offset_right = 200.0
 offset_bottom = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 3
 script = ExtResource("5_1v4fr")
 sg = NodePath("..")
 export_under = NodePath("..")
@@ -186,8 +212,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -20.0
+offset_left = -28.0
 offset_top = -4.0
+offset_right = -2.0
 offset_bottom = 20.0
 grow_horizontal = 0
 theme = ExtResource("6_c3i78")

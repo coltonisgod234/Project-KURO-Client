@@ -7,5 +7,8 @@ func kuro_init():
 	await self.wait_till_init(check)
 
 func _process(delta):
+	if check == null:
+		return
+
 	self.value = check.get(property_name)
 	#print(self.value)

@@ -2,6 +2,8 @@
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_5jl1u"]
 color = Color(1, 0.3825, 0.35, 1)
+grow_begin = -5.0
+grow_end = -5.0
 thickness = 8
 
 [sub_resource type="SystemFont" id="SystemFont_5jl1u"]

@@ -1,14 +1,14 @@
 extends KURO_Character
 
 var reserve: int = 0
-var motivation: float = 0.0
+@export var motivation: float = 0.0
 @export var default_motivation_spd: float = 0.15
-var motivation_speed: float = default_motivation_spd
-var life := 100.0
+@export var motivation_speed: float = default_motivation_spd
+@export var life := 100.0
 
 @export var STATE_VIOLET_EUPHORIC: float = 1.0
 @export var STATE_VIOLET_DYSPHORIC: float = -1.0
-var state = STATE_VIOLET_EUPHORIC
+@export var state = STATE_VIOLET_EUPHORIC
 var note_hit_counter := 0
 
 @export_category("Effects")
@@ -42,12 +42,10 @@ func secondaryA():
 
 func _process(_delta:float):
 	motivation = lerp(motivation, state, motivation_speed * _delta)
-	if motivation < negative_effect_threshold:
-		life -= abs(motivation) * multiplication
+	var missable = motivation <= positive_effect_threshold
+	$Executor.apply_argument("SetMissable", "missable", missable)
+	$Executor.apply_effect("SetMissable")
 
-	if motivation > positive_effect_threshold:
-		Globals.exports.get("LaneManager").allow_miss = false
+	if not missable:
 		life -= abs(motivation) * multiplication
-	else:
-		Globals.exports.get("LaneManager").allow_miss = true
 	#print(motivation)
