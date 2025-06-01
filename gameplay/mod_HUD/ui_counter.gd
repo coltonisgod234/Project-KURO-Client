@@ -25,6 +25,9 @@ func set_count(val):
 	update(old_count)
 
 func add_count(val):
+	if val < 0:
+		return
+
 	var old_count := count
 	count += val
 	update(old_count)
@@ -35,7 +38,7 @@ func sub_count(val):
 	update(old_count)
 
 func sub_count_positive_only(val):
-	if val < 0:
+	if val > 0:
 		return
 
 	var old_count := count

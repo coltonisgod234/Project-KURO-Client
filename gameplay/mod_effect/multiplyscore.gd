@@ -1,7 +1,7 @@
 extends KURO_Effect
 
-@export var amount: int = 0
-@export var amount_range_high: int = 10
+@export var amount: int = 1
+@export var amount_range_high: int = 1
 
 func apply():
 	var hud = await Globals.wait_for_component("MainHUD")

@@ -35,6 +35,7 @@ func init_SongPlayer():
 	songplayer.start_song(map_song)
 
 func _ready():
+	randomize()
 	print("[Main] Parsed map: %s | %s | audiofile is %s | %s keys" % [map, map_timings, map_song, map_num_keys])
 	init_LaneManager()
 	init_SongPlayer()

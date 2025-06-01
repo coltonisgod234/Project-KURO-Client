@@ -1,11 +1,17 @@
 extends KURO_Component
 
+@export_group("Character HUDs")
+@export var PixelsPerCharacter: float
+@export var LeftSidePadding: float
+@export var YPosition: float
+@export var XPositionSeperation: float
+
 func get_character(character_num):
 	return $CharacterHolder.exports.get(character_num)
 
 func load_character(scene, character_num):
 	var character = scene.instantiate()
-	character.position = Vector2(80 + character_num * 210, 0)
+	character.position = Vector2(LeftSidePadding + character_num * (PixelsPerCharacter + XPositionSeperation), YPosition)
 	character.export_name = "%s" % [character_num]
 	$CharacterHolder.add_child(character)
 

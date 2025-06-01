@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://c3jcrlkt7sab1"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://c3jcrlkt7sab1"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_5jl1u"]
 color = Color(1, 0.3825, 0.35, 1)
@@ -7,6 +7,15 @@ grow_end = -5.0
 thickness = 8
 
 [sub_resource type="SystemFont" id="SystemFont_5jl1u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64nlc"]
+bg_color = Color(0, 0, 0, 1)
+skew = Vector2(0.1, 0)
+border_width_left = 3
+border_width_top = 24
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.380392, 0.34902, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jl1u"]
 bg_color = Color(0, 0, 0, 1)
@@ -35,6 +44,7 @@ Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/colors/font_shadow_color = Color(0, 0, 0, 0)
 Label/font_sizes/font_size = 15
 Label/fonts/font = SubResource("SystemFont_5jl1u")
+Panel/styles/panel = SubResource("StyleBoxFlat_64nlc")
 ProgressBar/colors/font_color = Color(1, 1, 1, 1)
 ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
 ProgressBar/constants/outline_size = 0

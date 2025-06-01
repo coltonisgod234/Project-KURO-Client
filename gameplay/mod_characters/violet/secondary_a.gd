@@ -24,7 +24,7 @@ func _on_secondary_end():
 		strength *
 		sg.reserve)
 	)
-	$Executor.apply_effect("AddScore")
+	$Executor.apply("AddScore")
 
 	sg.note_hit_counter = 0
 	is_in_secondary = false

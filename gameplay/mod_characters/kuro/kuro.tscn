@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsb1hmgms8hml"]
+[gd_scene load_steps=16 format=3 uid="uid://dsb1hmgms8hml"]
 
 [ext_resource type="Script" uid="uid://ck1b7qmh631ka" path="res://gameplay/mod_characters/kuro/kuro.gd" id="1_54vou"]
 [ext_resource type="Script" uid="uid://c2gdldq6xulrv" path="res://gameplay/mod_characters/kuro/primary.gd" id="2_lhkx7"]
@@ -12,13 +12,13 @@
 [ext_resource type="Script" uid="uid://dulqhoqq1ebm8" path="res://gameplay/mod_effect/addcombo.gd" id="6_mldwb"]
 [ext_resource type="Script" uid="uid://dgrhoaf5ovymo" path="res://gameplay/mod_effect/subscore.gd" id="6_w8xyn"]
 [ext_resource type="Script" uid="uid://smg1drh5eaen" path="res://gameplay/mod_effect/subcombo.gd" id="7_waxe7"]
-[ext_resource type="Script" uid="uid://b085xv6i2k4fk" path="res://gameplay/mod_effect/breakcombo.gd" id="8_mc0aa"]
-[ext_resource type="Script" uid="uid://dhpwr8tp1l6vu" path="res://gameplay/mod_effect/toggle_miss.gd" id="11_55yk6"]
-[ext_resource type="Script" uid="uid://cxl3s863v5v0m" path="res://gameplay/mod_effect/multiplyscore.gd" id="11_w0y6o"]
+[ext_resource type="Script" uid="uid://bvomr8fnr6agf" path="res://gameplay/mod_effect/missable.gd" id="11_w0y6o"]
 [ext_resource type="Script" uid="uid://dot2m3hxw65tg" path="res://gameplay/mod_effect/hit_within_range.gd" id="12_2klul"]
+[ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/character_label.gd" id="15_55yk6"]
 
 [node name="Kuro" type="Node2D" node_paths=PackedStringArray("sg")]
 script = ExtResource("1_54vou")
+life = 100.0
 sg = NodePath(".")
 export_mode = 1
 
@@ -27,6 +27,7 @@ script = ExtResource("2_qeq0e")
 
 [node name="Primary" type="Node2D" parent="." node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("2_lhkx7")
+ability_name = "Fabricate"
 sg = NodePath("..")
 export_under = NodePath("..")
 
@@ -35,103 +36,158 @@ script = ExtResource("2_qeq0e")
 
 [node name="SecondaryA" type="Node2D" parent="." node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("4_w8xyn")
+MultiplexedGoodChildName = "ExecutorGood"
+MultiplexedBadChildName = "ExecutorBad"
+LifeLostPerBadEffect = 15.0
+LifeGainedPerGoodEffect = 10.195
+ability_name = "Fluctuate"
 sg = NodePath("..")
 export_under = NodePath("..")
 
 [node name="Cooldown" type="Timer" parent="SecondaryA"]
 script = ExtResource("2_qeq0e")
 
-[node name="Executor" type="Node" parent="SecondaryA" node_paths=PackedStringArray("sg", "export_under")]
+[node name="ExecutorMultiplexer" type="Node" parent="SecondaryA" node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("5_4lye0")
 sg = NodePath("../..")
 export_under = NodePath("..")
 metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
 
-[node name="AddCombo" type="Node" parent="SecondaryA/Executor" node_paths=PackedStringArray("sg", "export_under")]
+[node name="ExecutorGood" type="Node" parent="SecondaryA/ExecutorMultiplexer" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("5_4lye0")
+sg = NodePath("../../..")
+export_under = NodePath("..")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="AddCombo" type="Node" parent="SecondaryA/ExecutorMultiplexer/ExecutorGood" node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("6_mldwb")
 amount_range_high = 10
-sg = NodePath("../../..")
+HumanFriendlyName = "Add Combo"
+sg = NodePath("../../../..")
 export_under = NodePath("..")
 
-[node name="SubCombo" type="Node" parent="SecondaryA/Executor" node_paths=PackedStringArray("sg", "export_under")]
-script = ExtResource("7_waxe7")
-amount_range_high = 10
-sg = NodePath("../../..")
-export_under = NodePath("..")
-
-[node name="AddScore" type="Node" parent="SecondaryA/Executor" node_paths=PackedStringArray("sg", "export_under")]
+[node name="AddScore" type="Node" parent="SecondaryA/ExecutorMultiplexer/ExecutorGood" node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("4_0cfwl")
 amount = 500
 amount_range_high = 46221
-sg = NodePath("../../..")
+HumanFriendlyName = "Add Score"
+sg = NodePath("../../../..")
 export_under = NodePath("..")
 
-[node name="SubScore" type="Node" parent="SecondaryA/Executor" node_paths=PackedStringArray("sg", "export_under")]
+[node name="ExecutorBad" type="Node" parent="SecondaryA/ExecutorMultiplexer" node_paths=PackedStringArray("export_under")]
+script = ExtResource("5_4lye0")
+export_under = NodePath("..")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="SubCombo" type="Node" parent="SecondaryA/ExecutorMultiplexer/ExecutorBad" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("7_waxe7")
+amount_range_high = 10
+HumanFriendlyName = "Subtract Combo"
+sg = NodePath("../../../..")
+export_under = NodePath("..")
+
+[node name="SubScore" type="Node" parent="SecondaryA/ExecutorMultiplexer/ExecutorBad" node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("6_w8xyn")
 amount = 500
 amount_range_high = 46221
-sg = NodePath("../../..")
+HumanFriendlyName = "Subtract Score"
+sg = NodePath("../../../..")
 export_under = NodePath("..")
 
 [node name="SecondaryB" type="Node2D" parent="." node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("4_w8xyn")
+MultiplexedGoodChildName = "ExecutorGood"
+MultiplexedBadChildName = "ExecutorBad"
+LifeLostPerBadEffect = 15.0
+LifeGainedPerGoodEffect = 10.195
+ability_name = "Risk and Reward"
 sg = NodePath("..")
 export_under = NodePath("..")
 
 [node name="Cooldown" type="Timer" parent="SecondaryB"]
 script = ExtResource("2_qeq0e")
 
-[node name="Executor" type="Node" parent="SecondaryB" node_paths=PackedStringArray("sg", "export_under")]
+[node name="ExecutorMultiplexer" type="Node" parent="SecondaryB" node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("5_4lye0")
-sg = NodePath("../..")
+sg = NodePath("..")
 export_under = NodePath("..")
 metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
 
-[node name="ToggleMiss" type="Node" parent="SecondaryB/Executor" node_paths=PackedStringArray("sg", "export_under")]
-script = ExtResource("11_55yk6")
+[node name="ExecutorGood" type="Node" parent="SecondaryB/ExecutorMultiplexer" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("5_4lye0")
 sg = NodePath("../../..")
-export_under = NodePath("../../../SecondaryA/Executor")
+export_under = NodePath("..")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
 
-[node name="HitNoteInTimeframe" type="Node" parent="SecondaryB/Executor" node_paths=PackedStringArray("sg", "export_under")]
+[node name="HitNoteInTimeframe" type="Node" parent="SecondaryB/ExecutorMultiplexer/ExecutorGood" node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("12_2klul")
 range_b = 1.0
 extra_score = 300.0
 judge = 1
-sg = NodePath("../../..")
-export_under = NodePath("../../../SecondaryA/Executor")
-
-[node name="MissNoteInTimeframe" type="Node" parent="SecondaryB/Executor" node_paths=PackedStringArray("sg", "export_under")]
-script = ExtResource("12_2klul")
-range_b = 1.0
-sg = NodePath("../../..")
-export_under = NodePath("../../../SecondaryA/Executor")
-
-[node name="BreakCombo" type="Node" parent="SecondaryB/Executor" node_paths=PackedStringArray("sg", "export_under")]
-script = ExtResource("8_mc0aa")
-sg = NodePath("../../..")
-export_under = NodePath("../../../SecondaryA/Executor")
-
-[node name="MultiplyScore" type="Node" parent="SecondaryB/Executor" node_paths=PackedStringArray("sg", "export_under")]
-script = ExtResource("11_w0y6o")
-amount_range_high = 3
-sg = NodePath("../../..")
-export_under = NodePath("../../../SecondaryA/Executor")
-
-[node name="HUD" type="VBoxContainer" parent="." node_paths=PackedStringArray("sg", "export_under")]
-offset_right = 200.0
-offset_bottom = 200.0
-script = ExtResource("4_1coxs")
-sg = NodePath("..")
-export_name = "HUD"
+HumanFriendlyName = "Hit Notes in Timeframe"
+sg = NodePath("../../../..")
 export_under = NodePath("..")
 
-[node name="CharacterName" type="Label" parent="HUD"]
+[node name="DisableMiss" type="Node" parent="SecondaryB/ExecutorMultiplexer/ExecutorGood" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("11_w0y6o")
+HumanFriendlyName = "Disabled Miss"
+sg = NodePath("../../../..")
+export_under = NodePath("..")
+
+[node name="ExecutorBad" type="Node" parent="SecondaryB/ExecutorMultiplexer" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("5_4lye0")
+sg = NodePath("../../..")
+export_under = NodePath("..")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="EnableMiss" type="Node" parent="SecondaryB/ExecutorMultiplexer/ExecutorBad" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("11_w0y6o")
+missable = true
+HumanFriendlyName = "Enabled Miss"
+sg = NodePath("../../../..")
+export_name = "Enabled miss"
+export_under = NodePath("..")
+
+[node name="MissNoteInTimeframe" type="Node" parent="SecondaryB/ExecutorMultiplexer/ExecutorBad" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("12_2klul")
+range_b = 1.0
+HumanFriendlyName = "Miss Notes in Timeframe"
+sg = NodePath("../../../..")
+export_under = NodePath("..")
+
+[node name="HUDContainer" type="Panel" parent="."]
+offset_right = 242.0
+offset_bottom = 321.0
+theme = ExtResource("5_64oyw")
+
+[node name="HUD" type="VBoxContainer" parent="HUDContainer" node_paths=PackedStringArray("sg", "export_under")]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 207.0
+grow_horizontal = 2
+script = ExtResource("4_1coxs")
+sg = NodePath("../..")
+export_name = "HUD"
+export_under = NodePath("../..")
+
+[node name="CharacterName" type="Label" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 text = "Kuro"
+script = ExtResource("15_55yk6")
+fstring = "%s -- Kuro"
+property_name = "export_name"
+check = NodePath("../../..")
+sg = NodePath("../../..")
+export_under = NodePath("..")
 metadata/_edit_use_anchors_ = true
 
-[node name="PrimaryStunBar" type="ProgressBar" parent="HUD"]
+[node name="PrimaryStunBar" type="ProgressBar" parent="HUDContainer/HUD"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme = ExtResource("5_64oyw")
@@ -142,7 +198,7 @@ fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="Name" type="Label" parent="HUD/PrimaryStunBar"]
+[node name="Name" type="Label" parent="HUDContainer/HUD/PrimaryStunBar"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 5.0
@@ -150,7 +206,7 @@ offset_right = 71.0
 offset_bottom = 27.0
 text = "1   Fabricate"
 
-[node name="Max" type="Label" parent="HUD/PrimaryStunBar"]
+[node name="Max" type="Label" parent="HUDContainer/HUD/PrimaryStunBar"]
 layout_mode = 0
 offset_left = 168.0
 offset_top = -4.0
@@ -158,7 +214,7 @@ offset_right = 197.0
 offset_bottom = 18.0
 text = "0.5s"
 
-[node name="SecondaryAStunBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+[node name="SecondaryAStunBar" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme = ExtResource("5_64oyw")
@@ -169,12 +225,12 @@ fill_mode = 1
 show_percentage = false
 script = ExtResource("4_uuav8")
 property_name = "time_left"
-check = NodePath("../../SecondaryA/Cooldown")
-sg = NodePath("../..")
+check = NodePath("../../../SecondaryA/Cooldown")
+sg = NodePath("../../..")
 export_under = NodePath("..")
 metadata/_edit_use_anchors_ = true
 
-[node name="Name" type="Label" parent="HUD/SecondaryAStunBar"]
+[node name="Name" type="Label" parent="HUDContainer/HUD/SecondaryAStunBar"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 5.0
@@ -182,15 +238,15 @@ offset_right = 71.0
 offset_bottom = 27.0
 text = "2   Fluctuate"
 
-[node name="Max" type="Label" parent="HUD/SecondaryAStunBar"]
+[node name="Max" type="Label" parent="HUDContainer/HUD/SecondaryAStunBar"]
 layout_mode = 0
-offset_left = 182.0
+offset_left = 181.0
 offset_top = -4.0
-offset_right = 198.0
+offset_right = 197.0
 offset_bottom = 18.0
 text = "1s"
 
-[node name="SecondaryBStunBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+[node name="SecondaryBStunBar" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme = ExtResource("5_64oyw")
@@ -201,12 +257,12 @@ fill_mode = 1
 show_percentage = false
 script = ExtResource("4_uuav8")
 property_name = "time_left"
-check = NodePath("../../SecondaryB/Cooldown")
-sg = NodePath("../..")
+check = NodePath("../../../SecondaryB/Cooldown")
+sg = NodePath("../../..")
 export_under = NodePath("..")
 metadata/_edit_use_anchors_ = true
 
-[node name="Name" type="Label" parent="HUD/SecondaryBStunBar"]
+[node name="Name" type="Label" parent="HUDContainer/HUD/SecondaryBStunBar"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 6.0
@@ -214,15 +270,15 @@ offset_right = 122.0
 offset_bottom = 28.0
 text = "3   Risk and Reward"
 
-[node name="Max" type="Label" parent="HUD/SecondaryBStunBar"]
+[node name="Max" type="Label" parent="HUDContainer/HUD/SecondaryBStunBar"]
 layout_mode = 0
-offset_left = 182.0
+offset_left = 181.0
 offset_top = -4.0
-offset_right = 198.0
+offset_right = 197.0
 offset_bottom = 18.0
 text = "1s"
 
-[node name="SecondaryCStunBar" type="ProgressBar" parent="HUD"]
+[node name="SecondaryCStunBar" type="ProgressBar" parent="HUDContainer/HUD"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme = ExtResource("5_64oyw")
@@ -233,11 +289,37 @@ fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="HSeparator" type="HSeparator" parent="HUD"]
+[node name="HSeparator" type="HSeparator" parent="HUDContainer/HUD"]
 layout_mode = 2
 theme = ExtResource("5_64oyw")
 
-[node name="AbilityStun" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+[node name="LifeMeter" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = ExtResource("5_64oyw")
+script = ExtResource("4_uuav8")
+property_name = "life"
+check = NodePath("../../..")
+sg = NodePath("../../..")
+export_under = NodePath("..")
+
+[node name="Name" type="Label" parent="HUDContainer/HUD/LifeMeter"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 109.0
+offset_bottom = 26.0
+text = "Soul"
+
+[node name="Max" type="Label" parent="HUDContainer/HUD/LifeMeter"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = -4.0
+offset_right = 197.0
+offset_bottom = 18.0
+text = "100"
+
+[node name="AbilityStun" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme = ExtResource("5_64oyw")
@@ -247,14 +329,23 @@ allow_lesser = true
 show_percentage = false
 script = ExtResource("4_uuav8")
 property_name = "time_left"
-check = NodePath("../../AbilityStun")
-sg = NodePath("../..")
+check = NodePath("../../../AbilityStun")
+sg = NodePath("../../..")
 export_under = NodePath("..")
 
-[node name="Name" type="Label" parent="HUD/AbilityStun"]
+[node name="Name" type="Label" parent="HUDContainer/HUD/AbilityStun"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
 offset_right = 109.0
 offset_bottom = 26.0
 text = "Ability Stun"
+
+[node name="LastEffectApplied" type="Label" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+layout_mode = 2
+script = ExtResource("15_55yk6")
+fstring = "%s!"
+property_name = "LastEffectAppliedHumanFriendlyName"
+check = NodePath("../../..")
+sg = NodePath("../../..")
+export_under = NodePath("..")
