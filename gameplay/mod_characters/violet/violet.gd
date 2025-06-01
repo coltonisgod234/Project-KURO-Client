@@ -5,6 +5,8 @@ var reserve: int = 0
 @export var default_motivation_spd: float = 0.15
 @export var motivation_speed: float = default_motivation_spd
 @export var life := 100.0
+@export var ReadableStatus: String
+@export var ReadableState: String
 
 @export var STATE_VIOLET_EUPHORIC: float = 1.0
 @export var STATE_VIOLET_DYSPHORIC: float = -1.0
@@ -22,10 +24,12 @@ func kuro_init():
 func toggle_state():
 	if state == STATE_VIOLET_EUPHORIC:
 		state = STATE_VIOLET_DYSPHORIC
+		ReadableState = "dysphoric"
 		motivation_speed = default_motivation_spd
 		
 	elif state == STATE_VIOLET_DYSPHORIC:
 		state = STATE_VIOLET_EUPHORIC
+		ReadableState = "euphoric"
 		motivation_speed = default_motivation_spd
 
 func primary():
@@ -47,13 +51,18 @@ func secondaryC():
 	pass
 
 func _process(_delta:float):
-	motivation = lerp(motivation, state, motivation_speed * _delta)
-	#motivation += motivation_speed * _delta
-	var missable = motivation <= positive_effect_threshold
-	if missable:
-		$Executor.apply_argument("SetMissable", "missable", missable)
-		$Executor.apply("SetMissable")
-
-	if not missable:
+	#motivation = lerp(motivation, state, motivation_speed * _delta)
+	motivation += sign(state) * motivation_speed * _delta
+	if motivation < negative_effect_threshold:
 		life -= abs(motivation) * multiplication
-	#print(motivation)
+		ReadableStatus = "Draining downwards"
+
+	elif motivation > positive_effect_threshold:
+		life -= abs(motivation) * multiplication
+		$Executor.apply_argument("SetMissable", "missable", true)
+		$Executor.apply("SetMissable")
+		ReadableStatus = "Draining upwards"
+	
+	else:
+		ReadableStatus = "OK"
+		

@@ -17,6 +17,7 @@ script = ExtResource("1_d5g55")
 default_motivation_spd = 0.1
 state = 1.0
 positive_effect_threshold = 0.5
+negative_effect_threshold = -0.1
 sg = NodePath(".")
 export_mode = 1
 
@@ -233,7 +234,7 @@ layout_direction = 2
 layout_mode = 1
 offset_left = 3.0
 offset_top = 3.0
-offset_right = 97.0
+offset_right = 30.0
 offset_bottom = 25.0
 theme = ExtResource("6_c3i78")
 text = "Life"
@@ -273,8 +274,8 @@ metadata/_edit_use_anchors_ = true
 [node name="Stay" type="ColorRect" parent="Panel/HUD/MotivationBar"]
 layout_direction = 2
 layout_mode = 0
-offset_left = 68.0
-offset_right = 116.07
+offset_left = 89.0
+offset_right = 152.0
 offset_bottom = 24.0
 scale = Vector2(0.977655, 0.984694)
 theme = ExtResource("6_c3i78")
@@ -298,7 +299,8 @@ anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -69.0
 offset_top = -4.0
-offset_bottom = 20.0
+offset_right = -5.0
+offset_bottom = 18.0
 grow_horizontal = 0
 theme = ExtResource("6_c3i78")
 text = "Euphoric"
@@ -306,9 +308,27 @@ text = "Euphoric"
 [node name="Nomiss" type="ColorRect" parent="Panel/HUD/MotivationBar"]
 layout_direction = 2
 layout_mode = 0
-offset_left = 115.0
-offset_right = 150.0
+offset_left = 150.0
+offset_right = 196.0
 offset_bottom = 24.0
 scale = Vector2(0.977655, 0.984694)
 theme = ExtResource("6_c3i78")
 color = Color(1, 0.38, 0.597, 0.784314)
+
+[node name="ReadableStatus" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+layout_mode = 2
+script = ExtResource("10_tvbvq")
+fstring = "%s!"
+property_name = "ReadableStatus"
+check = NodePath("../../..")
+sg = NodePath("../../..")
+export_under = NodePath("..")
+
+[node name="ReadableState" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+layout_mode = 2
+script = ExtResource("10_tvbvq")
+fstring = "Gender %s."
+property_name = "ReadableState"
+check = NodePath("../../..")
+sg = NodePath("../../..")
+export_under = NodePath("..")
