@@ -12,5 +12,9 @@ func _process(delta):
 		return
 	
 	var value = check.get(property_name)
+	if value == "":
+		randomize()
+		return
+
 	self.text = fstring % [value]
 	#print(self.value)

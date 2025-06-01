@@ -1,6 +1,5 @@
 extends KURO_Character
 
-var did_i_already_set_missable: bool = false
 var reserve: int = 0
 @export var motivation: float = 0.0
 @export var default_motivation_spd: float = 0.15
@@ -48,11 +47,12 @@ func secondaryC():
 	pass
 
 func _process(_delta:float):
-	#motivation = lerp(motivation, state, motivation_speed * _delta)
-	motivation += motivation_speed * _delta
+	motivation = lerp(motivation, state, motivation_speed * _delta)
+	#motivation += motivation_speed * _delta
 	var missable = motivation <= positive_effect_threshold
-	$Executor.apply_argument("SetMissable", "missable", missable)
-	$Executor.apply("SetMissable")
+	if missable:
+		$Executor.apply_argument("SetMissable", "missable", missable)
+		$Executor.apply("SetMissable")
 
 	if not missable:
 		life -= abs(motivation) * multiplication
