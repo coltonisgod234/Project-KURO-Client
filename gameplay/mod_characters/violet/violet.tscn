@@ -8,9 +8,9 @@
 [ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="5_1v4fr"]
 [ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="5_c3i78"]
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="6_c3i78"]
-[ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/character_bar.gd" id="6_qpnhd"]
+[ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/attr_bar.gd" id="6_qpnhd"]
 [ext_resource type="Script" uid="uid://v24x2ij0j8in" path="res://gameplay/mod_effect/addscore.gd" id="6_sy680"]
-[ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/character_label.gd" id="10_tvbvq"]
+[ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="10_tvbvq"]
 
 [node name="Violet" type="Node2D" node_paths=PackedStringArray("sg")]
 script = ExtResource("1_d5g55")
@@ -98,6 +98,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_direction = 2
 layout_mode = 2
 theme = ExtResource("6_c3i78")
+text = "__Character Name__"
 script = ExtResource("10_tvbvq")
 fstring = "%s -- Violet"
 property_name = "export_name"

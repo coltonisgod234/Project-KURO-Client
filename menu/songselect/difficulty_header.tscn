@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://n3yrm8kgw7t5"]
+
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_m0id2"]
+[ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_ln244"]
+
+[node name="Control" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_right = -629.0
+offset_bottom = -628.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 24.0
+theme = ExtResource("1_m0id2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 23.0
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "Diff name"
+label_settings = ExtResource("2_ln244")

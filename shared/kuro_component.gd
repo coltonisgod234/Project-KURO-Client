@@ -17,7 +17,7 @@ func wait_for_component(component_name, relative_to=null):
 
 	print("[%s] (BASE) Waiting for component %s ON %s" % [self.name, component_name, relative_to.name])
 	while component_name not in relative_to.exports:
-		await get_tree().process_frame
+		await self.get_tree().process_frame
 	return self.exports.get(component_name)
 
 func ExportUnder(parent, me_myself_and_i, name=null):
@@ -26,9 +26,13 @@ func ExportUnder(parent, me_myself_and_i, name=null):
 
 	if name == "":
 		name = me_myself_and_i.name
-
+	
 	print("[%s] (BASE) Exporting... %s UNDER %s AS %s" % [self.name, me_myself_and_i.name, parent.name, name])
+	if not "exports" in parent:
+		print("[%s] (BASE) You did a stupid Colton" % [self.name])
+		return
 	parent.exports.set(name, me_myself_and_i)
+	print("Done")
 
 signal component_ready(component, globals_export_name)
 @export var export_name: String
@@ -47,6 +51,9 @@ func kuro_init():
 	pass
 
 func _ready():
+	if export_under == null:
+		push_warning("[%s] (%s) You might have made another silly bug, Artemis!" % [self, self.name])
+
 	match export_mode:
 		ExportModes.EXPORT_CHOSEN:
 			Globals.ExportUnder(export_under, self, export_name)

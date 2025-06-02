@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dehlhphxf7crn"]
+
+[sub_resource type="SystemFont" id="SystemFont_c44dg"]
+font_names = PackedStringArray("Monospace")
+
+[resource]
+font = SubResource("SystemFont_c44dg")
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.878431)
