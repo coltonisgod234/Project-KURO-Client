@@ -11,6 +11,7 @@ func init_CharacterManager():
 	self.add_child(character_manager)
 	character_manager.load_character(Scenes.CharacterViolet, 1)
 	character_manager.load_character(Scenes.CharacterKuro, 2)
+	character_manager.load_character(Scenes.CharacterTab5, 3)
 
 var hud = null
 func init_HUD():

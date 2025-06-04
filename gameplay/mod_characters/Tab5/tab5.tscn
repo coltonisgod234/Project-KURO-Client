@@ -1,0 +1,163 @@
+[gd_scene load_steps=10 format=3 uid="uid://d13mtyk7g6rdi"]
+
+[ext_resource type="Script" uid="uid://bq81uhbjbo38h" path="res://gameplay/mod_characters/Tab5/tab_5.gd" id="1_u3kyl"]
+[ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="2_tf1xw"]
+[ext_resource type="PackedScene" uid="uid://dt4ggy47qpa6v" path="res://gameplay/mod_characters/Tab5/autohotkey/AutoHotKey.tscn" id="3_2rrlx"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="4_2scqv"]
+[ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="5_mbo1y"]
+[ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="6_u34pu"]
+[ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/attr_bar.gd" id="7_u34pu"]
+[ext_resource type="LabelSettings" uid="uid://75j526cfj8tt" path="res://UI_stuff/small_font_monospace_label_settings.tres" id="9_qgenx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u34pu"]
+
+[node name="Tab5" type="Node2D" node_paths=PackedStringArray("sg")]
+script = ExtResource("1_u3kyl")
+installation_delay_sec = 1.0
+installation_cost_corruption = 2.0
+execution_cost_corruption = 0.5
+max_log_lines = 8
+sg = NodePath(".")
+export_mode = 1
+
+[node name="MiscTimer" type="Timer" parent="."]
+script = ExtResource("2_tf1xw")
+
+[node name="AbilityStun" type="Timer" parent="."]
+script = ExtResource("2_tf1xw")
+
+[node name="Programs" type="Node2D" parent="."]
+
+[node name="AutoHotKey" parent="Programs" node_paths=PackedStringArray("sg", "export_under") instance=ExtResource("3_2rrlx")]
+ability_name = "AutoHotKey"
+sg = NodePath("../..")
+export_under = NodePath("../..")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 252.0
+offset_bottom = 321.0
+theme = ExtResource("4_2scqv")
+
+[node name="HUD" type="VBoxContainer" parent="Panel" node_paths=PackedStringArray("sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_right = 115.0
+offset_bottom = 312.0
+grow_horizontal = 2
+size_flags_horizontal = 10
+theme = ExtResource("4_2scqv")
+script = ExtResource("5_mbo1y")
+sg = NodePath("../..")
+export_under = NodePath("../..")
+
+[node name="CharacterName" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_direction = 2
+layout_mode = 2
+theme = ExtResource("4_2scqv")
+text = "__Character Name__"
+script = ExtResource("6_u34pu")
+fstring = "%s -- Tab5"
+property_name = "export_name"
+check = NodePath("../../..")
+sg = NodePath("../../..")
+export_under = NodePath("..")
+metadata/_edit_use_anchors_ = true
+
+[node name="CorruptionBar" type="ProgressBar" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = ExtResource("4_2scqv")
+show_percentage = false
+script = ExtResource("7_u34pu")
+property_name = "corruption"
+check = NodePath("../../..")
+sg = NodePath("../../..")
+export_under = NodePath("..")
+
+[node name="Corruption" type="Label" parent="Panel/HUD/CorruptionBar"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 83.0
+offset_bottom = 26.0
+theme = ExtResource("4_2scqv")
+text = "Corruption"
+label_settings = SubResource("LabelSettings_u34pu")
+
+[node name="Max" type="Label" parent="Panel/HUD/CorruptionBar"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = -2.0
+offset_right = 224.0
+offset_bottom = 21.0
+theme = ExtResource("4_2scqv")
+text = "100"
+label_settings = SubResource("LabelSettings_u34pu")
+
+[node name="InstallBar" type="ProgressBar" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme = ExtResource("4_2scqv")
+max_value = 1.0
+fill_mode = 1
+show_percentage = false
+script = ExtResource("7_u34pu")
+property_name = "time_left"
+check = NodePath("../../../AbilityStun")
+sg = NodePath("../../..")
+export_under = NodePath("..")
+
+[node name="Name" type="Label" parent="Panel/HUD/InstallBar"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 85.0
+offset_bottom = 26.0
+theme = ExtResource("4_2scqv")
+text = "Installation"
+label_settings = SubResource("LabelSettings_u34pu")
+
+[node name="Max" type="Label" parent="Panel/HUD/InstallBar"]
+layout_mode = 0
+offset_left = 205.0
+offset_top = -3.0
+offset_right = 231.0
+offset_bottom = 20.0
+theme = ExtResource("4_2scqv")
+text = "1s"
+label_settings = SubResource("LabelSettings_u34pu")
+
+[node name="Label" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+layout_mode = 2
+theme = ExtResource("4_2scqv")
+label_settings = SubResource("LabelSettings_u34pu")
+script = ExtResource("6_u34pu")
+fstring = "%s ready!"
+property_name = "get_program_name"
+check = NodePath("../../..")
+operation_mode = 1
+sg = NodePath("../../..")
+export_under = NodePath("..")
+
+[node name="Log" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_2scqv")
+text = "Tab5 log
+Tab5 log
+Tab5 log
+Tab5 log"
+label_settings = ExtResource("9_qgenx")
+script = ExtResource("6_u34pu")
+fstring = "%s"
+property_name = "log_to_string"
+check = NodePath("../../..")
+operation_mode = 1
+sg = NodePath("../../..")
+export_under = NodePath("..")

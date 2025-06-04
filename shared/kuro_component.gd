@@ -27,6 +27,10 @@ func ExportUnder(parent, me_myself_and_i, name=null):
 	if name == "":
 		name = me_myself_and_i.name
 	
+	if me_myself_and_i == null or parent == null:
+		print("STUPID FUCKING BUG!!! %s" % self)
+		return
+	
 	print("[%s] (BASE) Exporting... %s UNDER %s AS %s" % [self.name, me_myself_and_i.name, parent.name, name])
 	if not "exports" in parent:
 		print("[%s] (BASE) You did a stupid Colton" % [self.name])

@@ -1,4 +1,4 @@
-extends KURO_Component
+extends Node
 
 @export_group("Character HUDs")
 @export var PixelsPerCharacter: float
@@ -40,24 +40,22 @@ func handle_ability_mode(num_keys:int):
 		mode = "ability"
 		print("[CharacterManager] SELECTING ability")
 	
-	if Input.is_action_just_pressed("key0") and mode == "ability" and selected_character != null:
+	elif Input.is_action_just_pressed("key0") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] SELECTED ability PRIMARY")
 		selected_character.primary()
 
-	if Input.is_action_just_pressed("key1") and mode == "ability" and selected_character != null:
+	elif Input.is_action_just_pressed("key1") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] RAN ability SECONDARY 1")
 		selected_character.secondaryA()
 
-	if Input.is_action_just_pressed("key2") and mode == "ability" and selected_character != null:
+	elif Input.is_action_just_pressed("key2") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] RAN ability SECONDARY 2")
 		selected_character.secondaryB()
 
-	if Input.is_action_just_pressed("key3") and mode == "ability" and selected_character != null:
+	elif Input.is_action_just_pressed("key3") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] RAN ability SECONDARY 3")
 		selected_character.secondaryC()
-	
 	else: return
-
 	mode = "game"
 
 var num_lanes = 0

@@ -9,8 +9,17 @@ func stun_for(t: float):
 
 func is_stunned():
 	if self.is_stopped():
-		print("[Cooldown.gd] Not stunned")
+		#print("[Cooldown.gd] Not stunned")
 		return false
 	elif not self.is_stopped():
-		print("[Cooldown.gd] Yes stunned")
+		#print("[Cooldown.gd] Yes stunned")
 		return true
+
+func wait_till_done():
+	while is_stunned():
+		await get_tree().process_frame
+	return self
+
+func set_and_wait(t:float):
+	stun_for(t)
+	return await wait_till_done()

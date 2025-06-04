@@ -1,33 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://n3yrm8kgw7t5"]
+[gd_scene load_steps=5 format=3 uid="uid://n3yrm8kgw7t5"]
 
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_m0id2"]
+[ext_resource type="Script" uid="uid://dkbfui2ttnji" path="res://menu/songselect/difficulty_header.gd" id="1_orryh"]
 [ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_ln244"]
+[ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="4_ptxx1"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("btn")]
 clip_contents = true
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 19)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 26.0
-offset_right = -629.0
+offset_right = -655.0
 offset_bottom = -628.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("1_m0id2")
+script = ExtResource("1_orryh")
+btn = NodePath("Button")
+export_mode = 1
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Button" type="Button" parent="."]
+clip_contents = true
+layout_mode = 1
+offset_right = 499.0
+offset_bottom = 21.0
+flat = true
+clip_text = true
+
+[node name="Panel" type="Panel" parent="Button"]
 layout_mode = 0
 offset_right = 500.0
 offset_bottom = 24.0
 theme = ExtResource("1_m0id2")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Button/Panel"]
 layout_mode = 0
 offset_right = 500.0
 offset_bottom = 23.0
 
-[node name="Label" type="Label" parent="Panel/HBoxContainer"]
+[node name="Label" type="Label" parent="Button/Panel/HBoxContainer" node_paths=PackedStringArray("check")]
 layout_mode = 2
 text = "Diff name"
 label_settings = ExtResource("2_ln244")
+script = ExtResource("4_ptxx1")
+fstring = "%s"
+property_name = "diffname"
+check = NodePath("../../../..")

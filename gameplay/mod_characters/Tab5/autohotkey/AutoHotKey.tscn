@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt4ggy47qpa6v"]
+
+[ext_resource type="Script" uid="uid://b15quj2jkvmd" path="res://gameplay/mod_characters/Tab5/autohotkey/program.gd" id="1_jjihp"]
+[ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="1_mxvht"]
+[ext_resource type="Script" uid="uid://bvomr8fnr6agf" path="res://gameplay/mod_effect/missable.gd" id="2_jjihp"]
+[ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="4_wxwbi"]
+
+[node name="AutoHotKey" type="Node2D"]
+script = ExtResource("1_jjihp")
+
+[node name="Executor" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("1_mxvht")
+sg = NodePath("..")
+export_under = NodePath("..")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="ResetMissable" type="Node" parent="Executor" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("2_jjihp")
+missable = true
+HumanFriendlyName = "Disable miss"
+sg = NodePath("../..")
+export_under = NodePath("..")
+
+[node name="SetMissable" type="Node" parent="Executor" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("2_jjihp")
+HumanFriendlyName = "Disable miss"
+sg = NodePath("../..")
+export_under = NodePath("..")
+
+[node name="StopTimer" type="Timer" parent="."]
+script = ExtResource("4_wxwbi")

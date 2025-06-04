@@ -11,11 +11,12 @@
 resource_local_to_scene = false
 
 [node name="BeatmapHeader" type="Control" node_paths=PackedStringArray("btn", "sg")]
-custom_minimum_size = Vector2(0, 62)
+custom_minimum_size = Vector2(0, 61.32)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 559.0
-offset_bottom = 62.0
+offset_bottom = 53.175
+size_flags_vertical = 3
 script = ExtResource("1_uctib")
 btn = NodePath("Button")
 sg = NodePath(".")
@@ -24,8 +25,8 @@ export_mode = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_right = 550.0
-offset_bottom = 58.0
+offset_right = 552.0
+offset_bottom = 56.0
 toggle_mode = true
 button_group = SubResource("ButtonGroup_f6nco")
 text = "This is actually a button btw you just cant see this text lmao"
@@ -61,7 +62,7 @@ stretch_mode = 6
 [node name="VBoxContainer" type="VBoxContainer" parent="Button/Panel"]
 layout_mode = 1
 offset_left = 8.0
-offset_right = 544.0
+offset_right = 552.0
 offset_bottom = 58.0
 
 [node name="SongInformationPanel" type="HBoxContainer" parent="Button/Panel/VBoxContainer"]
@@ -162,5 +163,3 @@ check = NodePath("../../../../..")
 constantly_check = false
 sg = NodePath("../../../../..")
 export_under = NodePath("../../../../..")
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

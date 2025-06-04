@@ -1,32 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://opmfhy307vnb"]
+[gd_scene load_steps=3 format=3 uid="uid://opmfhy307vnb"]
 
 [ext_resource type="Script" uid="uid://4xllo3bmq2yi" path="res://menu/songselect/whole_container.gd" id="1_ikw25"]
 [ext_resource type="PackedScene" uid="uid://cxwoon11dsdx7" path="res://menu/songselect/beatmap_header.tscn" id="1_nkdpo"]
-[ext_resource type="Script" uid="uid://7ngl6yynud1k" path="res://menu/songselect/difficulty_container.gd" id="2_48hgv"]
-[ext_resource type="PackedScene" uid="uid://n3yrm8kgw7t5" path="res://menu/songselect/difficulty_header.tscn" id="2_bsk74"]
 
-[node name="ChartDisplayer" type="Control" node_paths=PackedStringArray("map", "diffcontainer")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="WholeContainer" type="VBoxContainer" node_paths=PackedStringArray("map")]
+offset_right = 600.0
+offset_bottom = 88.0
 script = ExtResource("1_ikw25")
-map = NodePath("WholeContainer/Map")
-diffcontainer = NodePath("WholeContainer/DifficultyContainer")
+map = NodePath("Map")
 export_mode = 1
 
-[node name="WholeContainer" type="VBoxContainer" parent="."]
+[node name="Map" parent="." instance=ExtResource("1_nkdpo")]
+clip_contents = true
+custom_minimum_size = Vector2(600, 62.175)
 layout_mode = 2
-anchor_right = 0.520833
-anchor_bottom = 0.0941358
-metadata/_edit_use_anchors_ = true
-
-[node name="Map" parent="WholeContainer" node_paths=PackedStringArray("export_under") instance=ExtResource("1_nkdpo")]
-custom_minimum_size = Vector2(600, 59.615)
-layout_mode = 2
-size_flags_vertical = 0
 title = "???"
 artist = "???"
 mapper = "???"
@@ -35,15 +22,4 @@ length = "??:??"
 diffcount = -1
 avgbpm = -1
 export_name = "map"
-export_under = NodePath("../..")
 export_mode = 0
-
-[node name="DifficultyContainer" type="VBoxContainer" parent="WholeContainer" node_paths=PackedStringArray("sg", "export_under")]
-visible = false
-layout_mode = 2
-script = ExtResource("2_48hgv")
-sg = NodePath("../..")
-export_under = NodePath("..")
-
-[node name="0" parent="WholeContainer/DifficultyContainer" instance=ExtResource("2_bsk74")]
-layout_mode = 2
