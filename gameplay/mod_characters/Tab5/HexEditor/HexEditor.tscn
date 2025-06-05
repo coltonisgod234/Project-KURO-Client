@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c157rgaj0j83v"]
+
+[ext_resource type="Script" uid="uid://uae0odxfp624" path="res://gameplay/mod_characters/Tab5/HexEditor/program.gd" id="1_8qjbq"]
+
+[node name="HexEditor" type="Node2D"]
+script = ExtResource("1_8qjbq")
+ability_name = "HexEditor"
+export_mode = 1

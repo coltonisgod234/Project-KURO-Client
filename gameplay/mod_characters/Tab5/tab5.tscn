@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://d13mtyk7g6rdi"]
+[gd_scene load_steps=11 format=3 uid="uid://d13mtyk7g6rdi"]
 
 [ext_resource type="Script" uid="uid://bq81uhbjbo38h" path="res://gameplay/mod_characters/Tab5/tab_5.gd" id="1_u3kyl"]
 [ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="2_tf1xw"]
 [ext_resource type="PackedScene" uid="uid://dt4ggy47qpa6v" path="res://gameplay/mod_characters/Tab5/autohotkey/AutoHotKey.tscn" id="3_2rrlx"]
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="4_2scqv"]
 [ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="5_mbo1y"]
+[ext_resource type="PackedScene" uid="uid://c157rgaj0j83v" path="res://gameplay/mod_characters/Tab5/HexEditor/HexEditor.tscn" id="5_qgenx"]
 [ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="6_u34pu"]
 [ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/attr_bar.gd" id="7_u34pu"]
 [ext_resource type="LabelSettings" uid="uid://75j526cfj8tt" path="res://UI_stuff/small_font_monospace_label_settings.tres" id="9_qgenx"]
@@ -13,10 +14,12 @@
 
 [node name="Tab5" type="Node2D" node_paths=PackedStringArray("sg")]
 script = ExtResource("1_u3kyl")
-installation_delay_sec = 1.0
+installation_delay_sec = 0.5
 installation_cost_corruption = 2.0
 execution_cost_corruption = 0.5
-max_log_lines = 8
+termination_cost_corruption = 5.0
+hit_note_recover_corruption = 1.0
+max_log_lines = 5
 sg = NodePath(".")
 export_mode = 1
 
@@ -26,16 +29,24 @@ script = ExtResource("2_tf1xw")
 [node name="AbilityStun" type="Timer" parent="."]
 script = ExtResource("2_tf1xw")
 
-[node name="Programs" type="Node2D" parent="."]
+[node name="Programs" type="Node2D" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("5_mbo1y")
+sg = NodePath("..")
+export_under = NodePath("..")
 
 [node name="AutoHotKey" parent="Programs" node_paths=PackedStringArray("sg", "export_under") instance=ExtResource("3_2rrlx")]
 ability_name = "AutoHotKey"
 sg = NodePath("../..")
 export_under = NodePath("../..")
+export_mode = 1
+
+[node name="HexEditor" parent="Programs" instance=ExtResource("5_qgenx")]
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 252.0
 offset_bottom = 321.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("4_2scqv")
 
 [node name="HUD" type="VBoxContainer" parent="Panel" node_paths=PackedStringArray("sg", "export_under")]
@@ -45,8 +56,8 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -110.0
-offset_right = 115.0
+offset_left = -112.5
+offset_right = 112.5
 offset_bottom = 312.0
 grow_horizontal = 2
 size_flags_horizontal = 10
@@ -54,6 +65,7 @@ theme = ExtResource("4_2scqv")
 script = ExtResource("5_mbo1y")
 sg = NodePath("../..")
 export_under = NodePath("../..")
+metadata/_edit_use_anchors_ = true
 
 [node name="CharacterName" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 custom_minimum_size = Vector2(0, 24)
@@ -69,11 +81,65 @@ sg = NodePath("../../..")
 export_under = NodePath("..")
 metadata/_edit_use_anchors_ = true
 
+[node name="Execute" type="ProgressBar" parent="Panel/HUD" node_paths=PackedStringArray("sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("7_u34pu")
+sg = NodePath("../../..")
+export_under = NodePath("..")
+
+[node name="Info" type="Label" parent="Panel/HUD/Execute"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 83.0
+offset_bottom = 26.0
+theme = ExtResource("4_2scqv")
+text = "1   Execute"
+label_settings = SubResource("LabelSettings_u34pu")
+
+[node name="AutoHotKey" type="ProgressBar" parent="Panel/HUD" node_paths=PackedStringArray("sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("7_u34pu")
+sg = NodePath("../../..")
+export_under = NodePath("..")
+
+[node name="Info" type="Label" parent="Panel/HUD/AutoHotKey"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 83.0
+offset_bottom = 26.0
+theme = ExtResource("4_2scqv")
+text = "2   pacman -S AutoHotKey"
+label_settings = SubResource("LabelSettings_u34pu")
+
+[node name="HexEditor" type="ProgressBar" parent="Panel/HUD" node_paths=PackedStringArray("sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("7_u34pu")
+sg = NodePath("../../..")
+export_under = NodePath("..")
+
+[node name="Info" type="Label" parent="Panel/HUD/HexEditor"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 83.0
+offset_bottom = 26.0
+theme = ExtResource("4_2scqv")
+text = "3   pacman -S hexedit"
+label_settings = SubResource("LabelSettings_u34pu")
+
 [node name="CorruptionBar" type="ProgressBar" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme = ExtResource("4_2scqv")
-show_percentage = false
+allow_lesser = true
 script = ExtResource("7_u34pu")
 property_name = "corruption"
 check = NodePath("../../..")
@@ -133,7 +199,7 @@ theme = ExtResource("4_2scqv")
 text = "1s"
 label_settings = SubResource("LabelSettings_u34pu")
 
-[node name="Label" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
+[node name="Program" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 layout_mode = 2
 theme = ExtResource("4_2scqv")
 label_settings = SubResource("LabelSettings_u34pu")
@@ -149,10 +215,6 @@ export_under = NodePath("..")
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_2scqv")
-text = "Tab5 log
-Tab5 log
-Tab5 log
-Tab5 log"
 label_settings = ExtResource("9_qgenx")
 script = ExtResource("6_u34pu")
 fstring = "%s"
