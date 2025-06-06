@@ -1,4 +1,4 @@
-extends Node
+extends KURO_Component
 
 @export_group("Character HUDs")
 @export var PixelsPerCharacter: float
@@ -12,7 +12,7 @@ func get_character(character_num):
 func load_character(scene, character_num):
 	var character = scene.instantiate()
 	character.position = Vector2(LeftSidePadding + character_num * (PixelsPerCharacter + XPositionSeperation), YPosition)
-	character.export_name = "%s" % [character_num]
+	character.export_name = "%d" % [character_num]
 	$CharacterHolder.add_child(character)
 
 var mode = "game"
