@@ -18,9 +18,6 @@ var note_hit_counter := 0
 @export var negative_effect_threshold: float = -0.3
 @export var multiplication: float = 0.01
 
-func kuro_init():
-	await Globals.wait_for_component("LaneManager")
-
 func toggle_state():
 	if state == STATE_VIOLET_EUPHORIC:
 		state = STATE_VIOLET_DYSPHORIC

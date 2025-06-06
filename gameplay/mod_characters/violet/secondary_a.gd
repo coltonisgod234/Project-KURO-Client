@@ -5,10 +5,11 @@ var is_in_secondary := false
 @export var strength: float
 
 func kuro_init():
-	await Globals.wait_for_component("LaneManager")
-	Globals.exports.get("LaneManager").note_judged.connect(_on_judgement)
+	var lanemgr = Globals.s_wait_for_component("LaneManager")
+	lanemgr.note_judged.connect(_on_judgement)
 
-	await Globals.exports.get("MainHUD").wait_for_component("Score")
+	var hud = Globals.s_wait_for_component("MainHUD")
+	var score = Globals.s_wait_for_component("Score")
 	$ExitTimer.timeout.connect(_on_secondary_end)
 
 func activate():

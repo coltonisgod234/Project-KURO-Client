@@ -41,6 +41,7 @@ export_under = NodePath("../..")
 export_mode = 1
 
 [node name="HexEditor" parent="Programs" instance=ExtResource("5_qgenx")]
+position = Vector2(0, 340)
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 252.0

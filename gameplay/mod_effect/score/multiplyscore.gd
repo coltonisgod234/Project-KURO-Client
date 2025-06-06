@@ -4,8 +4,8 @@ extends KURO_Effect
 @export var amount_range_high: int = 1
 
 func apply():
-	var hud = await Globals.wait_for_component("MainHUD")
-	var score = await hud.wait_for_component("Score")
+	var hud = Globals.s_wait_for_component("MainHUD")
+	var score = hud.s_wait_for_component("Score")
 	
 	var a: int = amount
 	if amount_range_high != 0:

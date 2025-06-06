@@ -13,12 +13,28 @@ func wait_till_init(component):
 	return component
 
 func wait_for_component(component_name, relative_to=null):
-	if relative_to == null: relative_to = self
+	if relative_to == null: relative_to = self   # Legacy code
 
-	print("[%s] (BASE) Waiting for component %s ON %s" % [self.name, component_name, relative_to.name])
+	print("[%s] (BASE) Async waiting for component %s ON %s" % [self.name, component_name, relative_to.name])
 	while component_name not in relative_to.exports:
 		await self.get_tree().process_frame
+	
+	print("Done")
 	return self.exports.get(component_name)
+
+func s_wait_for_component(component_name: String, relative_to: Node = null) -> Object:
+	if relative_to == null:
+		relative_to = self  # Legacy compatibility
+
+	print("[%s] (BASE) Sync waiting for component %s ON %s" % [self.name, component_name, relative_to.name])
+	var start_time = Time.get_ticks_msec()
+	while component_name not in relative_to.exports:
+		if Time.get_ticks_msec() - start_time > 5000:  # 5 seconds timeout
+			push_error("You're fucked! Timed out waiting for component: %s on %s" % [component_name, relative_to.name])
+			assert(false)  # Crash here intentionally
+		pass  # we want to hard wait
+
+	return relative_to.exports.get(component_name)
 
 func ExportUnder(parent, me_myself_and_i, name=null):
 	if name is not String:

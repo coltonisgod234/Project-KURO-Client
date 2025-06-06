@@ -1,8 +1,80 @@
-[gd_scene load_steps=2 format=3 uid="uid://c157rgaj0j83v"]
+[gd_scene load_steps=8 format=3 uid="uid://c157rgaj0j83v"]
 
 [ext_resource type="Script" uid="uid://uae0odxfp624" path="res://gameplay/mod_characters/Tab5/HexEditor/program.gd" id="1_8qjbq"]
+[ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="2_iujav"]
+[ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="2_vg7a0"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="3_0xafl"]
+[ext_resource type="Script" uid="uid://r7oeb7rd3al5" path="res://gameplay/mod_effect/characterattribute/ModifyCharacterAttribute.gd" id="3_lll37"]
+[ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="4_lll37"]
+[ext_resource type="Script" uid="uid://c325suaenvpr2" path="res://gameplay/mod_effect/characterattribute/GetCharacterAttributes.gd" id="4_wts33"]
 
 [node name="HexEditor" type="Node2D"]
 script = ExtResource("1_8qjbq")
 ability_name = "HexEditor"
 export_mode = 1
+
+[node name="StopTimer" type="Timer" parent="."]
+script = ExtResource("2_iujav")
+
+[node name="Executor" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("2_vg7a0")
+sg = NodePath("..")
+export_under = NodePath("..")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="Add" type="Node" parent="Executor" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("3_lll37")
+amount = 1
+amount_range_high = 1
+HumanFriendlyName = "Add"
+sg = NodePath("../..")
+export_under = NodePath("..")
+
+[node name="Sub" type="Node" parent="Executor" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("3_lll37")
+amount = 1
+amount_range_high = 1
+operation = 1
+HumanFriendlyName = "Subtract"
+sg = NodePath("../..")
+export_under = NodePath("..")
+
+[node name="GetAttributes" type="Node" parent="Executor" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("4_wts33")
+character_slot_number = 1
+mode = 2
+HumanFriendlyName = "Get character attributes"
+sg = NodePath("../..")
+export_under = NodePath("..")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(252, 321)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(252, 321)
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 124.0
+theme = ExtResource("3_0xafl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.0
+offset_right = 108.0
+offset_bottom = 315.0
+grow_horizontal = 2
+
+[node name="Title" type="Label" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+text = "HexEdit"
+label_settings = ExtResource("4_lll37")
+
+[node name="Info" type="Label" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2

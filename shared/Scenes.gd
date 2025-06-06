@@ -10,5 +10,3 @@ var CharacterViolet := preload("res://gameplay/mod_characters/violet/violet.tscn
 var CharacterManager := preload("res://gameplay/mod_characters/character_manager.tscn")
 var CharacterKuro := preload("res://gameplay/mod_characters/kuro/kuro.tscn")
 var CharacterTab5 := preload("res://gameplay/mod_characters/Tab5/tab5.tscn")
-var ChartDisplayer := preload("res://menu/songselect/chart_displayer.tscn")
-var DifficultyHeader := preload("res://menu/songselect/difficulty_header.tscn")

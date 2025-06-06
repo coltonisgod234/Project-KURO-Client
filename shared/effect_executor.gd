@@ -10,7 +10,11 @@ func apply_argument(effect: String, propname: String, value):
 	effect_object.set(propname, value)
 
 func apply(name: String):
-	self.get_node(name).apply()
+	var node = self.get_node(name)
+	if node.has_method("apply"):
+		return node.apply()
+	else:
+		return "wtf no apply method"
 
 func apply_random_effect_bagged_random(last_effect_applied):
 	var child = self.get_children().pick_random()
