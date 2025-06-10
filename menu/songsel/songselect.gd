@@ -42,14 +42,15 @@ func add_chart_from_folder(path: String, chart_conf="chart.json"):
 	var title = ChartMetaParser.parse_chart_title(json)
 	var artist = ChartMetaParser.parse_chart_artist(json)
 	var length = ChartMetaParser.parse_chart_length(json)
-	#...
+	var charter = ChartMetaParser.parse_chart_charter(json)
+	var BPM = ChartMetaParser.parse_chart_BPM(json)
 	var diffs = ChartMetaParser.parse_chart_diffs(json, path)
 	charts.create(
 		title,
 		artist,
 		length,
-		"",
-		0,
+		charter,
+		BPM,
 		diffs
 	)
 

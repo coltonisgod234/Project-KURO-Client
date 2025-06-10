@@ -170,7 +170,9 @@ layout_mode = 2
 theme = ExtResource("1_f1ku7")
 script = ExtResource("2_321uk")
 sg = NodePath("../../..")
+export_name = null
 export_under = NodePath("../../..")
+export_mode = null
 
 [node name="DiffsPane" type="Panel" parent="."]
 layout_mode = 0
@@ -207,7 +209,9 @@ theme = ExtResource("1_f1ku7")
 layout_mode = 2
 script = ExtResource("5_ath0l")
 sg = NodePath("../../..")
+export_name = null
 export_under = NodePath("../../..")
+export_mode = null
 
 [node name="Options" type="Panel" parent="."]
 layout_mode = 0

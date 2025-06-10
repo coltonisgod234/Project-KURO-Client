@@ -204,13 +204,14 @@ offset_left = 3.0
 offset_top = 5.0
 offset_right = 71.0
 offset_bottom = 27.0
-text = "Fabricate"
+text = "1   Fabricate"
 
 [node name="Max" type="Label" parent="HUDContainer/HUD/PrimaryStunBar"]
 layout_mode = 0
-offset_left = 168.0
-offset_right = 198.0
-offset_bottom = 22.0
+offset_left = 171.0
+offset_top = -3.0
+offset_right = 201.0
+offset_bottom = 19.0
 text = ".5s"
 
 [node name="SecondaryAStunBar" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
@@ -235,13 +236,14 @@ offset_left = 3.0
 offset_top = 5.0
 offset_right = 71.0
 offset_bottom = 27.0
-text = "Fluctuate"
+text = "2   Fluctuate"
 
 [node name="Max" type="Label" parent="HUDContainer/HUD/SecondaryAStunBar"]
 layout_mode = 0
-offset_left = 178.0
-offset_right = 198.0
-offset_bottom = 22.0
+offset_left = 180.0
+offset_top = -5.0
+offset_right = 200.0
+offset_bottom = 17.0
 text = "1s"
 
 [node name="SecondaryBStunBar" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
@@ -266,14 +268,14 @@ offset_left = 2.0
 offset_top = 6.0
 offset_right = 122.0
 offset_bottom = 28.0
-text = "Risk and Reward"
+text = "3   Risk and Reward"
 
 [node name="Max" type="Label" parent="HUDContainer/HUD/SecondaryBStunBar"]
 layout_mode = 0
-offset_left = 178.0
-offset_top = 1.0
-offset_right = 198.0
-offset_bottom = 23.0
+offset_left = 180.0
+offset_top = -4.0
+offset_right = 200.0
+offset_bottom = 18.0
 text = "1s"
 
 [node name="SecondaryCStunBar" type="ProgressBar" parent="HUDContainer/HUD"]
