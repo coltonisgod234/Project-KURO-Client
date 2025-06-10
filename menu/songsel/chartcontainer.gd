@@ -15,6 +15,3 @@ func create(title: String, artist: String, length_sec: int, charter: String, BPM
 	var metadata_string = "%s;%s;%s;%s;%s;%s" % [title, artist, length_sec, charter, BPM, diff_files]
 	chartheader.export_name = metadata_string
 	self.add_child(chartheader)
-
-func kuro_init():
-	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)

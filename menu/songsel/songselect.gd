@@ -34,7 +34,7 @@ func _on_start_button_pressed() -> void:
 	
 	start(btn.file)
 
-func add_chart_from_folder(path, chart_conf="chart.json"):
+func add_chart_from_folder(path: String, chart_conf="chart.json"):
 	var full_path = path.path_join(chart_conf)
 	var charts = self.s_wait_for_component("Charts")
 	var json = ChartMetaParser.load_map(full_path)
@@ -53,5 +53,12 @@ func add_chart_from_folder(path, chart_conf="chart.json"):
 		diffs
 	)
 
+func add_charts_from_folder(path: String, resurs: bool, chart_conf="chart.json"):
+	for dir in DirAccess.get_directories_at(path):
+		dir = path.path_join(dir)
+		print("[SongSelect] Processing directory %s" % [dir])
+		add_chart_from_folder(dir, chart_conf)
+
 func kuro_init():
-	add_chart_from_folder("res://testdata/test_song")
+	#add_chart_from_folder("res://testdata/test_song")
+	add_charts_from_folder("res://testdata", false)

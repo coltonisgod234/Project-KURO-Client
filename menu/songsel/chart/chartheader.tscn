@@ -12,6 +12,7 @@ custom_minimum_size = Vector2(450, 59)
 offset_right = 450.0
 offset_bottom = 59.0
 focus_mode = 0
+mouse_default_cursor_shape = 3
 toggle_mode = true
 keep_pressed_outside = true
 button_group = ExtResource("2_0tqtu")
