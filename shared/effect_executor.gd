@@ -3,7 +3,7 @@ class_name KURO_EffectExecutor
 
 func apply_all_effects(name: String):
 	for child in self.get_children():
-		child.apply()
+		await child.apply()
 
 func apply_argument(effect: String, propname: String, value):
 	var effect_object = self.get_node(effect)
@@ -13,8 +13,7 @@ func apply(name: String):
 	var node = self.get_node(name)
 	if node.has_method("apply"):
 		return node.apply()
-	else:
-		return "wtf no apply method"
+	else: return "wtf no apply method"
 
 func apply_random_effect_bagged_random(last_effect_applied):
 	var child = self.get_children().pick_random()
@@ -23,12 +22,16 @@ func apply_random_effect_bagged_random(last_effect_applied):
 		child = self.get_children().pick_random()
 	
 	print("[apply_random_effect_bagged_random] Picked a good child %s" % [child])
-	child.apply()
+	await child.apply()
 	randomize()
 	return child
 
 func apply_random_effect():
 	var child = self.get_children().pick_random()
-	child.apply()
+	await child.apply()
 	randomize()
 	return child
+
+func apply_in_succession():
+	for child in self.get_children():
+		await child.apply()

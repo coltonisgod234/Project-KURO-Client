@@ -29,7 +29,7 @@ func change(eff: String):
 	$Executor.apply_argument(eff, "attribute", propname)
 	$Executor.apply(eff)
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("key0"):  # D
 		selected_attribute -= 1
 	if Input.is_action_just_pressed("key1"):  # F

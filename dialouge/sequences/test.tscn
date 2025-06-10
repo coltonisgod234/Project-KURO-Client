@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://blixk2yruab1u"]
+
+[ext_resource type="Script" uid="uid://c0d21gql6povt" path="res://dialouge/dialouge_exec.gd" id="1_6qsfc"]
+[ext_resource type="Script" uid="uid://dtkvtfngw82l5" path="res://gameplay/mod_effect/popup/SummonDialouge.gd" id="1_8525t"]
+[ext_resource type="Script" uid="uid://bc5bg0qssn6dc" path="res://gameplay/mod_effect/popup/DialougeButton.gd" id="3_6em6h"]
+[ext_resource type="Script" uid="uid://cbm3pv647qmfm" path="res://gameplay/mod_effect/generic/condition.gd" id="3_he007"]
+[ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="4_asny6"]
+[ext_resource type="Script" uid="uid://cqn5hare8sb6a" path="res://gameplay/mod_effect/generic/log.gd" id="5_asny6"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_6qsfc"]
+width = 128
+height = 128
+
+[node name="Test" type="Node"]
+script = ExtResource("1_6qsfc")
+export_mode = 3
+
+[node name="log0" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("1_8525t")
+rich_text = "hello!"
+character_texture = SubResource("NoiseTexture3D_6qsfc")
+character_name = "Kuro"
+position_preset = 4
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="btn0" type="Node" parent="log0" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("3_6em6h")
+text = "Ok"
+await_press = true
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="log1" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("1_8525t")
+rich_text = "To [color=green]drugs[/color] or no [color=green]drugs[/color]?"
+character_texture = SubResource("NoiseTexture3D_6qsfc")
+character_name = "Kuro"
+position_preset = 4
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="btn0" type="Node" parent="log1" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("3_6em6h")
+text = "Yes"
+await_press = true
+sg = NodePath("../../log0")
+export_under = NodePath("../../log0")
+
+[node name="btn1" type="Node" parent="log1" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("3_6em6h")
+text = "No"
+await_press = true
+sg = NodePath("../../log0")
+export_under = NodePath("../../log0")
+
+[node name="condition1" type="Node" parent="." node_paths=PackedStringArray("on_true", "on_false", "check", "sg", "export_under")]
+script = ExtResource("3_he007")
+on_true = NodePath("True")
+on_false = NodePath("False")
+condition_expression = "check.dialouge.button_group.get_pressed_button().text == \"Yes\""
+check = NodePath("../log1")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="True" type="Node" parent="condition1"]
+script = ExtResource("4_asny6")
+
+[node name="0" type="Node" parent="condition1/True" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("1_8525t")
+rich_text = "it was true"
+character_texture = SubResource("NoiseTexture3D_6qsfc")
+character_name = "Kuro"
+sg = NodePath("../../..")
+export_under = NodePath("../../..")
+
+[node name="False" type="Node" parent="condition1"]
+script = ExtResource("4_asny6")
+
+[node name="0" type="Node" parent="condition1/False" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("1_8525t")
+rich_text = "it was FALSE"
+character_texture = SubResource("NoiseTexture3D_6qsfc")
+character_name = "Kuro"
+sg = NodePath("../../..")
+export_under = NodePath("../../..")
+
+[node name="End" type="Node" parent="."]
+script = ExtResource("5_asny6")
+text = "Story ended"

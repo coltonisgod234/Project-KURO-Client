@@ -54,7 +54,7 @@ func do_spawns():
 		spawn_note(spd, time)
 		current_beat += 1
 
-func _process(delta:float):
+func _process(__delta:float):
 	update_sec_since_map_start()
 	do_spawns()
 	for child in $NoteContainer.get_children():

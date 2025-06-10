@@ -59,7 +59,7 @@ func handle_ability_mode(num_keys:int):
 	mode = "game"
 
 var num_lanes = 0
-func _process(_delta: float):
+func _process(__delta: float):
 	if handle_character_mode():
 		handle_ability_mode(num_lanes)
 

@@ -11,10 +11,18 @@ func load_map(filepath:String):
 	
 	return json
 
+func parse_map_diffname(json):
+	var map_diffname = json.data["difficulty_name"]
+	if map_diffname is not String:
+		push_error("BAD MAP JSON!! UNEXPECTED NON-STRING TYPE FOR PARAMETER DIFFICULTY_NAME!!")
+		return ERR_INVALID_DATA
+	
+	return map_diffname
+
 func parse_map_songfile(json):
 	var map_songfile = json.data["audio"]
 	if map_songfile is not String:
-		push_error("BAD MAP JSON!! UNEXPECTED NON-STRING TYPE FOR PARAMETER AUDIOFILE!!")
+		push_error("BAD MAP JSON!! UNEXPECTED NON-STRING TYPE FOR PARAMETER AUDIO!!")
 		return ERR_INVALID_DATA
 	
 	return map_songfile

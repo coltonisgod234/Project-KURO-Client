@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bofv0nb781yti"]
+
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_ag16d"]
+[ext_resource type="Script" uid="uid://ps3nw51ul1kr" path="res://menu/songsel/diff/diffheader.gd" id="1_ffget"]
+[ext_resource type="ButtonGroup" uid="uid://dxxhox46hbt1k" path="res://menu/songsel/diff/bgroup.tres" id="1_gjbxu"]
+[ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_hk53a"]
+[ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="4_nvg2m"]
+
+[node name="DiffHeader" type="Button" node_paths=PackedStringArray("sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+offset_right = 298.0
+offset_bottom = 24.0
+toggle_mode = true
+button_group = ExtResource("1_gjbxu")
+script = ExtResource("1_ffget")
+sg = NodePath(".")
+export_under = NodePath(".")
+export_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 24.0
+mouse_filter = 1
+theme = ExtResource("1_ag16d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+offset_right = 296.0
+offset_bottom = 24.0
+
+[node name="DifficultyName" type="Label" parent="Panel/HBoxContainer" node_paths=PackedStringArray("check", "sg", "export_under")]
+layout_mode = 2
+mouse_filter = 1
+text = "DifficultyName"
+label_settings = ExtResource("2_hk53a")
+script = ExtResource("4_nvg2m")
+property_name = "title"
+check = NodePath("../../..")
+fstring = "%s"
+sg = NodePath("../../..")
+export_under = NodePath("../../..")

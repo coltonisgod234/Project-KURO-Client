@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ldu6wowhv3ia"]
+
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_sdjge"]
+[ext_resource type="Script" uid="uid://xhupiqd5xq61" path="res://menu/songsel/diff/diffscontainer.gd" id="3_xdmus"]
+
+[node name="Diffs" type="VBoxContainer"]
+theme = ExtResource("1_sdjge")
+script = ExtResource("3_xdmus")
+export_mode = 1

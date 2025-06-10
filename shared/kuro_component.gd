@@ -7,9 +7,6 @@ const YOURE_NOT_PART_OF_ONE = null
 
 func wait_till_init(component):
 	print("[%s] (BASE) Waiting for initialization: %s" % [self.name, component])
-	while component == null:
-		await self.get_tree().process_frame
-	
 	return component
 
 func s_wait_for_component(component_name: String):
@@ -31,7 +28,7 @@ func ExportUnder(parent, me_myself_and_i, name=null):
 		print("[%s] (BASE) You did a stupid Colton" % [self.name])
 		return
 	parent.exports.set(name, me_myself_and_i)
-	print("Done")
+	#print("Done")
 
 signal component_ready(component, globals_export_name)
 @export var export_name: String

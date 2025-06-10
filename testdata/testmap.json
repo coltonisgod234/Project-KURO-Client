@@ -1,16 +1,7 @@
 {
-  "work": {
-	"name": {
-	  "en_US": "Testing Map"
-	}
-  },
-  "artist": {
-	"name": {
-	  "en_US": "Testing Artist"
-	}
-  },
-  "audio": null,
-  "lanes": [
+	"difficulty_name": "William.",
+	"audio": null,
+	"lanes": [
 	{
 	  "notes": [
 		{

@@ -1,6 +1,6 @@
 extends Node2D
 
-func _process(_delta):
+func _process(__delta):
 	if Input.is_action_just_pressed("volume_up"):
 		$AudioStreamPlayer.volume_db += 1.0
 		print("CHANGE VOL UP", $AudioStreamPlayer.volume_db)

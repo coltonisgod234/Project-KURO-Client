@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c33iffnqm3wth"]
+
+[ext_resource type="PackedScene" uid="uid://cmgex7syuryjt" path="res://menu/songsel/songselect.tscn" id="1_14ras"]
+
+[node name="Ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Songselect" parent="." instance=ExtResource("1_14ras")]

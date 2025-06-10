@@ -11,16 +11,14 @@ config_version=5
 [application]
 
 config/name="project KURO (godot)"
-run/main_scene="uid://c52go1avivc2k"
+run/main_scene="uid://c33iffnqm3wth"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/show_image=false
-boot_splash/fullsize=false
-boot_splash/use_filter=false
 config/icon="res://textures/icon.svg"
 
 [autoload]
 
+Resources="*res://shared/Resources.gd"
 Scenes="*res://shared/Scenes.gd"
 MapParser="*res://gameplay/mod_management/map_parser.gd"
 Globals="*res://shared/Globals.tscn"
@@ -28,6 +26,7 @@ Globals="*res://shared/Globals.tscn"
 [display]
 
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 
 [input]
 

@@ -47,9 +47,9 @@ func secondaryB():
 func secondaryC():
 	pass
 
-func _process(_delta:float):
-	#motivation = lerp(motivation, state, motivation_speed * _delta)
-	motivation += sign(state) * motivation_speed * _delta
+func _process(__delta:float):
+	#motivation = lerp(motivation, state, motivation_speed * __delta)
+	motivation += sign(state) * motivation_speed * __delta
 	if motivation < negative_effect_threshold:
 		life -= abs(motivation) * multiplication
 		ReadableStatus = "Draining downwards"

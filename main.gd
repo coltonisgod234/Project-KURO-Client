@@ -1,8 +1,8 @@
 extends Node2D
-var map = MapParser.load_map("res://testdata/testmap.json")
-var map_timings = MapParser.parse_map_notes(map)
-var map_song = MapParser.parse_map_songfile(map)
-var map_num_keys = MapParser.parse_map_num_lanes(map)
+var map
+var map_timings
+var map_song
+var map_num_keys
 
 var character_manager = null
 func init_CharacterManager():
@@ -36,6 +36,7 @@ func init_SongPlayer():
 	songplayer.start_song(map_song)
 
 func _ready():
+	Engine.max_fps = 0
 	randomize()
 	print("[Main] Parsed map: %s | %s | audiofile is %s | %s keys" % [map, map_timings, map_song, map_num_keys])
 	init_LaneManager()

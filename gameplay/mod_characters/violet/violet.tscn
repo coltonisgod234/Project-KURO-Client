@@ -100,9 +100,9 @@ layout_mode = 2
 theme = ExtResource("6_c3i78")
 text = "__Character Name__"
 script = ExtResource("10_tvbvq")
-fstring = "%s -- Violet"
 property_name = "export_name"
 check = NodePath("../../..")
+fstring = "%s -- Violet"
 sg = NodePath("../../..")
 export_under = NodePath("..")
 metadata/_edit_use_anchors_ = true
@@ -319,17 +319,17 @@ color = Color(1, 0.38, 0.597, 0.784314)
 [node name="ReadableStatus" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 layout_mode = 2
 script = ExtResource("10_tvbvq")
-fstring = "%s!"
 property_name = "ReadableStatus"
 check = NodePath("../../..")
+fstring = "%s!"
 sg = NodePath("../../..")
 export_under = NodePath("..")
 
 [node name="ReadableState" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 layout_mode = 2
 script = ExtResource("10_tvbvq")
-fstring = "Gender %s."
 property_name = "ReadableState"
 check = NodePath("../../..")
+fstring = "Gender %s."
 sg = NodePath("../../..")
 export_under = NodePath("..")

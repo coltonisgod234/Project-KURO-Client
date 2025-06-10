@@ -16,5 +16,5 @@ func _on_timer_stop():
 	$Executor.apply("ResetMissable")
 	reset_state()
 
-func _process(delta):
+func _process(_delta):
 	$Executor.apply("SetMissable")
