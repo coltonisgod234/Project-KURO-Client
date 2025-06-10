@@ -180,9 +180,9 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 text = "Kuro"
 script = ExtResource("15_55yk6")
-fstring = "%s -- Kuro"
 property_name = "export_name"
 check = NodePath("../../..")
+fstring = "%s -- Kuro"
 sg = NodePath("../../..")
 export_under = NodePath("..")
 metadata/_edit_use_anchors_ = true
@@ -204,15 +204,14 @@ offset_left = 3.0
 offset_top = 5.0
 offset_right = 71.0
 offset_bottom = 27.0
-text = "1   Fabricate"
+text = "Fabricate"
 
 [node name="Max" type="Label" parent="HUDContainer/HUD/PrimaryStunBar"]
 layout_mode = 0
 offset_left = 168.0
-offset_top = -4.0
-offset_right = 197.0
-offset_bottom = 18.0
-text = "0.5s"
+offset_right = 198.0
+offset_bottom = 22.0
+text = ".5s"
 
 [node name="SecondaryAStunBar" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 custom_minimum_size = Vector2(0, 24)
@@ -236,14 +235,13 @@ offset_left = 3.0
 offset_top = 5.0
 offset_right = 71.0
 offset_bottom = 27.0
-text = "2   Fluctuate"
+text = "Fluctuate"
 
 [node name="Max" type="Label" parent="HUDContainer/HUD/SecondaryAStunBar"]
 layout_mode = 0
-offset_left = 181.0
-offset_top = -4.0
-offset_right = 197.0
-offset_bottom = 18.0
+offset_left = 178.0
+offset_right = 198.0
+offset_bottom = 22.0
 text = "1s"
 
 [node name="SecondaryBStunBar" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
@@ -268,14 +266,14 @@ offset_left = 2.0
 offset_top = 6.0
 offset_right = 122.0
 offset_bottom = 28.0
-text = "3   Risk and Reward"
+text = "Risk and Reward"
 
 [node name="Max" type="Label" parent="HUDContainer/HUD/SecondaryBStunBar"]
 layout_mode = 0
-offset_left = 181.0
-offset_top = -4.0
-offset_right = 197.0
-offset_bottom = 18.0
+offset_left = 178.0
+offset_top = 1.0
+offset_right = 198.0
+offset_bottom = 23.0
 text = "1s"
 
 [node name="SecondaryCStunBar" type="ProgressBar" parent="HUDContainer/HUD"]
@@ -307,16 +305,16 @@ export_under = NodePath("..")
 layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
-offset_right = 109.0
+offset_right = 42.0
 offset_bottom = 26.0
 text = "Soul"
 
 [node name="Max" type="Label" parent="HUDContainer/HUD/LifeMeter"]
 layout_mode = 0
-offset_left = 171.0
-offset_top = -4.0
+offset_left = 167.0
+offset_top = 1.0
 offset_right = 197.0
-offset_bottom = 18.0
+offset_bottom = 23.0
 text = "100"
 
 [node name="AbilityStun" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
@@ -337,15 +335,15 @@ export_under = NodePath("..")
 layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
-offset_right = 109.0
+offset_right = 122.0
 offset_bottom = 26.0
 text = "Ability Stun"
 
 [node name="LastEffectApplied" type="Label" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 layout_mode = 2
 script = ExtResource("15_55yk6")
-fstring = "%s!"
 property_name = "LastEffectAppliedHumanFriendlyName"
 check = NodePath("../../..")
+fstring = "%s!"
 sg = NodePath("../../..")
 export_under = NodePath("..")

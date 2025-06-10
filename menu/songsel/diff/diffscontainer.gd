@@ -18,7 +18,7 @@ func kuro_init():
 	Resources.SongSelectChartPanelButtonGroup.pressed.connect(_on_changed)
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 
-func update_list(file_list: Array[String]):
+func update_list(file_list: Array):
 	reset()
 	for filepath in file_list:
 		var json = MapParser.load_map(filepath)

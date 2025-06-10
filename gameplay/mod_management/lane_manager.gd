@@ -2,8 +2,11 @@ extends KURO_Component
 #extends Node2D
 
 signal note_judged(lane: Node2D, note: Node2D, real_judge, nonfabricated_judge)
+signal map_complete
 
-var allow_miss := true
+@export var allow_miss := true
+@export var map_end_delay_usec: int
+@export var map_len_usec: int
 
 func kuro_init():
 	print("[LaneManager] Lane Manager ready")
@@ -32,3 +35,13 @@ func _on_note_miss(lane, note):
 func _on_note_hit(lane, note):
 	print("[LaneManager] hit")
 	note_judged.emit(lane, note, Globals.JUDGE_HIT, Globals.JUDGE_HIT)
+
+func _process(_delta: float) -> void:
+	if Globals.get_global_timer() + map_end_delay_usec >= map_len_usec:
+		map_complete.emit()
+		self.set_process(false)
+
+	if map_len_usec == 0:
+		push_error("This map has a length of zero what the fuck")
+		map_complete.emit()
+		self.set_process(false)

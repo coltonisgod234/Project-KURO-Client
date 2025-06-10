@@ -1,11 +1,9 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bxvmq0bc05oh2"]
 
-[sub_resource type="SystemFont" id="SystemFont_cwmtq"]
-font_names = PackedStringArray("Monospace")
+[ext_resource type="SystemFont" uid="uid://bxd6ao1n3cm1t" path="res://UI_stuff/font.tres" id="1_h4jpe"]
 
 [resource]
-font = SubResource("SystemFont_cwmtq")
+font = ExtResource("1_h4jpe")
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.772549)
-shadow_offset = Vector2(1.105, -1.345)

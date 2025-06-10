@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_f1ku7"]
 [ext_resource type="Script" uid="uid://bfoa65bvhxryb" path="res://menu/songsel/chartcontainer.gd" id="2_321uk"]
 [ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_ekoy7"]
-[ext_resource type="PackedScene" uid="uid://ldu6wowhv3ia" path="res://menu/songsel/diff/diffscontainer.tscn" id="5_ath0l"]
+[ext_resource type="Script" uid="uid://xhupiqd5xq61" path="res://menu/songsel/diff/diffscontainer.gd" id="5_ath0l"]
 [ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="6_ath0l"]
 
 [sub_resource type="Animation" id="Animation_ath0l"]
@@ -33,10 +33,22 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_3cku2"]
 resource_name = "fade_away"
-length = 0.6
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,7 +56,7 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.566667),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -56,14 +68,27 @@ tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.566667),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.3, 0.3)]
+}
 
 [sub_resource type="Animation" id="Animation_snpii"]
 resource_name = "fade_in"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -71,10 +96,10 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -83,10 +108,22 @@ tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_snpii"]
@@ -118,6 +155,7 @@ offset_bottom = 23.0
 theme = ExtResource("1_f1ku7")
 text = "Charts"
 label_settings = ExtResource("2_ekoy7")
+vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ChartsPanel"]
 layout_mode = 2
@@ -150,6 +188,7 @@ offset_bottom = 23.0
 theme = ExtResource("1_f1ku7")
 text = "Difficulties"
 label_settings = ExtResource("2_ekoy7")
+vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DiffsPane"]
 layout_mode = 1
@@ -164,8 +203,11 @@ grow_horizontal = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_f1ku7")
 
-[node name="Diffs" parent="DiffsPane/ScrollContainer" instance=ExtResource("5_ath0l")]
+[node name="Diffs" type="VBoxContainer" parent="DiffsPane/ScrollContainer" node_paths=PackedStringArray("sg", "export_under")]
 layout_mode = 2
+script = ExtResource("5_ath0l")
+sg = NodePath("../../..")
+export_under = NodePath("../../..")
 
 [node name="Options" type="Panel" parent="."]
 layout_mode = 0
@@ -184,6 +226,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "Options"
 label_settings = ExtResource("2_ekoy7")
+vertical_alignment = 1
 
 [node name="StartButton" type="Button" parent="Options"]
 layout_mode = 0
@@ -191,6 +234,7 @@ offset_left = 29.0
 offset_top = 38.0
 offset_right = 179.0
 offset_bottom = 78.0
+theme = ExtResource("1_f1ku7")
 text = "Start"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sg", "export_under")]

@@ -10,6 +10,7 @@
 custom_minimum_size = Vector2(0, 24)
 offset_right = 298.0
 offset_bottom = 24.0
+focus_mode = 0
 toggle_mode = true
 button_group = ExtResource("1_gjbxu")
 script = ExtResource("1_ffget")

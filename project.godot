@@ -20,8 +20,9 @@ config/icon="res://textures/icon.svg"
 
 Resources="*res://shared/Resources.gd"
 Scenes="*res://shared/Scenes.gd"
-MapParser="*res://gameplay/mod_management/map_parser.gd"
+MapParser="*res://shared/map_parser.gd"
 Globals="*res://shared/Globals.tscn"
+ChartMetaParser="*res://shared/chart_meta_parser.gd"
 
 [display]
 

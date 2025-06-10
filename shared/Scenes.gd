@@ -14,6 +14,5 @@ var CharacterTab5 := preload("res://gameplay/mod_characters/Tab5/tab5.tscn")
 
 var SongSelectChartHeader := preload("res://menu/songsel/chart/chartheader.tscn")
 var SongSelectDifficultyHeader := preload("res://menu/songsel/diff/diffheader.tscn")
-var SongSelectDifficultyContainer := preload("res://menu/songsel/diff/diffscontainer.tscn")
 
 var CharacterDialougeBox := preload("res://dialouge/popup.tscn")

@@ -5,7 +5,7 @@ extends KURO_Component
 @export var length_sec: int
 @export var charter: String
 @export var BPM: int
-@export var diffs: Array[String]
+@export var diffs: Array
 #@export var diff_shadow: Node
 
 func seconds_to_hhmmsscc(time_sec = null) -> String:
