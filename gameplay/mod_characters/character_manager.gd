@@ -10,6 +10,10 @@ func get_character(character_num):
 	return $CharacterHolder.exports.get(character_num)
 
 func load_character(scene, character_num):
+	if scene == null:
+		print("[CharacterManager] Skip loading character into %s as it was null" % [character_num])
+		return
+
 	var character = scene.instantiate()
 	character.position = Vector2(LeftSidePadding + character_num * (PixelsPerCharacter + XPositionSeperation), YPosition)
 	character.export_name = "%d" % [character_num]

@@ -28,5 +28,6 @@ var SongSelectChartHeader := preload("res://menu/songsel/chart/chartheader.tscn"
 var SongSelectDifficultyHeader := preload("res://menu/songsel/diff/diffheader.tscn")
 
 var TeamBuildSelectCharacterDropdown := preload("res://menu/teambuild/char/selector/selector.tscn")
+var TeamBuild := preload("res://menu/teambuild/teambuilder.tscn")
 
 var CharacterDialougeBox := preload("res://dialouge/popup.tscn")
