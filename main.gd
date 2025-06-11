@@ -13,6 +13,7 @@ func init_CharacterManager():
 	character_manager.load_character(Scenes.CharacterViolet, 1)
 	character_manager.load_character(Scenes.CharacterKuro, 2)
 	character_manager.load_character(Scenes.CharacterTab5, 3)
+	#character_manager.load_character(Scenes.CharacterCloudy, 4)
 
 var hud = null
 func init_HUD():

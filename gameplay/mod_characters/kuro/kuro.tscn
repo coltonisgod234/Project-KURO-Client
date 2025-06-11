@@ -241,9 +241,9 @@ text = "2   Fluctuate"
 [node name="Max" type="Label" parent="HUDContainer/HUD/SecondaryAStunBar"]
 layout_mode = 0
 offset_left = 180.0
-offset_top = -5.0
+offset_top = -4.0
 offset_right = 200.0
-offset_bottom = 17.0
+offset_bottom = 18.0
 text = "1s"
 
 [node name="SecondaryBStunBar" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://l64f4jqt8iqm"]
+
+[ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="1_6ritn"]
+[ext_resource type="Script" uid="uid://dyg1ou58begh1" path="res://gameplay/mod_characters/cloudy/personality_cloudy/main.gd" id="1_xe5tl"]
+[ext_resource type="Script" uid="uid://d4hp5d4320j1m" path="res://gameplay/mod_characters/cloudy/personality_cloudy/secondary_a.gd" id="3_xe5tl"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_xe5tl")
+export_mode = 1
+
+[node name="AbilityStun" type="Timer" parent="."]
+script = ExtResource("1_6ritn")
+
+[node name="SecondaryA" type="Node2D" parent="."]
+script = ExtResource("3_xe5tl")
+
+[node name="Cooldown" type="Timer" parent="SecondaryA"]
+script = ExtResource("1_6ritn")
+
+[node name="SecondaryB" type="Node2D" parent="."]
+
+[node name="Cooldown" type="Timer" parent="SecondaryB"]
+script = ExtResource("1_6ritn")
+
+[node name="SecondaryC" type="Node2D" parent="."]
+
+[node name="Cooldown" type="Timer" parent="SecondaryC"]
+script = ExtResource("1_6ritn")

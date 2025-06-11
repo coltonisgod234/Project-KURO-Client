@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://byyvlpwrfcm4u"]
+
+[ext_resource type="Script" uid="uid://dqehf22mrxs4c" path="res://gameplay/mod_characters/cloudy/cloudy.gd" id="1_1mt1r"]
+[ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="1_dufvu"]
+[ext_resource type="Script" uid="uid://jydx7djksmjt" path="res://gameplay/mod_characters/cloudy/primary.gd" id="2_qiied"]
+
+[node name="Cloudy" type="Node2D"]
+script = ExtResource("1_1mt1r")
+
+[node name="AbilityStun" type="Timer" parent="."]
+one_shot = true
+script = ExtResource("1_dufvu")
+
+[node name="Primary" type="Node2D" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("2_qiied")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="Cooldown" type="Timer" parent="Primary"]
+script = ExtResource("1_dufvu")

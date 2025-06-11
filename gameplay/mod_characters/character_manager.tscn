@@ -5,9 +5,7 @@
 
 [node name="CharacterManager" type="Node2D" node_paths=PackedStringArray("sg")]
 script = ExtResource("1_kvcu0")
-PixelsPerCharacter = 242.0
-LeftSidePadding = 60.06
-XPositionSeperation = 15.0
+PixelsPerCharacter = 240.0
 sg = NodePath(".")
 export_mode = 2
 

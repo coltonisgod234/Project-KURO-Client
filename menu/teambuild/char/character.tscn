@@ -1,36 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpc2vn2vkp2xm"]
+[gd_scene load_steps=3 format=3 uid="uid://bpc2vn2vkp2xm"]
 
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_v7w7v"]
+[ext_resource type="Script" uid="uid://bkg4npwgvew07" path="res://menu/teambuild/char/character.gd" id="2_dtm8c"]
 
-[node name="Character" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Button" type="Button" parent="VBoxContainer"]
-layout_mode = 2
+[node name="Button" type="Button"]
+clip_children = 2
+custom_minimum_size = Vector2(200, 24)
+offset_right = 190.0
+offset_bottom = 8.0
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 3
 theme = ExtResource("1_v7w7v")
-text = "Character Name..."
+script = ExtResource("2_dtm8c")
+selector_x_pos_offset = 322
+force_y_pos_zero = true
+export_mode = 1
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_v7w7v")
-text = "Character Name..."
-
-[node name="Button3" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_v7w7v")
-text = "Character Name..."
-
-[node name="Button4" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_v7w7v")
-text = "Character Name..."
+[connection signal="pressed" from="." to="." method="_on_pressed"]

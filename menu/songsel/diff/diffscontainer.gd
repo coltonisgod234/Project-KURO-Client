@@ -8,6 +8,8 @@ func create(title: String, file: String):
 	var metadata_string = "%s" % [diffheader]
 	diffheader.export_name = metadata_string
 	self.add_child(diffheader)
+	diffheader.print_tree_pretty()
+	print("[diffscontainer.gd] created a diff %s" % [metadata_string])
 	return diffheader
 
 func reset():

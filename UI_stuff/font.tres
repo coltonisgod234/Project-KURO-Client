@@ -4,3 +4,4 @@
 font_names = PackedStringArray("Monospace")
 hinting = 0
 subpixel_positioning = 3
+oversampling = 10.0

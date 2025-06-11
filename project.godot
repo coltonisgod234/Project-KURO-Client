@@ -26,6 +26,8 @@ ChartMetaParser="*res://shared/chart_meta_parser.gd"
 
 [display]
 
+window/size/viewport_height=680
+window/size/mode=2
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 

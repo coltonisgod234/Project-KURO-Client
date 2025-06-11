@@ -20,6 +20,7 @@ func start(file: String):
 	Globals.reset_global_timer()  # So main doesn't FREAK OUT
 
 	fade_away()
+	get_tree().current_scene.hide_all_ui()
 	get_tree().current_scene.add_child(game)
 	await game.apply()
 
@@ -27,6 +28,7 @@ func start(file: String):
 	come_back()
 	# Do stuff that we want with game
 	get_tree().current_scene.remove_child(game)
+	get_tree().current_scene.show_all_ui()
 
 func _on_start_button_pressed() -> void:
 	var btn = Resources.SongSelectDifficultyPanelButtonGroup.get_pressed_button()

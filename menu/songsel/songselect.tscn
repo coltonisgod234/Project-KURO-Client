@@ -81,7 +81,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(0.341692, 0.341692),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.3, 0.3)]
 }
@@ -121,7 +121,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(0.341692, 0.341692),
 "update": 0,
 "values": [Vector2(0.3, 0.3), Vector2(1, 1)]
 }
@@ -134,17 +134,21 @@ _data = {
 }
 
 [node name="Songselect" type="Control"]
+custom_minimum_size = Vector2(1152, 648)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 1156.0
+offset_bottom = 648.0
 theme = ExtResource("1_f1ku7")
 script = ExtResource("1_321uk")
 export_mode = 2
 
 [node name="ChartsPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(577, 648)
 layout_mode = 1
 offset_left = 19.0
 offset_right = 596.0
-offset_bottom = 647.0
+offset_bottom = 648.0
 theme = ExtResource("1_f1ku7")
 
 [node name="Title" type="Label" parent="ChartsPanel"]
@@ -159,27 +163,26 @@ vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ChartsPanel"]
 layout_mode = 2
-offset_left = 29.0
-offset_top = 27.0
-offset_right = 548.0
-offset_bottom = 631.0
+anchor_left = 0.05026
+anchor_top = 0.0416667
+anchor_right = 0.94974
+anchor_bottom = 0.973765
 theme = ExtResource("1_f1ku7")
+metadata/_edit_use_anchors_ = true
 
 [node name="Charts" type="VBoxContainer" parent="ChartsPanel/ScrollContainer" node_paths=PackedStringArray("sg", "export_under")]
 layout_mode = 2
 theme = ExtResource("1_f1ku7")
 script = ExtResource("2_321uk")
 sg = NodePath("../../..")
-export_name = null
 export_under = NodePath("../../..")
-export_mode = null
 
 [node name="DiffsPane" type="Panel" parent="."]
+custom_minimum_size = Vector2(341, 648)
 layout_mode = 0
 offset_left = 602.0
-offset_top = 1.0
 offset_right = 943.0
-offset_bottom = 647.0
+offset_bottom = 648.0
 theme = ExtResource("1_f1ku7")
 
 [node name="Title" type="Label" parent="DiffsPane"]
@@ -194,26 +197,24 @@ vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DiffsPane"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -144.5
-offset_top = 27.0
-offset_right = 137.5
-offset_bottom = 634.0
+anchors_preset = -1
+anchor_left = 0.0762463
+anchor_top = 0.0416667
+anchor_right = 0.912023
+anchor_bottom = 0.976852
 grow_horizontal = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_f1ku7")
+metadata/_edit_use_anchors_ = true
 
 [node name="Diffs" type="VBoxContainer" parent="DiffsPane/ScrollContainer" node_paths=PackedStringArray("sg", "export_under")]
 layout_mode = 2
 script = ExtResource("5_ath0l")
 sg = NodePath("../../..")
-export_name = null
 export_under = NodePath("../../..")
-export_mode = null
 
 [node name="Options" type="Panel" parent="."]
+custom_minimum_size = Vector2(186, 648)
 layout_mode = 0
 offset_left = 952.0
 offset_right = 1138.0
@@ -234,13 +235,14 @@ vertical_alignment = 1
 
 [node name="StartButton" type="Button" parent="Options"]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 38.0
-offset_right = 179.0
-offset_bottom = 78.0
+anchor_left = 0.155914
+anchor_top = 0.058642
+anchor_right = 0.962366
+anchor_bottom = 0.12037
 mouse_default_cursor_shape = 3
 theme = ExtResource("1_f1ku7")
 text = "Start"
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sg", "export_under")]
 libraries = {

@@ -7,38 +7,31 @@
 [ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="4_nvg2m"]
 
 [node name="DiffHeader" type="Button"]
-custom_minimum_size = Vector2(280, 24)
+custom_minimum_size = Vector2(280, 29)
 offset_right = 290.0
-offset_bottom = 24.0
+offset_bottom = 29.0
 size_flags_horizontal = 3
 focus_mode = 0
 mouse_default_cursor_shape = 3
+theme = ExtResource("1_ag16d")
 toggle_mode = true
 button_group = ExtResource("1_gjbxu")
 script = ExtResource("1_ffget")
 export_mode = 1
 
-[node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(290, 24)
-layout_mode = 0
-offset_right = 290.0
-offset_bottom = 24.0
-mouse_filter = 1
-theme = ExtResource("1_ag16d")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-offset_right = 150.0
+offset_right = 287.0
 offset_bottom = 24.0
 
-[node name="DifficultyName" type="Label" parent="Panel/HBoxContainer" node_paths=PackedStringArray("check", "sg", "export_under")]
+[node name="DifficultyName" type="Label" parent="HBoxContainer" node_paths=PackedStringArray("check", "sg", "export_under")]
 layout_mode = 2
 mouse_filter = 1
 text = "DifficultyName"
 label_settings = ExtResource("2_hk53a")
 script = ExtResource("4_nvg2m")
 property_name = "title"
-check = NodePath("../../..")
+check = NodePath("../..")
 fstring = "%s"
-sg = NodePath("../../..")
-export_under = NodePath("../../..")
+sg = NodePath("../..")
+export_under = NodePath("../..")
