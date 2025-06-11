@@ -11,6 +11,6 @@ func _on_pressed() -> void:
 
 func save(full_path):
 	var file = FileAccess.open(full_path, FileAccess.WRITE)
-	file.store_var(component_buttons.selection)
+	file.store_line(JSON.stringify(component_buttons.selection))
 	file.close()
 	return

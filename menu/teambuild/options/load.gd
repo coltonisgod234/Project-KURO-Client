@@ -12,7 +12,8 @@ func _on_pressed() -> void:
 
 func ld(full_path):
 	var file = FileAccess.open(full_path, FileAccess.READ)
-	var data = file.get_var()
+	var content = file.get_as_text()
+	var data = JSON.parse_string(content)
 	print(data)
 	file.close()
 	return data

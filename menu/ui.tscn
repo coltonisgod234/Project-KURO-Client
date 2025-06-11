@@ -14,8 +14,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Songselect" parent="." instance=ExtResource("1_14ras")]
 layout_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 30.0
+anchor_top = 0.0218579
+anchor_right = 0.995889
+anchor_bottom = 0.930328
 offset_right = 0.0
 offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
