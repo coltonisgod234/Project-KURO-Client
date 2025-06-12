@@ -53,14 +53,14 @@ func add_chart_from_folder(path: String, chart_conf="chart.json"):
 	var charter = ChartMetaParser.parse_chart_charter(json)
 	var BPM = ChartMetaParser.parse_chart_BPM(json)
 	var diffs = ChartMetaParser.parse_chart_diffs(json, path)
-	Resources.SongSelectCurrentChartRootPath = path
 	charts.create(
 		title,
 		artist,
 		length,
 		charter,
 		BPM,
-		diffs
+		diffs,
+		path
 	)
 
 func add_charts_from_folder(path: String, resurs: bool, chart_conf="chart.json"):

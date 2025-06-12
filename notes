@@ -1,0 +1,3 @@
+diffscontainer:
+    kuro_init():
+        this is how the diffscontainer knows wheh the chartcontainer button is pressed

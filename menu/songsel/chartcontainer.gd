@@ -1,6 +1,14 @@
 extends KURO_Component
 
-func create(title: String, artist: String, length_sec: int, charter: String, BPM: int, diff_files: Array):
+func create(
+	title: String,
+	artist: String,
+	length_sec: int,
+	charter: String,
+	BPM: int,
+	diff_files: Array,
+	map_root: String
+):
 	var chartheader = Scenes.SongSelectChartHeader.instantiate()
 	chartheader.title = title
 	chartheader.artist = artist
@@ -8,6 +16,7 @@ func create(title: String, artist: String, length_sec: int, charter: String, BPM
 	chartheader.charter = charter
 	chartheader.BPM = BPM
 	chartheader.diffs = diff_files
+	chartheader.root = map_root
 
 	chartheader.toggle_mode = true
 	chartheader.button_group = Resources.SongSelectChartPanelButtonGroup
