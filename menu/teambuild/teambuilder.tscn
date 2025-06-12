@@ -10,27 +10,23 @@
 [ext_resource type="Script" uid="uid://3cxid8qajifr" path="res://menu/teambuild/options/done.gd" id="8_vwyuu"]
 
 [node name="Teambuilder" type="Control"]
-custom_minimum_size = Vector2(379, 176)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -773.0
-offset_bottom = -504.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dmwfu")
-export_mode = 2
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(370, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.992
-anchor_bottom = 0.986
-offset_right = -0.186768
-offset_bottom = -0.077179
+anchor_right = 0.308333
+anchor_bottom = 0.271605
+offset_bottom = 1.52588e-05
 theme = ExtResource("1_01o83")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
@@ -38,7 +34,7 @@ offset_left = 25.0
 offset_right = 133.0
 offset_bottom = 22.0
 theme = ExtResource("1_01o83")
-text = "Set up team..."
+text = "Team Builder"
 label_settings = ExtResource("2_41gru")
 
 [node name="WindowContent" type="VBoxContainer" parent="Panel"]
@@ -56,18 +52,22 @@ export_mode = 3
 
 [node name="0" parent="Panel/WindowContent/Buttons" instance=ExtResource("2_3ejkc")]
 layout_mode = 2
+text = "Not yet selected..."
 export_mode = 3
 
 [node name="1" parent="Panel/WindowContent/Buttons" instance=ExtResource("2_3ejkc")]
 layout_mode = 2
+text = "Not yet selected..."
 export_mode = 3
 
 [node name="2" parent="Panel/WindowContent/Buttons" instance=ExtResource("2_3ejkc")]
 layout_mode = 2
+text = "Not yet selected..."
 export_mode = 3
 
 [node name="3" parent="Panel/WindowContent/Buttons" instance=ExtResource("2_3ejkc")]
 layout_mode = 2
+text = "Not yet selected..."
 export_mode = 3
 
 [node name="SaveLoad" type="HBoxContainer" parent="Panel/WindowContent"]
@@ -78,7 +78,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 3
-text = "Save..."
+text = "Save"
 script = ExtResource("4_jwav0")
 preset_name = "preset0.kuro"
 preset_directory = "user://teams/"
@@ -99,7 +99,7 @@ root_subfolder = "teams"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 3
-text = "Load..."
+text = "Load"
 script = ExtResource("6_dmwfu")
 component_buttons = NodePath("../../Buttons")
 sg = NodePath("../../../..")

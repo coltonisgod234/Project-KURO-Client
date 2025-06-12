@@ -1,9 +1,9 @@
 extends Control
 
 func hide_all_ui():
-	$TabContainer.hide()
-	return
+	#$TabContainer.hide()
+	pass
 
 func show_all_ui():
-	$TabContainer.show()
-	return
+	#$TabContainer.show()
+	pass

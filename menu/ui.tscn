@@ -1,35 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://c33iffnqm3wth"]
+[gd_scene load_steps=3 format=3 uid="uid://c33iffnqm3wth"]
 
 [ext_resource type="PackedScene" uid="uid://cmgex7syuryjt" path="res://menu/songsel/songselect.tscn" id="1_14ras"]
 [ext_resource type="Script" uid="uid://cbxjw5dk8wggv" path="res://menu/ui.gd" id="1_rkq1q"]
-[ext_resource type="PackedScene" uid="uid://c21vweboq88a" path="res://menu/teambuild/teambuilder.tscn" id="2_gc15y"]
-[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="2_lfmd2"]
 
 [node name="Ui" type="Control"]
 layout_mode = 3
-anchor_right = 1.00521
-anchor_bottom = 1.00294
+anchor_right = 1.005
+anchor_bottom = 1.07647
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rkq1q")
 metadata/_edit_use_anchors_ = true
 
-[node name="TabContainer" type="TabContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme = ExtResource("2_lfmd2")
-theme_override_constants/side_margin = 40
-current_tab = 0
-clip_tabs = false
-all_tabs_in_front = true
-
-[node name="Songselect" parent="TabContainer" instance=ExtResource("1_14ras")]
+[node name="Songselect" parent="." instance=ExtResource("1_14ras")]
 layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="Teambuilder" parent="TabContainer" instance=ExtResource("2_gc15y")]
-visible = false
-custom_minimum_size = Vector2(370, 182)
-layout_mode = 2
-metadata/_tab_index = 1
+anchor_top = 0.0218579
+anchor_right = 0.995889
+anchor_bottom = 0.930328
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true

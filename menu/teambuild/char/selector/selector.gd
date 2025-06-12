@@ -14,10 +14,6 @@ func wire_signals():
 	var btns = s_wait_for_component("Buttons")
 	for btn in btns.get_children():
 		btns.wait_till_init(btn)
-		if "pressed" not in btn:
-			print("[selector.gd] This is not a button and I'm not going to wire a signal to it.")
-			continue
-
 		btn.pressed.connect(_on_btn_pressed.bind(btn))
 
 func apply():
