@@ -9,7 +9,7 @@ var rng = RandomNumberGenerator.new()
 
 func set_personality(idx):
 	var inst = personalities.get(idx).instantiate()
-	self.remove_child(personality)
+	personality.queue_free()
 	personality = inst
 	self.add_child(inst)  # kinda not that bad hack but still ugly
 

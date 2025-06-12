@@ -39,7 +39,7 @@ func apply():
 
 	self.add_child(dialouge)
 	await apply_in_succession(dialouge)
-	self.remove_child(dialouge)
+	dialouge.queue_free()
 	return
 
 var buttons = []

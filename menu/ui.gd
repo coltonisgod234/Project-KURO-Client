@@ -13,7 +13,7 @@ func do_teambuilder_bullshit():
 	var aroace = Scenes.TeamBuilder.instantiate()  # homophobia is bad
 	self.add_child(aroace)  # Literally makes no sense
 	var trangenderwoman66 = await aroace.apply()  # you know today people in my class said very transphobic things
-	self.remove_child(aroace)  # Makes slightly more sense
+	aroace.queue_free()  # Makes slightly more sense
 	print(trangenderwoman66)  # They saw my transfem violet 
 	return trangenderwoman66  # and said "mom im a woman now" to mock her
 
@@ -37,5 +37,5 @@ func start(file: String, root: String, characters_to_load: Array):
 
 	print("Ok")
 	# Do stuff that we want with game
-	remove_child(game)
+	game.queue_free()  # memory leak fuck
 	show_all_ui()

@@ -32,4 +32,4 @@ func _on_pressed() -> void:
 
 	self.add_child(dropdown)
 	self.set_selected_character_to_object(await dropdown.apply())
-	self.remove_child(dropdown)
+	dropdown.queue_free()
