@@ -17,11 +17,12 @@ func do_teambuilder_bullshit():
 	print(trangenderwoman66)  # They saw my transfem violet 
 	return trangenderwoman66  # and said "mom im a woman now" to mock her
 
-func start(file: String, characters_to_load: Array):
+func start(file: String, root: String, characters_to_load: Array):
 	var game = Scenes.Main.instantiate()
 	game.map = MapParser.load_map(file)
 	game.map_timings = MapParser.parse_map_notes(game.map)
-	game.map_song = MapParser.parse_map_songfile(game.map)
+	game.map_song = MapParser.parse_map_songfile(game.map, root)
+	print("Map song is %s" % game.map_song)
 	game.map_num_keys = MapParser.parse_map_num_lanes(game.map)
 	game.map_length = MapParser.parse_map_length_usec(game.map)
 	game.load_characters = characters_to_load

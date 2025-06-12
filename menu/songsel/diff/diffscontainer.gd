@@ -1,9 +1,12 @@
 extends KURO_Component
 
-func create(title: String, file: String):
+@export var root: String
+
+func create(title: String, file: String, root: String):
 	var diffheader = Scenes.SongSelectDifficultyHeader.instantiate()
 	diffheader.title = title
 	diffheader.file = file
+	diffheader.root = root
 
 	var metadata_string = "%s" % [diffheader]
 	diffheader.export_name = metadata_string
@@ -25,13 +28,15 @@ func update_list(file_list: Array):
 	for filepath in file_list:
 		var json = MapParser.load_map(filepath)
 		var title = MapParser.parse_map_diffname(json)
-		self.create(title, filepath)
+		self.create(title, filepath, root)
 
 func _on_changed(btn) -> void:
 	var selected_chart = Resources.SongSelectChartPanelButtonGroup.get_pressed_button()
+	self.root = Resources.SongSelectCurrentChartRootPath
 	if selected_chart == null: return
 	
 	var file_list = selected_chart.diffs
 	if file_list == null: return
 
+	print(file_list)
 	update_list(file_list)

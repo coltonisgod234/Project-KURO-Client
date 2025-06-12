@@ -38,6 +38,7 @@ func _on_start_button_pressed() -> void:
 	print(shit)
 	ui.start(
 		btn.file,
+		btn.root,
 		shit
 	)
 
@@ -52,6 +53,7 @@ func add_chart_from_folder(path: String, chart_conf="chart.json"):
 	var charter = ChartMetaParser.parse_chart_charter(json)
 	var BPM = ChartMetaParser.parse_chart_BPM(json)
 	var diffs = ChartMetaParser.parse_chart_diffs(json, path)
+	Resources.SongSelectCurrentChartRootPath = path
 	charts.create(
 		title,
 		artist,
@@ -69,4 +71,4 @@ func add_charts_from_folder(path: String, resurs: bool, chart_conf="chart.json")
 
 func kuro_init():
 	#add_chart_from_folder("res://testdata/test_song")
-	add_charts_from_folder("res://testdata", false)
+	add_charts_from_folder("user://songs", false)

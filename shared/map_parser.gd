@@ -31,8 +31,9 @@ func parse_map_diffname(json):
 	
 	return map_diffname
 
-func parse_map_songfile(json):
+func parse_map_songfile(json, root: String):
 	var map_songfile = json.data.get("audio")
+	map_songfile = root.path_join(map_songfile)  # Hack
 	if map_songfile is not String:
 		push_error("BAD MAP JSON!! UNEXPECTED NON-STRING TYPE FOR PARAMETER AUDIO!!")
 		return ERR_INVALID_DATA

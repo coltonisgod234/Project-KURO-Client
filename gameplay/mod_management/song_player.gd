@@ -19,10 +19,10 @@ func start_song(songfile):
 	#	push_error("[SongPlayer] FAILED TO START SONG!! CANNOT OPEN FILE %s!! DOES THE FILE EXIST?" % songfile)
 	#	return ERR_INVALID_DATA
 		
-	#var stream = AudioStreamOggVorbis.load_from_file(songfile)
-	var stream = load(songfile)
-	if stream is not AudioStream:
-		push_error("[SongPlayer] BAD MAP SONGFILE!! %s IS NOT OF TYPE AUDIOSTREAM!!" % [songfile])
+	var stream = AudioStreamOggVorbis.load_from_file(songfile)
+	#var stream = load(songfile)
+	if stream is not AudioStreamOggVorbis:
+		push_error("[SongPlayer] BAD MAP SONGFILE!! %s IS NOT OF TYPE AudioStreamOggVorbis!!" % [songfile])
 		return ERR_INVALID_DATA
 	
 	print("[SongPlayer] Loaded song %s" % songfile)
