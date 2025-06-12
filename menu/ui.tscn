@@ -10,6 +10,7 @@ anchor_bottom = 1.07647
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rkq1q")
+export_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Songselect" parent="." instance=ExtResource("1_14ras")]

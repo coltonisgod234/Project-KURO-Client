@@ -27,6 +27,7 @@ var CharacterList: Dictionary[String, PackedScene] = {
 var SongSelectChartHeader := preload("res://menu/songsel/chart/chartheader.tscn")
 var SongSelectDifficultyHeader := preload("res://menu/songsel/diff/diffheader.tscn")
 
+var TeamBuilder := preload("res://menu/teambuild/teambuilder.tscn")
 var TeamBuildSelectCharacterDropdown := preload("res://menu/teambuild/char/selector/selector.tscn")
 
 var CharacterDialougeBox := preload("res://dialouge/popup.tscn")

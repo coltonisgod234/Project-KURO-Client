@@ -8,33 +8,38 @@ func come_back():
 	self.s_wait_for_component("AnimationPlayer").play("fade_in")
 	Globals.set_all_process(self, true, true)
 
-func start(file: String):
-	var game = Scenes.Main.instantiate()
-	game.map = MapParser.load_map(file)
-	game.map_timings = MapParser.parse_map_notes(game.map)
-	game.map_song = MapParser.parse_map_songfile(game.map)
-	game.map_num_keys = MapParser.parse_map_num_lanes(game.map)
-	game.map_length = MapParser.parse_map_length_usec(game.map)
-	game.position = Vector2(0.0, 0.0)
-	print("\n\n\nMAIN SCENE READY. It'll either crash horribly or work completely fine.\n\n\n")
-	Globals.reset_global_timer()  # So main doesn't FREAK OUT
+func parse_character_shit(selection):
+	# DO A BUNCH OF REALLY DUMB SHIT
+	var characters = []  # I have no bitches and dont want any
+	for i in selection:
+		var character = selection.get(i)
+		if character == null:
+			push_error("aaaaaaaaa")
+			continue
 
-	fade_away()
-	get_tree().current_scene.hide_all_ui()
-	get_tree().current_scene.add_child(game)
-	await game.apply()
-
-	print("Ok")
-	come_back()
-	# Do stuff that we want with game
-	get_tree().current_scene.remove_child(game)
-	get_tree().current_scene.show_all_ui()
+		var name = character.get("character_name")
+		print(character, name, Scenes.CharacterList.get(name))  # debug
+		characters.append(
+			Scenes.CharacterList.get(name)
+		)
+	
+	return characters
 
 func _on_start_button_pressed() -> void:
 	var btn = Resources.SongSelectDifficultyPanelButtonGroup.get_pressed_button()
 	if btn == null: return
 	
-	start(btn.file)
+	var ui = Globals.s_wait_for_component("Ui")
+	var selection = await ui.do_teambuilder_bullshit()
+	print("You selected some shit!")
+	print(selection)
+	var shit = parse_character_shit(selection)
+	print("You parsed some shit!")
+	print(shit)
+	ui.start(
+		btn.file,
+		shit
+	)
 
 func add_chart_from_folder(path: String, chart_conf="chart.json"):
 	var full_path = path.path_join(chart_conf)

@@ -6,14 +6,16 @@ var map_num_keys
 var map_length
 
 var character_manager = null
+var load_characters: Array
 func init_CharacterManager():
 	print("[Main] Initalizing CharacterManager...")
 	character_manager = Scenes.CharacterManager.instantiate()
+	character_manager.position.x = 220
 	self.add_child(character_manager)
-	character_manager.load_character(Scenes.CharacterViolet, 1)
-	character_manager.load_character(Scenes.CharacterKuro, 2)
-	character_manager.load_character(Scenes.CharacterTab5, 3)
-	#character_manager.load_character(Scenes.CharacterCloudy, 4)
+	for i in range(len(load_characters)):
+		print(i)
+		var char = load_characters[i]
+		character_manager.load_character(char, i)
 
 var hud = null
 func init_HUD():
