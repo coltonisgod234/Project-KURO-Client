@@ -11,6 +11,10 @@ signal map_complete
 func kuro_init():
 	print("[LaneManager] Lane Manager ready")
 
+func _tree_exit():
+	for child in get_children():  # avoid memleak
+		child.queue_free()
+
 func spawn_lane(i, map_lanes, pixels_per_lane, songplayer):
 	print("[LaneManager] Initalizing Lane #%d" % i)
 	var lane = Scenes.Lane.instantiate()

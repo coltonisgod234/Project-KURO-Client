@@ -15,14 +15,14 @@ func kuro_init():
 	return
 
 func _on_hit(lane, note):
-	score.add_count(+1)
+	combo.add_count(+1)
 	hit.add_count(1)
-	combo.add_count(note.speed / 1.5)
+	score.add_count(note.speed / 1.5)
 
 func _on_miss(lane, note):
-	combo.set_count(0)
+	score.set_count(0)
 	miss.add_count(1)
-	score.sub_count_positive_only(1.5 / note.speed)
+	combo.sub_count_positive_only(1.5 / note.speed)
 
 func _on_note_judged(lane: Node2D, note: Node2D, judge: int, nonfacbricated: int):
 	match judge:

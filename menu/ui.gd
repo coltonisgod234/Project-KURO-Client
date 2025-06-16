@@ -1,5 +1,7 @@
 extends KURO_Component
 
+var game
+
 func kuro_init(): # TEST ONLY!!!
 	#start("user://songs/test_song_the_2nd/testmap.json", "user://songs/test_song_the_2nd", [])
 	pass  # Good I remembered to remove from release...
@@ -30,9 +32,25 @@ func do_teambuilder_bullshit():
 	print(trangenderwoman66)                       # They saw my transfem friend violet 
 	return trangenderwoman66                       # and said "mom im a woman now" to mock her
 
+func _input(event):
+	if event is InputEventKey:
+		if event.is_action_pressed("reload"):
+			if game != null:
+				var last_file = game.get_meta("sparams_file")
+				var last_root = game.get_meta("sparams_root")
+				var last_characters_to_load = game.get_meta("sparams_characters_to_load")
+				force_stop_game()
+				start(last_file, last_root, last_characters_to_load)
+
+func force_stop_game():
+	game.queue_free()
+
 func start(file: String, root: String, characters_to_load: Array):
 	#Engine.time_scale = 0.5  # Slow down to 50% speed for testing
-	var game = Scenes.Main.instantiate()
+	game = Scenes.Main.instantiate()
+	game.set_meta("sparams_file", file)
+	game.set_meta("sparams_root", root)
+	game.set_meta("sparams_characters_to_load", characters_to_load)
 	game.map = MapParser.load_map(file)
 	game.map_timings = MapParser.parse_map_notes(game.map)
 	game.map_song = MapParser.parse_map_songfile(game.map, root)
@@ -52,4 +70,5 @@ func start(file: String, root: String, characters_to_load: Array):
 	print("Ok")
 	# Do stuff that we want with game
 	game.queue_free()  # memory leak fuck
+	game = null
 	show_all_ui()
