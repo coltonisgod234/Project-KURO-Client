@@ -1,31 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://mum0qmlxuvye"]
+[gd_scene load_steps=6 format=3 uid="uid://mum0qmlxuvye"]
 
 [ext_resource type="Script" uid="uid://d361jtphwpdin" path="res://gameplay/mod_note/lane.gd" id="1_phwy2"]
 [ext_resource type="Script" uid="uid://cueb4vjm7liat" path="res://gameplay/mod_note/key.gd" id="2_8ntnh"]
+[ext_resource type="AudioStream" uid="uid://d0u33ovcqwys" path="res://UI_stuff/miss_sound_two.wav" id="3_n1wdr"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="3_n8um2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ma31"]
-size = Vector2(48, 70)
+size = Vector2(48, 89)
 
 [node name="Lane" type="Node2D"]
 script = ExtResource("1_phwy2")
-pixels_per_lane = 48.0
-forgiveness = -35
 metadata/lane_number = 0
 metadata/active = true
 metadata/t = []
 
 [node name="Key" type="Area2D" parent="."]
+position = Vector2(0, 630)
 script = ExtResource("2_8ntnh")
-note_miss_line = 0
 
 [node name="KeyShape" type="CollisionShape2D" parent="Key"]
+position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_6ma31")
 
-[node name="KeyColour" type="ColorRect" parent="Key/KeyShape"]
-offset_left = -21.0
-offset_top = -35.0
-offset_right = 21.0
-offset_bottom = 35.0
-metadata/_edit_use_anchors_ = true
+[node name="VBoxContainer" type="VBoxContainer" parent="Key/KeyShape"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_n8um2")
+theme_override_constants/separation = 0
+
+[node name="Line" type="ColorRect" parent="Key/KeyShape/VBoxContainer"]
+custom_minimum_size = Vector2(24, 8)
+layout_mode = 2
+theme = ExtResource("3_n8um2")
+color = Color(1, 0.380392, 0.34902, 1)
+
+[node name="Key" type="ColorRect" parent="Key/KeyShape/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75.535)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Key"]
+stream = ExtResource("3_n1wdr")
+volume_db = 5.365
+bus = &"SFX"
 
 [node name="NoteContainer" type="Node2D" parent="."]

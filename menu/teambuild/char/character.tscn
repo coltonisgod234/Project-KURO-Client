@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpc2vn2vkp2xm"]
+
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_v7w7v"]
+[ext_resource type="Script" uid="uid://bkg4npwgvew07" path="res://menu/teambuild/char/character.gd" id="2_dtm8c"]
+
+[node name="Button" type="Button"]
+clip_children = 2
+custom_minimum_size = Vector2(200, 24)
+offset_right = 190.0
+offset_bottom = 8.0
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_v7w7v")
+script = ExtResource("2_dtm8c")
+selector_x_pos_offset = 322
+force_y_pos_zero = true
+export_mode = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

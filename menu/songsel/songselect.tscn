@@ -1,0 +1,255 @@
+[gd_scene load_steps=11 format=3 uid="uid://cmgex7syuryjt"]
+
+[ext_resource type="Script" uid="uid://dps14rr14c7gt" path="res://menu/songsel/songselect.gd" id="1_321uk"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_f1ku7"]
+[ext_resource type="Script" uid="uid://bfoa65bvhxryb" path="res://menu/songsel/chartcontainer.gd" id="2_321uk"]
+[ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_ekoy7"]
+[ext_resource type="Script" uid="uid://xhupiqd5xq61" path="res://menu/songsel/diff/diffscontainer.gd" id="5_ath0l"]
+[ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="6_ath0l"]
+
+[sub_resource type="Animation" id="Animation_ath0l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3cku2"]
+resource_name = "fade_away"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.341692, 0.341692),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.3, 0.3)]
+}
+
+[sub_resource type="Animation" id="Animation_snpii"]
+resource_name = "fade_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.341692, 0.341692),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_snpii"]
+_data = {
+&"RESET": SubResource("Animation_ath0l"),
+&"fade_away": SubResource("Animation_3cku2"),
+&"fade_in": SubResource("Animation_snpii")
+}
+
+[node name="Songselect" type="Control"]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1156.0
+offset_bottom = 648.0
+theme = ExtResource("1_f1ku7")
+script = ExtResource("1_321uk")
+export_mode = 2
+
+[node name="ChartsPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(577, 648)
+layout_mode = 1
+offset_left = 19.0
+offset_right = 596.0
+offset_bottom = 648.0
+theme = ExtResource("1_f1ku7")
+
+[node name="Title" type="Label" parent="ChartsPanel"]
+layout_mode = 1
+offset_left = 25.0
+offset_right = 588.0
+offset_bottom = 23.0
+theme = ExtResource("1_f1ku7")
+text = "Charts"
+label_settings = ExtResource("2_ekoy7")
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ChartsPanel"]
+layout_mode = 2
+anchor_left = 0.05026
+anchor_top = 0.0416667
+anchor_right = 0.94974
+anchor_bottom = 0.973765
+theme = ExtResource("1_f1ku7")
+metadata/_edit_use_anchors_ = true
+
+[node name="Charts" type="VBoxContainer" parent="ChartsPanel/ScrollContainer" node_paths=PackedStringArray("sg", "export_under")]
+layout_mode = 2
+theme = ExtResource("1_f1ku7")
+script = ExtResource("2_321uk")
+sg = NodePath("../../..")
+export_under = NodePath("../../..")
+
+[node name="DiffsPane" type="Panel" parent="."]
+custom_minimum_size = Vector2(341, 648)
+layout_mode = 0
+offset_left = 602.0
+offset_right = 943.0
+offset_bottom = 648.0
+theme = ExtResource("1_f1ku7")
+
+[node name="Title" type="Label" parent="DiffsPane"]
+layout_mode = 2
+offset_left = 25.0
+offset_right = 349.0
+offset_bottom = 23.0
+theme = ExtResource("1_f1ku7")
+text = "Difficulties"
+label_settings = ExtResource("2_ekoy7")
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DiffsPane"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0762463
+anchor_top = 0.0416667
+anchor_right = 0.912023
+anchor_bottom = 0.976852
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_f1ku7")
+metadata/_edit_use_anchors_ = true
+
+[node name="Diffs" type="VBoxContainer" parent="DiffsPane/ScrollContainer" node_paths=PackedStringArray("sg", "export_under")]
+layout_mode = 2
+script = ExtResource("5_ath0l")
+sg = NodePath("../../..")
+export_under = NodePath("../../..")
+
+[node name="Options" type="Panel" parent="."]
+custom_minimum_size = Vector2(186, 648)
+layout_mode = 0
+offset_left = 952.0
+offset_right = 1138.0
+offset_bottom = 648.0
+
+[node name="Title" type="Label" parent="Options"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -68.0
+offset_right = 105.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Options"
+label_settings = ExtResource("2_ekoy7")
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="Options"]
+layout_mode = 0
+anchor_left = 0.155914
+anchor_top = 0.058642
+anchor_right = 0.962366
+anchor_bottom = 0.12037
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_f1ku7")
+text = "Start"
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sg", "export_under")]
+libraries = {
+&"": SubResource("AnimationLibrary_snpii")
+}
+script = ExtResource("6_ath0l")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[connection signal="pressed" from="Options/StartButton" to="." method="_on_start_button_pressed"]

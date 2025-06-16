@@ -7,18 +7,10 @@ const YOURE_NOT_PART_OF_ONE = null
 
 func wait_till_init(component):
 	print("[%s] (BASE) Waiting for initialization: %s" % [self.name, component])
-	while component == null:
-		await self.get_tree().process_frame
-	
 	return component
 
-func wait_for_component(component_name, relative_to=null):
-	if relative_to == null: relative_to = self
-
-	print("[%s] (BASE) Waiting for component %s ON %s" % [self.name, component_name, relative_to.name])
-	while component_name not in relative_to.exports:
-		await self.get_tree().process_frame
-	return self.exports.get(component_name)
+func s_wait_for_component(component_name: String):
+	return self.exports.get(component_name)   # No polling because Godot is extremely retarded
 
 func ExportUnder(parent, me_myself_and_i, name=null):
 	if name is not String:
@@ -36,7 +28,7 @@ func ExportUnder(parent, me_myself_and_i, name=null):
 		print("[%s] (BASE) You did a stupid Colton" % [self.name])
 		return
 	parent.exports.set(name, me_myself_and_i)
-	print("Done")
+	#print("Done")
 
 signal component_ready(component, globals_export_name)
 @export var export_name: String

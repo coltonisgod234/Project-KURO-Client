@@ -18,9 +18,6 @@ var note_hit_counter := 0
 @export var negative_effect_threshold: float = -0.3
 @export var multiplication: float = 0.01
 
-func kuro_init():
-	await Globals.wait_for_component("LaneManager")
-
 func toggle_state():
 	if state == STATE_VIOLET_EUPHORIC:
 		state = STATE_VIOLET_DYSPHORIC
@@ -50,9 +47,9 @@ func secondaryB():
 func secondaryC():
 	pass
 
-func _process(_delta:float):
-	#motivation = lerp(motivation, state, motivation_speed * _delta)
-	motivation += sign(state) * motivation_speed * _delta
+func _process(__delta:float):
+	#motivation = lerp(motivation, state, motivation_speed * __delta)
+	motivation += sign(state) * motivation_speed * __delta
 	if motivation < negative_effect_threshold:
 		life -= abs(motivation) * multiplication
 		ReadableStatus = "Draining downwards"

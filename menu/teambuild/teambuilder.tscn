@@ -1,0 +1,132 @@
+[gd_scene load_steps=9 format=3 uid="uid://c21vweboq88a"]
+
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_01o83"]
+[ext_resource type="Script" uid="uid://24f5yltd15" path="res://menu/teambuild/teambuilder.gd" id="1_dmwfu"]
+[ext_resource type="PackedScene" uid="uid://bpc2vn2vkp2xm" path="res://menu/teambuild/char/character.tscn" id="2_3ejkc"]
+[ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_41gru"]
+[ext_resource type="Script" uid="uid://cyesu0iu1gmpy" path="res://menu/teambuild/buttons_container.gd" id="3_xa0oa"]
+[ext_resource type="Script" uid="uid://bs4sggd0k0ssf" path="res://menu/teambuild/options/save.gd" id="4_jwav0"]
+[ext_resource type="Script" uid="uid://dt3gkthribh0l" path="res://menu/teambuild/options/load.gd" id="6_dmwfu"]
+[ext_resource type="Script" uid="uid://3cxid8qajifr" path="res://menu/teambuild/options/done.gd" id="8_vwyuu"]
+
+[node name="Teambuilder" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dmwfu")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(370, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.308333
+anchor_bottom = 0.271605
+offset_bottom = 1.52588e-05
+theme = ExtResource("1_01o83")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 133.0
+offset_bottom = 22.0
+theme = ExtResource("1_01o83")
+text = "Team Builder"
+label_settings = ExtResource("2_41gru")
+
+[node name="WindowContent" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 26.0
+offset_right = 346.0
+offset_bottom = 162.0
+
+[node name="Buttons" type="VBoxContainer" parent="Panel/WindowContent"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_xa0oa")
+export_mode = 3
+
+[node name="0" parent="Panel/WindowContent/Buttons" instance=ExtResource("2_3ejkc")]
+layout_mode = 2
+text = "Not yet selected..."
+export_mode = 3
+
+[node name="1" parent="Panel/WindowContent/Buttons" instance=ExtResource("2_3ejkc")]
+layout_mode = 2
+text = "Not yet selected..."
+export_mode = 3
+
+[node name="2" parent="Panel/WindowContent/Buttons" instance=ExtResource("2_3ejkc")]
+layout_mode = 2
+text = "Not yet selected..."
+export_mode = 3
+
+[node name="3" parent="Panel/WindowContent/Buttons" instance=ExtResource("2_3ejkc")]
+layout_mode = 2
+text = "Not yet selected..."
+export_mode = 3
+
+[node name="SaveLoad" type="HBoxContainer" parent="Panel/WindowContent"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Save" type="Button" parent="Panel/WindowContent/SaveLoad" node_paths=PackedStringArray("component_buttons", "sg", "export_under")]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 3
+text = "Save"
+script = ExtResource("4_jwav0")
+preset_name = "preset0.kuro"
+preset_directory = "user://teams/"
+component_buttons = NodePath("../../Buttons")
+sg = NodePath("../../../..")
+export_under = NodePath("../../../..")
+
+[node name="FileDialog" type="FileDialog" parent="Panel/WindowContent/SaveLoad/Save"]
+title = "Save team..."
+initial_position = 2
+dialog_hide_on_ok = true
+cancel_button_text = "Stop"
+mode_overrides_title = false
+access = 1
+root_subfolder = "teams"
+
+[node name="Load" type="Button" parent="Panel/WindowContent/SaveLoad" node_paths=PackedStringArray("component_buttons", "sg", "export_under")]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 3
+text = "Load"
+script = ExtResource("6_dmwfu")
+component_buttons = NodePath("../../Buttons")
+sg = NodePath("../../../..")
+export_under = NodePath("../../../..")
+
+[node name="FileDialog" type="FileDialog" parent="Panel/WindowContent/SaveLoad/Load"]
+auto_translate_mode = 1
+title = "Load team..."
+initial_position = 2
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+cancel_button_text = "Stop"
+mode_overrides_title = false
+file_mode = 0
+access = 1
+root_subfolder = "teams"
+
+[node name="Done" type="Button" parent="Panel/WindowContent/SaveLoad" node_paths=PackedStringArray("component_buttons", "sg", "export_under")]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 3
+text = "Done"
+script = ExtResource("8_vwyuu")
+component_buttons = NodePath("../../Buttons")
+sg = NodePath("../../../..")
+export_under = NodePath("../../../..")
+
+[connection signal="pressed" from="Panel/WindowContent/SaveLoad/Save" to="Panel/WindowContent/SaveLoad/Save" method="_on_pressed"]
+[connection signal="pressed" from="Panel/WindowContent/SaveLoad/Load" to="Panel/WindowContent/SaveLoad/Load" method="_on_pressed"]
+[connection signal="pressed" from="Panel/WindowContent/SaveLoad/Done" to="Panel/WindowContent/SaveLoad/Done" method="_on_pressed"]

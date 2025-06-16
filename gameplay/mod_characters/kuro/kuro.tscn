@@ -3,17 +3,17 @@
 [ext_resource type="Script" uid="uid://ck1b7qmh631ka" path="res://gameplay/mod_characters/kuro/kuro.gd" id="1_54vou"]
 [ext_resource type="Script" uid="uid://c2gdldq6xulrv" path="res://gameplay/mod_characters/kuro/primary.gd" id="2_lhkx7"]
 [ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="2_qeq0e"]
-[ext_resource type="Script" uid="uid://v24x2ij0j8in" path="res://gameplay/mod_effect/addscore.gd" id="4_0cfwl"]
+[ext_resource type="Script" uid="uid://v24x2ij0j8in" path="res://gameplay/mod_effect/score/addscore.gd" id="4_0cfwl"]
 [ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="4_1coxs"]
 [ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/attr_bar.gd" id="4_uuav8"]
 [ext_resource type="Script" uid="uid://coe557ni3aqjl" path="res://gameplay/mod_characters/kuro/secondary.gd" id="4_w8xyn"]
 [ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="5_4lye0"]
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="5_64oyw"]
-[ext_resource type="Script" uid="uid://dulqhoqq1ebm8" path="res://gameplay/mod_effect/addcombo.gd" id="6_mldwb"]
-[ext_resource type="Script" uid="uid://dgrhoaf5ovymo" path="res://gameplay/mod_effect/subscore.gd" id="6_w8xyn"]
-[ext_resource type="Script" uid="uid://smg1drh5eaen" path="res://gameplay/mod_effect/subcombo.gd" id="7_waxe7"]
-[ext_resource type="Script" uid="uid://bvomr8fnr6agf" path="res://gameplay/mod_effect/missable.gd" id="11_w0y6o"]
-[ext_resource type="Script" uid="uid://dot2m3hxw65tg" path="res://gameplay/mod_effect/hit_within_range.gd" id="12_2klul"]
+[ext_resource type="Script" uid="uid://dulqhoqq1ebm8" path="res://gameplay/mod_effect/combo/addcombo.gd" id="6_mldwb"]
+[ext_resource type="Script" uid="uid://dgrhoaf5ovymo" path="res://gameplay/mod_effect/score/subscore.gd" id="6_w8xyn"]
+[ext_resource type="Script" uid="uid://smg1drh5eaen" path="res://gameplay/mod_effect/combo/subcombo.gd" id="7_waxe7"]
+[ext_resource type="Script" uid="uid://bvomr8fnr6agf" path="res://gameplay/mod_effect/gamestate/missable.gd" id="11_w0y6o"]
+[ext_resource type="Script" uid="uid://dot2m3hxw65tg" path="res://gameplay/mod_effect/playfield/hit_within_range.gd" id="12_2klul"]
 [ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="15_55yk6"]
 
 [node name="Kuro" type="Node2D" node_paths=PackedStringArray("sg")]
@@ -180,9 +180,9 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 text = "Kuro"
 script = ExtResource("15_55yk6")
-fstring = "%s -- Kuro"
 property_name = "export_name"
 check = NodePath("../../..")
+fstring = "%s -- Kuro"
 sg = NodePath("../../..")
 export_under = NodePath("..")
 metadata/_edit_use_anchors_ = true
@@ -208,11 +208,11 @@ text = "1   Fabricate"
 
 [node name="Max" type="Label" parent="HUDContainer/HUD/PrimaryStunBar"]
 layout_mode = 0
-offset_left = 168.0
-offset_top = -4.0
-offset_right = 197.0
-offset_bottom = 18.0
-text = "0.5s"
+offset_left = 171.0
+offset_top = -3.0
+offset_right = 201.0
+offset_bottom = 19.0
+text = ".5s"
 
 [node name="SecondaryAStunBar" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 custom_minimum_size = Vector2(0, 24)
@@ -240,9 +240,9 @@ text = "2   Fluctuate"
 
 [node name="Max" type="Label" parent="HUDContainer/HUD/SecondaryAStunBar"]
 layout_mode = 0
-offset_left = 181.0
+offset_left = 180.0
 offset_top = -4.0
-offset_right = 197.0
+offset_right = 200.0
 offset_bottom = 18.0
 text = "1s"
 
@@ -272,9 +272,9 @@ text = "3   Risk and Reward"
 
 [node name="Max" type="Label" parent="HUDContainer/HUD/SecondaryBStunBar"]
 layout_mode = 0
-offset_left = 181.0
+offset_left = 180.0
 offset_top = -4.0
-offset_right = 197.0
+offset_right = 200.0
 offset_bottom = 18.0
 text = "1s"
 
@@ -307,16 +307,16 @@ export_under = NodePath("..")
 layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
-offset_right = 109.0
+offset_right = 42.0
 offset_bottom = 26.0
 text = "Soul"
 
 [node name="Max" type="Label" parent="HUDContainer/HUD/LifeMeter"]
 layout_mode = 0
-offset_left = 171.0
-offset_top = -4.0
+offset_left = 167.0
+offset_top = 1.0
 offset_right = 197.0
-offset_bottom = 18.0
+offset_bottom = 23.0
 text = "100"
 
 [node name="AbilityStun" type="ProgressBar" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
@@ -337,15 +337,15 @@ export_under = NodePath("..")
 layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
-offset_right = 109.0
+offset_right = 122.0
 offset_bottom = 26.0
 text = "Ability Stun"
 
 [node name="LastEffectApplied" type="Label" parent="HUDContainer/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 layout_mode = 2
 script = ExtResource("15_55yk6")
-fstring = "%s!"
 property_name = "LastEffectAppliedHumanFriendlyName"
 check = NodePath("../../..")
+fstring = "%s!"
 sg = NodePath("../../..")
 export_under = NodePath("..")

@@ -1,17 +1,21 @@
 extends Node2D
-var map = MapParser.load_map("res://testdata/testmap.json")
-var map_timings = MapParser.parse_map_notes(map)
-var map_song = MapParser.parse_map_songfile(map)
-var map_num_keys = MapParser.parse_map_num_lanes(map)
+var map
+var map_timings
+var map_song
+var map_num_keys
+var map_length
 
 var character_manager = null
+var load_characters: Array
 func init_CharacterManager():
 	print("[Main] Initalizing CharacterManager...")
 	character_manager = Scenes.CharacterManager.instantiate()
+	character_manager.position.x = 220
 	self.add_child(character_manager)
-	character_manager.load_character(Scenes.CharacterViolet, 1)
-	character_manager.load_character(Scenes.CharacterKuro, 2)
-	character_manager.load_character(Scenes.CharacterTab5, 3)
+	for i in range(len(load_characters)):
+		print(i)
+		var char = load_characters[i]
+		character_manager.load_character(char, i)
 
 var hud = null
 func init_HUD():
@@ -24,8 +28,9 @@ func init_LaneManager():
 	print("[Main] Initalizing LaneManager...")
 	lanemgr = Scenes.LaneManager.instantiate()
 	for i in range(map_num_keys):
-		lanemgr.spawn_lane(i, map_timings, 48)
+		lanemgr.spawn_lane(i, map_timings, 48, songplayer)
 	
+	lanemgr.map_len_usec = map_length
 	self.add_child(lanemgr)
 
 var songplayer = null
@@ -33,12 +38,19 @@ func init_SongPlayer():
 	print("[Main] Initalizing SongPlayer...")
 	songplayer = Scenes.SongPlayer.instantiate()
 	self.add_child(songplayer)
-	songplayer.start_song(map_song)
 
-func _ready():
+func apply():
+	Engine.max_fps = 0
 	randomize()
-	print("[Main] Parsed map: %s | %s | audiofile is %s | %s keys" % [map, map_timings, map_song, map_num_keys])
-	init_LaneManager()
+	print("[Main] Got map data: %s | %s | audiofile is %s | #%s keys" % [map, map_timings, map_song, map_num_keys])
 	init_SongPlayer()
+	init_LaneManager()
 	init_HUD()
 	init_CharacterManager()
+	songplayer.start_song(map_song)
+	$AnimationPlayer.play("fade_in")
+	await $AnimationPlayer.animation_finished
+
+	await lanemgr.map_complete
+	$AnimationPlayer.play("fade_away")
+	await $AnimationPlayer.animation_finished

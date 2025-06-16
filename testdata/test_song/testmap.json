@@ -1,0 +1,55 @@
+{
+	"difficulty_name": "William",
+	"length": 10000000,
+	"audio": null,
+	"lanes": [
+	{
+	  "notes": [
+		{
+		  "time": 5300000,
+		  "speed": 600
+		},
+		{
+		  "time": 6000000,
+		  "speed": 600
+		}
+	  ]
+	},
+	{
+	  "notes": [
+		{
+		  "time": 5500000,
+		  "speed": 600
+		},
+		{
+		  "time": 6100000,
+		  "speed": 600
+		}
+	  ]
+	},
+	{
+	  "notes": [
+		{
+		  "time": 5600000,
+		  "speed": 600
+		},
+		{
+		  "time": 6200000,
+		  "speed": 600
+		}
+	  ]
+	},
+	{
+	  "notes": [
+		{
+		  "time": 5700000,
+		  "speed": 600
+		},
+		{
+		  "time": 636600000,
+		  "speed": 600
+		}
+	  ]
+	},
+  ]
+}

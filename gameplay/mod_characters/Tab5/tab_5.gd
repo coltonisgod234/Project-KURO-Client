@@ -78,7 +78,7 @@ func secondaryB():
 func secondaryC(): install_program
 
 func kuro_init():
-	var lane_manager = await Globals.wait_for_component("LaneManager")
+	var lane_manager = Globals.s_wait_for_component("LaneManager")
 	lane_manager.note_judged.connect(_on_judgement)
 
 func _on_judgement(lane: Node2D, note: Node2D, judge:int, nonfabricated:int):

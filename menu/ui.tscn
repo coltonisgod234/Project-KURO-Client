@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c33iffnqm3wth"]
+
+[ext_resource type="PackedScene" uid="uid://cmgex7syuryjt" path="res://menu/songsel/songselect.tscn" id="1_14ras"]
+[ext_resource type="Script" uid="uid://cbxjw5dk8wggv" path="res://menu/ui.gd" id="1_rkq1q"]
+
+[node name="Ui" type="Control"]
+layout_mode = 3
+anchor_right = 1.005
+anchor_bottom = 1.07647
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rkq1q")
+export_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Songselect" parent="." instance=ExtResource("1_14ras")]
+layout_mode = 2
+anchor_top = 0.0218579
+anchor_right = 0.995889
+anchor_bottom = 0.930328
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true

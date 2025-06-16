@@ -6,7 +6,7 @@ class_name KURO_CharacterFillIndicator
 func kuro_init():
 	await self.wait_till_init(check)
 
-func _process(delta):
+func _process(_delta):
 	if check == null:
 		return
 

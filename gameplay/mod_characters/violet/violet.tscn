@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://b6c0p3k85ffnj" path="res://gameplay/mod_characters/violet/violet.gd" id="1_d5g55"]
 [ext_resource type="Script" uid="uid://p5rrs66h4m1h" path="res://gameplay/mod_characters/violet/primary.gd" id="3_gyg6r"]
 [ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="3_kgw7j"]
-[ext_resource type="Script" uid="uid://bvomr8fnr6agf" path="res://gameplay/mod_effect/missable.gd" id="3_yvjxr"]
+[ext_resource type="Script" uid="uid://bvomr8fnr6agf" path="res://gameplay/mod_effect/gamestate/missable.gd" id="3_yvjxr"]
 [ext_resource type="Script" uid="uid://hg33pcxmdi8n" path="res://gameplay/mod_characters/violet/secondary_a.gd" id="4_72dhn"]
 [ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="5_1v4fr"]
 [ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="5_c3i78"]
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="6_c3i78"]
 [ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/attr_bar.gd" id="6_qpnhd"]
-[ext_resource type="Script" uid="uid://v24x2ij0j8in" path="res://gameplay/mod_effect/addscore.gd" id="6_sy680"]
+[ext_resource type="Script" uid="uid://v24x2ij0j8in" path="res://gameplay/mod_effect/score/addscore.gd" id="6_sy680"]
 [ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="10_tvbvq"]
 
 [node name="Violet" type="Node2D" node_paths=PackedStringArray("sg")]
@@ -100,9 +100,9 @@ layout_mode = 2
 theme = ExtResource("6_c3i78")
 text = "__Character Name__"
 script = ExtResource("10_tvbvq")
-fstring = "%s -- Violet"
 property_name = "export_name"
 check = NodePath("../../..")
+fstring = "%s -- Violet"
 sg = NodePath("../../..")
 export_under = NodePath("..")
 metadata/_edit_use_anchors_ = true
@@ -319,17 +319,17 @@ color = Color(1, 0.38, 0.597, 0.784314)
 [node name="ReadableStatus" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 layout_mode = 2
 script = ExtResource("10_tvbvq")
-fstring = "%s!"
 property_name = "ReadableStatus"
 check = NodePath("../../..")
+fstring = "%s!"
 sg = NodePath("../../..")
 export_under = NodePath("..")
 
 [node name="ReadableState" type="Label" parent="Panel/HUD" node_paths=PackedStringArray("check", "sg", "export_under")]
 layout_mode = 2
 script = ExtResource("10_tvbvq")
-fstring = "Gender %s."
 property_name = "ReadableState"
 check = NodePath("../../..")
+fstring = "Gender %s."
 sg = NodePath("../../..")
 export_under = NodePath("..")

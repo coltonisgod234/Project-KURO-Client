@@ -1,0 +1,1 @@
+extends KURO_Component

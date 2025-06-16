@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd618ytta0jbm"]
+
+[ext_resource type="Script" uid="uid://c0d21gql6povt" path="res://dialouge/dialouge_exec.gd" id="1_nbki8"]
+[ext_resource type="Script" uid="uid://cnt4wkpluhtbb" path="res://gameplay/mod_effect/files/directory_exist.gd" id="2_mtjik"]
+
+[node name="FirstTimeSetup" type="Node"]
+script = ExtResource("1_nbki8")
+
+[node name="CreateTeamsDirectory" type="Node" parent="."]
+script = ExtResource("2_mtjik")
+path = "user://teams"

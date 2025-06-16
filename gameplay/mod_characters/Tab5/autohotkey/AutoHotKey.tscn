@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b15quj2jkvmd" path="res://gameplay/mod_characters/Tab5/autohotkey/program.gd" id="1_jjihp"]
 [ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="1_mxvht"]
-[ext_resource type="Script" uid="uid://bvomr8fnr6agf" path="res://gameplay/mod_effect/missable.gd" id="2_jjihp"]
+[ext_resource type="Script" uid="uid://bvomr8fnr6agf" path="res://gameplay/mod_effect/gamestate/missable.gd" id="2_jjihp"]
 [ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="4_wxwbi"]
 
 [node name="AutoHotKey" type="Node2D"]

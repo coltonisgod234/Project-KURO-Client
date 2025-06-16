@@ -7,12 +7,7 @@ var timings: Array
 var current_beat: int = 0
 var lane_num: int = 0
 
-@export var pixels_per_lane:float = self.scale.y
-@export var forgiveness:int = 0
-@export var hit_window:int = 70
-
-var sec_since_start: float = 1.0
-var last_update_time: int = 0  # in microseconds
+@export var spawn_at_y: float
 
 func get_current_beat():
 	if current_beat == len(timings):
@@ -35,35 +30,30 @@ func fabricate_handle(judge_type, note=null):
 func _ready():
 	print("[Lane%d] ready!" % lane_num)
 
-var should_count_sec: bool = true
-func update_sec_since_map_start():
-	var now = Time.get_ticks_usec()
-	var elapsed_usec = now - last_update_time
-	last_update_time = now
-	sec_since_start += float(elapsed_usec) / 1_000_000.0  # convert to seconds
-
 var should_do_spawns: bool = true
 func do_spawns():
 	var this_ittr = get_current_beat()
 	if this_ittr == null: return
 
-	var time = this_ittr["time"]
+	var time = this_ittr["time"] / 1_000_000.0  # Seconds are a dumb unit
 	var spd = this_ittr["speed"]
-	if time <= sec_since_start:
+	var travel_time = (600 - 70) / spd  # Distance over speed
+	var spawn_time = time - travel_time
+	#print("[Lane%d] it works so good man %f" % [lane_num, spawn_time])
+	if spawn_time <= Globals.get_global_timer() / 1_000_000.0:  # Dumb BS
 		print("[Lane%s] Spawning, beat_counter is now %s" % [lane_num, current_beat])
-		spawn_note(spd, time)
+		spawn_note(spd)
 		current_beat += 1
 
-func _process(delta:float):
-	update_sec_since_map_start()
+func _process(_delta:float):
 	do_spawns()
 	for child in $NoteContainer.get_children():
 		#print("Eval note on %s" % child)
 		$Key.eval_note(child, lane_num)
 
-func spawn_note(speed: float, time: float):
+func spawn_note(speed: float):
 	var note_instance = NoteScene.instantiate()
-	note_instance.position = Vector2(0, 700)
+	note_instance.position = Vector2(0, spawn_at_y)
 	note_instance.speed = speed
-	note_instance.time = time
+	note_instance.set_meta("key_been_inside", false)
 	$NoteContainer.add_child(note_instance)

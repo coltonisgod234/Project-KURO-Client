@@ -1,0 +1,215 @@
+[gd_scene load_steps=11 format=3 uid="uid://bf8s2br2g3q67"]
+
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_1i3nd"]
+[ext_resource type="Script" uid="uid://dhfxsv2ilbgt0" path="res://menu/teambuild/char/selector/selector.gd" id="1_kyx2x"]
+[ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_7wr03"]
+[ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="3_7wr03"]
+[ext_resource type="Script" uid="uid://c50i26afw6qri" path="res://menu/teambuild/char/selector/selector_button.gd" id="4_y1wg1"]
+[ext_resource type="PackedScene" uid="uid://cy7o87heqfp3x" path="res://gameplay/mod_characters/violet/violet.tscn" id="5_florp"]
+
+[sub_resource type="Animation" id="Animation_ath0l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3cku2"]
+resource_name = "fade_away"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.341692, 0.341692),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.3, 0.3)]
+}
+
+[sub_resource type="Animation" id="Animation_snpii"]
+resource_name = "fade_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.341692, 0.341692),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_snpii"]
+_data = {
+&"RESET": SubResource("Animation_ath0l"),
+&"fade_away": SubResource("Animation_3cku2"),
+&"fade_in": SubResource("Animation_snpii")
+}
+
+[node name="Selector" type="Control"]
+z_index = 1497
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kyx2x")
+export_mode = 3
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 319.0
+offset_bottom = 342.0
+theme = ExtResource("1_1i3nd")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 25.0
+offset_right = 208.0
+offset_bottom = 23.0
+text = "Select character..."
+label_settings = ExtResource("2_7wr03")
+
+[node name="WindowContent" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+offset_left = 15.0
+offset_top = 30.0
+offset_right = 293.0
+offset_bottom = 335.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/WindowContent"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="Panel/WindowContent/ScrollContainer" node_paths=PackedStringArray("sg", "export_under")]
+layout_mode = 2
+script = ExtResource("3_7wr03")
+sg = NodePath("../../../..")
+export_under = NodePath("../../../..")
+
+[node name="Button" type="Button" parent="Panel/WindowContent/ScrollContainer/Buttons" node_paths=PackedStringArray("sg", "export_under")]
+custom_minimum_size = Vector2(272, 24)
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 3
+text = "Violet"
+script = ExtResource("4_y1wg1")
+character_name = "Violet"
+character = ExtResource("5_florp")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="Button2" type="Button" parent="Panel/WindowContent/ScrollContainer/Buttons" node_paths=PackedStringArray("sg", "export_under")]
+custom_minimum_size = Vector2(272, 24)
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 3
+text = "Kuro"
+script = ExtResource("4_y1wg1")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="Button3" type="Button" parent="Panel/WindowContent/ScrollContainer/Buttons" node_paths=PackedStringArray("sg", "export_under")]
+visible = false
+custom_minimum_size = Vector2(272, 24)
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 3
+text = "Tab5"
+script = ExtResource("4_y1wg1")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_snpii")
+}
+script = ExtResource("3_7wr03")

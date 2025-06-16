@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3kkmt0ab4k4u"]
+
+[ext_resource type="Script" uid="uid://c3ifcm0ouo0vn" path="res://menu/editor/editor.gd" id="1_8sbxl"]
+
+[node name="Editor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8sbxl")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(1152, 680)
+layout_mode = 0
+offset_right = 137.0
+offset_bottom = 114.0
+
+[node name="GodotLoopholes" type="Control" parent="ScrollContainer"]
+custom_minimum_size = Vector2(1152, 680)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/GodotLoopholes"]
+custom_minimum_size = Vector2(48, 70)
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 70.0
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/GodotLoopholes/ColorRect"]
+custom_minimum_size = Vector2(36, 21)
+layout_mode = 0
+offset_top = 184.0
+offset_right = 42.0
+offset_bottom = 205.0

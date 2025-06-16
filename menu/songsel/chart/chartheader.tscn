@@ -1,0 +1,114 @@
+[gd_scene load_steps=7 format=3 uid="uid://bspmhbk8akxyn"]
+
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_6vdob"]
+[ext_resource type="Script" uid="uid://b1ohge73h4p7m" path="res://menu/songsel/chart/chartheader.gd" id="1_k2mhl"]
+[ext_resource type="ButtonGroup" uid="uid://cplq3av5lj5et" path="res://menu/songsel/chart/bgroup.tres" id="2_0tqtu"]
+[ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_vpuo5"]
+[ext_resource type="LabelSettings" uid="uid://dehlhphxf7crn" path="res://UI_stuff/menu_label_settings.tres" id="3_vpuo5"]
+[ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="4_0tqtu"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(450, 69)
+anchors_preset = -1
+anchor_right = 0.390625
+anchor_bottom = 0.101471
+focus_mode = 0
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_6vdob")
+theme_type_variation = &"ButtonPanel"
+toggle_mode = true
+keep_pressed_outside = true
+button_group = ExtResource("2_0tqtu")
+script = ExtResource("1_k2mhl")
+export_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(450, 69)
+layout_mode = 1
+offset_right = 402.0
+offset_bottom = 67.0
+theme = ExtResource("1_6vdob")
+
+[node name="Title" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Title" node_paths=PackedStringArray("check", "sg", "export_under")]
+layout_mode = 2
+size_flags_horizontal = 6
+mouse_filter = 1
+text = "Chart title"
+label_settings = ExtResource("2_vpuo5")
+script = ExtResource("4_0tqtu")
+property_name = "title"
+check = NodePath("../../..")
+constantly_check = false
+fstring = "%s"
+sg = NodePath("../../..")
+export_under = NodePath("../../..")
+
+[node name="Artist" type="Label" parent="VBoxContainer/Title" node_paths=PackedStringArray("check", "sg", "export_under")]
+layout_mode = 2
+mouse_filter = 1
+text = "Artist"
+label_settings = ExtResource("2_vpuo5")
+script = ExtResource("4_0tqtu")
+property_name = "artist"
+check = NodePath("../../..")
+constantly_check = false
+fstring = "by %s"
+sg = NodePath("../../..")
+export_under = NodePath("../../..")
+
+[node name="Data" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(402, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_6vdob")
+
+[node name="Length" type="Label" parent="VBoxContainer/Data" node_paths=PackedStringArray("check", "sg", "export_under")]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+text = "Length"
+label_settings = ExtResource("3_vpuo5")
+script = ExtResource("4_0tqtu")
+property_name = "seconds_to_hhmmsscc"
+check = NodePath("../../..")
+constantly_check = false
+operation_mode = 1
+fstring = "%s"
+sg = NodePath("../../..")
+export_under = NodePath("../../..")
+
+[node name="Charter" type="Label" parent="VBoxContainer/Data" node_paths=PackedStringArray("check", "sg", "export_under")]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+text = "Charter"
+label_settings = ExtResource("3_vpuo5")
+script = ExtResource("4_0tqtu")
+property_name = "charter"
+check = NodePath("../../..")
+constantly_check = false
+fstring = "charted by %s"
+sg = NodePath("../../..")
+export_under = NodePath("../../..")
+
+[node name="BPM" type="Label" parent="VBoxContainer/Data" node_paths=PackedStringArray("check", "sg", "export_under")]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+text = "BPM"
+label_settings = ExtResource("3_vpuo5")
+script = ExtResource("4_0tqtu")
+property_name = "BPM"
+check = NodePath("../../..")
+constantly_check = false
+fstring = "%s BPM"
+sg = NodePath("../../..")
+export_under = NodePath("../../..")

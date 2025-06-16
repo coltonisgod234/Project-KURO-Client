@@ -1,10 +1,9 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://75j526cfj8tt"]
 
-[sub_resource type="SystemFont" id="SystemFont_c44dg"]
-font_names = PackedStringArray("Monospace")
+[ext_resource type="SystemFont" uid="uid://bxd6ao1n3cm1t" path="res://UI_stuff/font.tres" id="1_xpo3w"]
 
 [resource]
-font = SubResource("SystemFont_c44dg")
+font = ExtResource("1_xpo3w")
 font_size = 10
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
