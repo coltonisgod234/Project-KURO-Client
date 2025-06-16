@@ -1,24 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6pv3254isdg1"]
+[gd_scene load_steps=4 format=3 uid="uid://c6pv3254isdg1"]
 
 [ext_resource type="Script" uid="uid://c5ralwjebejgm" path="res://gameplay/mod_note/note.gd" id="1_doocs"]
+[ext_resource type="Texture2D" uid="uid://bgfa6umw3j0oo" path="res://textures/icon.svg" id="2_jbs66"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rf3o7"]
 size = Vector2(42, 42)
 
 [node name="Note" type="Node2D"]
-scale = Vector2(1, 0.5)
+scale = Vector2(1, 1.012)
 script = ExtResource("1_doocs")
 metadata/speed = 0.0
 
 [node name="Area" type="Area2D" parent="."]
+scale = Vector2(1, 1.012)
 
 [node name="Shape" type="CollisionShape2D" parent="Area"]
+scale = Vector2(1, 1.012)
 shape = SubResource("RectangleShape2D_rf3o7")
 
-[node name="Colour" type="ColorRect" parent="Area/Shape"]
-offset_left = -21.0
-offset_top = -21.0
-offset_right = 21.0
-offset_bottom = 21.0
-color = Color(0.613569, 0.449865, 0.135709, 1)
-metadata/_edit_use_anchors_ = true
+[node name="Sprite2D" type="Polygon2D" parent="Area/Shape"]
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(0.348931, 0.35522)
+skew = 0.0174533
+texture = ExtResource("2_jbs66")
+polygon = PackedVector2Array(59.1, -64, -59.2477, -63.859, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+uv = PackedVector2Array(123.1, 0, 5, 0, 0.2, 5, 0, 125, 3.7, 128, 123.6, 128, 127.9, 123, 128, 2.9)
+polygons = [PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)]

@@ -1,5 +1,9 @@
 extends KURO_Component
 
+func kuro_init(): # TEST ONLY!!!
+	#start("user://songs/test_song_the_2nd/testmap.json", "user://songs/test_song_the_2nd", [])
+	pass  # Good I remembered to remove from release...
+
 func hide_all_ui():
 	for child in self.get_children():
 		child.visible = false  # trans kids
@@ -8,16 +12,26 @@ func show_all_ui():  # Man I wish I was good at coding
 	for child in self.get_children():
 		child.visible = true  # cisgender kids
 
+func do_songselect_bullshit():
+	## This code was written on the weekend after a field trip
+	## I am fucking tired
+	var aroace = Scenes.SongSelect.instantiate()   # I got to spent a lot of time with Dean and Alisa
+	self.add_child(aroace)                         # No Alisa and I are not dating im aroace
+	var transgenderwoman66 = await aroace.apply()  # Alisa and I went to Harvery's
+	aroace.queue_free()                            # And then we went to the park but our class hates Alisa and they were rude
+	return transgenderwoman66                      # I fucking crashed out because of how annoying they where
+
 func do_teambuilder_bullshit():
-	# I literally have no idea what variable names to use anymore
+	## I literally have no idea what variable names to use anymore
 	var aroace = Scenes.TeamBuilder.instantiate()  # homophobia is bad
-	self.add_child(aroace)  # Literally makes no sense
-	var trangenderwoman66 = await aroace.apply()  # you know today people in my class said very transphobic things
-	aroace.queue_free()  # Makes slightly more sense
-	print(trangenderwoman66)  # They saw my transfem violet 
-	return trangenderwoman66  # and said "mom im a woman now" to mock her
+	self.add_child(aroace)                         # Literally makes no sense
+	var trangenderwoman66 = await aroace.apply()   # you know today people in my class said very transphobic things
+	aroace.queue_free()                            # This line makes slightly more sense
+	print(trangenderwoman66)                       # They saw my transfem friend violet 
+	return trangenderwoman66                       # and said "mom im a woman now" to mock her
 
 func start(file: String, root: String, characters_to_load: Array):
+	#Engine.time_scale = 0.5  # Slow down to 50% speed for testing
 	var game = Scenes.Main.instantiate()
 	game.map = MapParser.load_map(file)
 	game.map_timings = MapParser.parse_map_notes(game.map)

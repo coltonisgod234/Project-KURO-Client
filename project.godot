@@ -10,7 +10,10 @@ config_version=5
 
 [application]
 
-config/name="project KURO (godot)"
+config/name="Project KURO"
+config/name_localized={
+"ja": "プロジェクト黒"
+}
 run/main_scene="uid://c33iffnqm3wth"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -18,17 +21,18 @@ config/icon="res://textures/icon.svg"
 
 [autoload]
 
-Resources="*res://shared/Resources.gd"
-Scenes="*res://shared/Scenes.gd"
-MapParser="*res://shared/map_parser.gd"
-Globals="*res://shared/Globals.tscn"
-ChartMetaParser="*res://shared/chart_meta_parser.gd"
+Resources="*res://shared/singletons/Resources.gd"
+Scenes="*res://shared/singletons/Scenes.gd"
+MapParser="*res://shared/singletons/map_parser.gd"
+Globals="*res://shared/singletons/Globals.tscn"
+ChartMetaParser="*res://shared/singletons/chart_meta_parser.gd"
 
 [display]
 
 window/size/viewport_height=680
 window/size/mode=2
 window/stretch/mode="viewport"
+window/dpi/allow_hidpi=false
 window/vsync/vsync_mode=0
 
 [input]

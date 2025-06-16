@@ -3,6 +3,7 @@ extends KURO_Component
 signal counter_changed(old_count, new_count)
 var count := 0.0
 @export var text_template := "%d"
+@export var enable_animation := true
 
 func kuro_init():
 	set_count(0)
@@ -14,7 +15,8 @@ func update(old_count):
 		print("[ui_counter.gd] No animation player for this counter, skipping animation")
 		return
 	
-	$AnimationPlayer.play("counter_up")
+	if enable_animation:
+		$AnimationPlayer.play("counter_up")
 
 func get_count():
 	return count

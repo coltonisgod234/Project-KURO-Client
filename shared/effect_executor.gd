@@ -1,12 +1,8 @@
 extends KURO_Component
 class_name KURO_EffectExecutor
 
-func apply_all_effects(name: String):
-	for child in self.get_children():
-		await child.apply()
-
-func apply_argument(effect: String, propname: String, value):
-	var effect_object = self.get_node(effect)
+func apply_argument(effect_name: String, propname: String, value):
+	var effect_object = self.get_node(effect_name)
 	effect_object.set(propname, value)
 
 func apply(name: String):
@@ -34,4 +30,13 @@ func apply_random_effect():
 
 func apply_in_succession():
 	for child in self.get_children():
+		if not child.has_method("apply"):
+			print("[effect_executor.gd] wtf no apply method")
+			return "wtf no apply method"
+
 		await child.apply()
+
+func apply_argument_to_all(propname: String, value):
+	for child in self.get_children():
+		print("[effect_executor.gd] applying argument %s = %s on %s..." % [propname, value, child])
+		child.set(propname, value)

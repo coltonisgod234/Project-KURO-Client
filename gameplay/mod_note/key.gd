@@ -10,11 +10,13 @@ func hit(node, lane_num):
 	note_hit.emit(self, node)
 	note_destroyed.emit(self, node)
 	node.queue_free()
+	$AudioStreamPlayer.play()
 
 func miss(node, lane_num):
 	note_miss.emit(self, node)
 	note_destroyed.emit(self, node)
 	node.queue_free()
+	$AudioStreamPlayer.play()
 
 func eval_note(node, lane_num):
 	var key = "key%s" % lane_num

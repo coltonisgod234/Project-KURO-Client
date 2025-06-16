@@ -71,4 +71,5 @@ func add_charts_from_folder(path: String, resurs: bool, chart_conf="chart.json")
 
 func kuro_init():
 	#add_chart_from_folder("res://testdata/test_song")
+	print("[SongSelect] Your user:// folder is located in: %s" % OS.get_user_data_dir())
 	add_charts_from_folder("user://songs", false)

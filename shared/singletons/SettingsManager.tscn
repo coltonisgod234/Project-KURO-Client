@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2y0hvpayg3bv"]
+
+[ext_resource type="Script" uid="uid://b6mpdgvo6xvir" path="res://gameplay/mod_effect/meta/set_max_fps.gd" id="1_qac2l"]
+[ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="1_vjg2n"]
+
+[node name="SettingsManager" type="Node"]
+script = ExtResource("1_vjg2n")
+export_mode = 2
+
+[node name="MaxFPS" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("1_qac2l")
+sg = NodePath("..")
+export_under = NodePath("..")

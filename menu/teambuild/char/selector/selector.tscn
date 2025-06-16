@@ -198,6 +198,7 @@ sg = NodePath("..")
 export_under = NodePath("..")
 
 [node name="Button3" type="Button" parent="Panel/WindowContent/ScrollContainer/Buttons" node_paths=PackedStringArray("sg", "export_under")]
+visible = false
 custom_minimum_size = Vector2(272, 24)
 layout_mode = 2
 mouse_force_pass_scroll_events = false

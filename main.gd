@@ -28,7 +28,7 @@ func init_LaneManager():
 	print("[Main] Initalizing LaneManager...")
 	lanemgr = Scenes.LaneManager.instantiate()
 	for i in range(map_num_keys):
-		lanemgr.spawn_lane(i, map_timings, 48)
+		lanemgr.spawn_lane(i, map_timings, 48, songplayer)
 	
 	lanemgr.map_len_usec = map_length
 	self.add_child(lanemgr)
@@ -38,16 +38,16 @@ func init_SongPlayer():
 	print("[Main] Initalizing SongPlayer...")
 	songplayer = Scenes.SongPlayer.instantiate()
 	self.add_child(songplayer)
-	songplayer.start_song(map_song)
 
 func apply():
 	Engine.max_fps = 0
 	randomize()
 	print("[Main] Got map data: %s | %s | audiofile is %s | #%s keys" % [map, map_timings, map_song, map_num_keys])
-	init_LaneManager()
 	init_SongPlayer()
+	init_LaneManager()
 	init_HUD()
 	init_CharacterManager()
+	songplayer.start_song(map_song)
 	$AnimationPlayer.play("fade_in")
 	await $AnimationPlayer.animation_finished
 

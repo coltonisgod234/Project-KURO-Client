@@ -11,7 +11,7 @@ signal map_complete
 func kuro_init():
 	print("[LaneManager] Lane Manager ready")
 
-func spawn_lane(i, map_lanes, pixels_per_lane):
+func spawn_lane(i, map_lanes, pixels_per_lane, songplayer):
 	print("[LaneManager] Initalizing Lane #%d" % i)
 	var lane = Scenes.Lane.instantiate()
 	lane.timings = map_lanes[i]
@@ -22,6 +22,7 @@ func spawn_lane(i, map_lanes, pixels_per_lane):
 	lane.set_process(true)
 	#lane.note_destroyed.connect(_on_note_destroyed)
 	self.add_child(lane)
+	songplayer.calculate_max_song_offset(map_lanes[i], 600, 70)
 
 func _on_note_miss(lane, note):
 	print("[LaneManager] miss")
