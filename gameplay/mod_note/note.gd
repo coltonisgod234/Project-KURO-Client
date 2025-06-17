@@ -1,6 +1,7 @@
 extends Node2D
 
 var speed: float = 0
+var time: float
 @export var go_up := false
 
 func _process(_delta:float):

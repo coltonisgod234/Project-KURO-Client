@@ -5,7 +5,7 @@ extends KURO_Effect
 
 func apply():
 	var hud = Globals.s_wait_for_component("MainHUD")
-	var score = Globals.s_wait_for_component("Score")
+	var score = hud.s_wait_for_component("Score")
 	
 	var a: int = amount
 	if amount_range_high != 0:

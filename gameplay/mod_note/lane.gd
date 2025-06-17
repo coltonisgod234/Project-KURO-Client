@@ -42,7 +42,7 @@ func do_spawns():
 	#print("[Lane%d] it works so good man %f" % [lane_num, spawn_time])
 	if spawn_time <= Globals.get_global_timer() / 1_000_000.0:  # Dumb BS
 		print("[Lane%s] Spawning, beat_counter is now %s" % [lane_num, current_beat])
-		spawn_note(spd)
+		spawn_note(spd, spawn_time)
 		current_beat += 1
 
 func _process(_delta:float):
@@ -51,9 +51,10 @@ func _process(_delta:float):
 		#print("Eval note on %s" % child)
 		$Key.eval_note(child, lane_num)
 
-func spawn_note(speed: float):
+func spawn_note(speed: float, time: float):
 	var note_instance = NoteScene.instantiate()
 	note_instance.position = Vector2(0, spawn_at_y)
 	note_instance.speed = speed
+	note_instance.time = time
 	note_instance.set_meta("key_been_inside", false)
 	$NoteContainer.add_child(note_instance)

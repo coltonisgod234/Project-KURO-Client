@@ -19,8 +19,8 @@ func apply():
 			var time = beat.time
 			print("[hit_within_range] Checking %s %s (@ %s)" % [lane.name, beat.name, time])
 			if (
-				abs(time - lane.sec_since_start) >= range_a and
-				abs(time - lane.sec_since_start) < range_b
+				abs(time - Globals.get_global_timer() / 1_000_000) >= range_a and
+				abs(time - Globals.get_global_timer() / 1_000_000) < range_b
 			):
 				lane.fabricate_handle(judge, beat)
 				score.add_count(extra_score)
