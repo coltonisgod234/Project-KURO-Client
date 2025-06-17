@@ -34,13 +34,16 @@ func do_teambuilder_bullshit():
 
 func _input(event):
 	if event is InputEventKey:
-		if event.is_action_pressed("reload"):
-			if game != null:
+		if game != null:
+			if event.is_action_pressed("reload"):
 				var last_file = game.get_meta("sparams_file")
 				var last_root = game.get_meta("sparams_root")
 				var last_characters_to_load = game.get_meta("sparams_characters_to_load")
 				force_stop_game()
 				start(last_file, last_root, last_characters_to_load)
+			elif event.is_action_pressed("close_map"):
+				force_stop_game()
+				show_all_ui()
 
 func force_stop_game():
 	game.queue_free()
