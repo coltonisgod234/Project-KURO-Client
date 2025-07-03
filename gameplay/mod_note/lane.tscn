@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="3_n8um2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ma31"]
-size = Vector2(48, 89)
+size = Vector2(48, 87)
 
 [node name="Lane" type="Node2D"]
 script = ExtResource("1_phwy2")
@@ -19,7 +19,7 @@ position = Vector2(0, 630)
 script = ExtResource("2_8ntnh")
 
 [node name="KeyShape" type="CollisionShape2D" parent="Key"]
-position = Vector2(0, -9.5)
+position = Vector2(0, -10.5)
 shape = SubResource("RectangleShape2D_6ma31")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Key/KeyShape"]
@@ -38,13 +38,13 @@ theme = ExtResource("3_n8um2")
 theme_override_constants/separation = 0
 
 [node name="Line" type="ColorRect" parent="Key/KeyShape/VBoxContainer"]
-custom_minimum_size = Vector2(24, 8)
+custom_minimum_size = Vector2(24, 9)
 layout_mode = 2
 theme = ExtResource("3_n8um2")
 color = Color(1, 0.380392, 0.34902, 1)
 
 [node name="Key" type="ColorRect" parent="Key/KeyShape/VBoxContainer"]
-custom_minimum_size = Vector2(0, 75.535)
+custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_vertical = 3
 

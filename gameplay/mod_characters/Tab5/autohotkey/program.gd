@@ -1,20 +1,26 @@
-extends KURO_Ability
+extends KURO_Effect
 
-func reset_state():
-	print("[Tab5] [AutoHotKey] Reset state")
-	self.set_process(false)
-	$StopTimer.stop()
+@export var StopTimer: Timer
+@export var Executor: KURO_EffectExecutor
+@export var corruption_increase: float
+@export var stun_time: float
 
 func kuro_init():
-	reset_state()
-	$StopTimer.timeout.connect(_on_timer_stop)
+	var lanemgr = Globals.s_wait_for_component("LaneManager")
+	lanemgr.note_judged.connect(_on_note_judged)
 
 func activate():
-	$StopTimer.stun_for(1.0)
-
-func _on_timer_stop():
-	$Executor.apply("ResetMissable")
-	reset_state()
+	StopTimer.stun_for(stun_time)
+	await StopTimer.timeout
+	print("\n\n\n\n\nTIMEOUT")
+	Executor.apply("ResetMissable")
+	return
 
 func _process(_delta):
-	$Executor.apply("SetMissable")
+	Executor.apply("SetMissable")
+
+func _on_note_judged(lane: Node2D, note: Node2D, real_judge, nonfabricated_judge):
+	print("note judged yay")
+	if nonfabricated_judge == Globals.JUDGE_MISS and real_judge == Globals.JUDGE_HIT:
+		if (sg.corruption + corruption_increase) <= sg.max_corruption:
+			sg.corruption += corruption_increase

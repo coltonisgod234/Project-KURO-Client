@@ -13,14 +13,14 @@ var CharacterViolet := preload("res://gameplay/mod_characters/violet/violet.tscn
 var CharacterKuro := preload("res://gameplay/mod_characters/kuro/kuro.tscn")
 var CharacterTab5 := preload("res://gameplay/mod_characters/Tab5/tab5.tscn")
 var CharacterCloudy := preload("res://gameplay/mod_characters/cloudy/cloudy.tscn")
-var CharacterCloudyPersonalityCloudy := preload("res://gameplay/mod_characters/cloudy/personality_cloudy/main.tscn")
-#var CharacterCloudyPersonalityThunderstorm := preload("res://gameplay/mod_characters/cloudy/personality_thunderstorm/main.tscn")
+var CharacterCloudyPersonalityCloudy := preload("res://gameplay/mod_characters/cloudy/personality_cloudy/cloudy.tscn")
+var CharacterCloudyPersonalityThunderstorm := preload("res://gameplay/mod_characters/cloudy/personality_thunderstorm/thunderstorm.tscn")
 #var CharacterCloudyPersonalityThunderlight := preload("res://gameplay/mod_characters/cloudy/personality_thunderlight/main.tscn")
 var CharacterList: Dictionary[String, PackedScene] = {
 	"Violet" = CharacterViolet,
 	"Kuro" = CharacterKuro,
-	#"Tab5" = CharacterTab5,
-	#"Cloudy" = CharacterCloudy
+	"Tab5" = CharacterTab5,
+	"Cloudy" = CharacterCloudy
 }
 
 var SongSelect := preload("res://menu/songsel/songselect.tscn")

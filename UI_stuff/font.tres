@@ -1,7 +1,11 @@
-[gd_resource type="SystemFont" format=3 uid="uid://bxd6ao1n3cm1t"]
+[gd_resource type="SystemFont" load_steps=2 format=3 uid="uid://bxd6ao1n3cm1t"]
+
+[sub_resource type="SystemFont" id="SystemFont_i73eg"]
+font_names = PackedStringArray("Monospace")
 
 [resource]
-font_names = PackedStringArray("Monospace")
+fallbacks = Array[Font]([SubResource("SystemFont_i73eg")])
+font_names = PackedStringArray("JetBrainsMono Nerd Font", "Monospace")
 hinting = 0
 subpixel_positioning = 3
-oversampling = 10.0
+oversampling = 1.3

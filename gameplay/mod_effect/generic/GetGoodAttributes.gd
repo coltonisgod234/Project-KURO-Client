@@ -1,5 +1,5 @@
 extends KURO_Effect
-class_name KURO_Effect_GetGoodAttributes
+class_name EffectGetGoodAttributes
 
 @export var obj: Node
 enum Modes {
@@ -51,4 +51,5 @@ func apply():
 		Modes.SCRIPT_EXPORTED_ONLY:
 			return get_good_props_script_exported_only(obj)
 		_:
+			print("what the fuc")
 			return []

@@ -17,19 +17,18 @@ func create(title: String, file: String, root: String):
 	print("[diffscontainer.gd] created a diff %s" % [metadata_string])
 	return diffheader
 
+
+func kuro_init():
+	# this is how the diffscontainer knows when the chartcontainer button is pressed
+	Resources.SongSelectChartPanelButtonGroup.pressed.connect(_on_changed)
+
 func reset():
 	for child in get_children():
 		child.queue_free()
 
-func kuro_init():
-	# Tags to come back to:
-	# this is how the diffscontainer knows when the chartcontainer button is pressed
-	Resources.SongSelectChartPanelButtonGroup.pressed.connect(_on_changed)
-	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
-
 func update_list(file_list: Array):
 	reset()
-	for filepath in file_list:
+	for filepath in file_list:  # Same frame as previous call (we think), might trigger slight pause
 		var json = MapParser.load_map(filepath)
 		var title = MapParser.parse_map_diffname(json)
 		self.create(title, filepath, root)

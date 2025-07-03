@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://ulxgnt4j5w80"]
+
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_8tdjv"]
+[ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_onjj3"]
+[ext_resource type="Script" uid="uid://2yhwqxl6235d" path="res://menu/config/select_key.gd" id="3_p558m"]
+
+[node name="Config" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncOption" type="OptionButton" parent="VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_8tdjv")
+selected = 0
+item_count = 4
+popup/item_0/text = "VSync Disabled"
+popup/item_0/id = 0
+popup/item_1/text = "VSync Enabled"
+popup/item_1/id = 1
+popup/item_2/text = "VSync Dynamic"
+popup/item_2/id = 2
+popup/item_3/text = "VSync Mailbox"
+popup/item_3/id = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Lane 1"
+label_settings = ExtResource("2_onjj3")
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_8tdjv")
+text = "Keyname"
+script = ExtResource("3_p558m")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="VBoxContainer/HBoxContainer/Button" method="_on_pressed"]

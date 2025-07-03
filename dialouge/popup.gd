@@ -1,16 +1,11 @@
-extends KURO_NullComponent
+extends KURO_Component
 
 @export var text: String
 @export var texture: Texture
 @export var title: String
 
 @export var button_group: ButtonGroup
-
-@export var button_container: HBoxContainer
-
-func kuro_init():
-	$AnimationPlayer.play("create")
-	return
+@export var button_container: BoxContainer
 
 func create_button(text: String):
 	var btn = Button.new()

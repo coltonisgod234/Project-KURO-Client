@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dyg1ou58begh1" path="res://gameplay/mod_characters/cloudy/personality_cloudy/main.gd" id="1_xe5tl"]
 [ext_resource type="Script" uid="uid://d4hp5d4320j1m" path="res://gameplay/mod_characters/cloudy/personality_cloudy/secondary_a.gd" id="3_xe5tl"]
 
-[node name="Main" type="Node2D"]
+[node name="Cloudy" type="Node2D"]
 script = ExtResource("1_xe5tl")
 export_mode = 1
 

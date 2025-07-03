@@ -13,8 +13,12 @@ func init_CharacterManager():
 	character_manager.position.x = 220
 	self.add_child(character_manager)
 	for i in range(len(load_characters)):
-		print(i)
-		var char = load_characters[i]
+		var char = load_characters.get(i)
+		if char == null:
+			print("[Main] Skipping character... %s in slot %s" % [char, i])
+			continue
+
+		print("[Main] Loading character... %s into slot %s" % [char, i])
 		character_manager.load_character(char, i)
 
 var hud = null
@@ -40,7 +44,6 @@ func init_SongPlayer():
 	self.add_child(songplayer)
 
 func apply():
-	Engine.max_fps = 0
 	randomize()
 	print("[Main] Got map data: %s | %s | audiofile is %s | #%s keys" % [map, map_timings, map_song, map_num_keys])
 	init_SongPlayer()
@@ -48,9 +51,12 @@ func apply():
 	init_HUD()
 	init_CharacterManager()
 	songplayer.start_song(map_song)
+	$Enter.apply_in_succession()
+
 	$AnimationPlayer.play("fade_in")
 	await $AnimationPlayer.animation_finished
 
 	await lanemgr.map_complete
+
 	$AnimationPlayer.play("fade_away")
 	await $AnimationPlayer.animation_finished

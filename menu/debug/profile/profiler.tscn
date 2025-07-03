@@ -1,0 +1,117 @@
+[gd_scene load_steps=3 format=3 uid="uid://ebymlw8cvc7e"]
+
+[ext_resource type="PackedScene" uid="uid://dno6ualuuih7b" path="res://menu/debug/profile/counter.tscn" id="1_8f231"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_jf57e"]
+
+[node name="Profiler" type="Control"]
+z_index = 4096
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -836.0
+offset_bottom = -596.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 410.0
+offset_bottom = 322.0
+mouse_filter = 2
+theme = ExtResource("1_jf57e")
+theme_type_variation = &"PanelSmall"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 12.0
+offset_right = 376.0
+offset_bottom = 316.0
+mouse_filter = 2
+
+[node name="Root" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+
+[node name="Profiler" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Ui/Profiler"
+
+[node name="Songselect" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Ui/Songselect"
+
+[node name="Globals" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Globals"
+
+[node name="MapParser" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/MapParser"
+
+[node name="ChartMetaParser" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/ChartMetaParser"
+
+[node name="Scenes" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Scenes"
+
+[node name="Resources" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Resources"
+
+[node name="Main" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Ui/Main"
+
+[node name="SongPlayer" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Ui/Main/SongPlayer"
+
+[node name="UiBase" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Ui/Main/UiBase"
+
+[node name="LaneManager" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Ui/Main/LaneManager"
+
+[node name="CharacterManager" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Ui/Main/CharacterManager"
+
+[node name="Character0" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Ui/Main/CharacterManager/CharacterHolder/0"
+
+[node name="Character1" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Ui/Main/CharacterManager/CharacterHolder/1"
+
+[node name="Character2" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Ui/Main/CharacterManager/CharacterHolder/2"
+
+[node name="Character3" parent="Panel/VBoxContainer" instance=ExtResource("1_8f231")]
+custom_minimum_size = Vector2(0, 8.83)
+layout_mode = 2
+target_name = "/root/Ui/Main/CharacterManager/CharacterHolder/3"

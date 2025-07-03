@@ -1,0 +1,31 @@
+{
+	"WindowMode": {
+		"value": 0
+	},
+	"VSync": {
+		"value": 0
+	},
+	"MaxFPS": {
+		"value": 1000
+	},
+	"ScaleMode": {
+		"stretch": 0,
+		"aspect": 1,
+		"mode": 2
+	},
+	"AudioMaster": {
+		"db": 0.0,
+		"mute": false,
+		"solo": false
+	},
+	"AudioSFX": {
+		"db": -6.0,
+		"mute": false,
+		"solo": false
+	},
+	"AudioMusic": {
+		"db": 0.0,
+		"mute": false,
+		"solo": false
+	}
+}

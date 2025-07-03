@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfyrov45bhh7l"]
+
+[ext_resource type="Script" uid="uid://cuikd62r54le" path="res://config/configloader.gd" id="1_dsojv"]
+[ext_resource type="Script" uid="uid://d0cgwncgba2sx" path="res://gameplay/mod_effect/meta/set_fullscreen_mode.gd" id="2_6vpvy"]
+[ext_resource type="Script" uid="uid://b6mpdgvo6xvir" path="res://gameplay/mod_effect/meta/set_max_fps.gd" id="3_dsojv"]
+[ext_resource type="Script" uid="uid://dex7v5yixs23a" path="res://gameplay/mod_effect/meta/set_vsync.gd" id="4_n24jd"]
+[ext_resource type="Script" uid="uid://doxv083b6oq5d" path="res://gameplay/mod_effect/meta/set_engine_scale_mode.gd" id="5_6vpvy"]
+[ext_resource type="Script" uid="uid://birsckgnt8knh" path="res://gameplay/mod_effect/sound/bus_modify.gd" id="6_dsojv"]
+
+[node name="Config" type="Node"]
+script = ExtResource("1_dsojv")
+
+[node name="WindowMode" type="Node" parent="." node_paths=PackedStringArray("export_under")]
+script = ExtResource("2_6vpvy")
+export_under = NodePath("..")
+
+[node name="VSync" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("4_n24jd")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="MaxFPS" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("3_dsojv")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="ScaleMode" type="Node" parent="."]
+script = ExtResource("5_6vpvy")
+aspect = 1
+mode = 2
+
+[node name="AudioMaster" type="Node" parent="."]
+script = ExtResource("6_dsojv")
+change_volume = true
+change_mute = true
+change_solo = true
+
+[node name="AudioMusic" type="Node" parent="."]
+script = ExtResource("6_dsojv")
+bus_name = "Music"
+change_volume = true
+change_mute = true
+change_solo = true
+
+[node name="AudioSFX" type="Node" parent="."]
+script = ExtResource("6_dsojv")
+bus_name = "SFX"
+change_volume = true
+db = -6.0
+change_mute = true
+change_solo = true

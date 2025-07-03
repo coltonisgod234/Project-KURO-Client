@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2vpmmxw3ajg4"]
+
+[ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="1_avg26"]
+[ext_resource type="Script" uid="uid://bnnbvh33m21wp" path="res://gameplay/mod_characters/cloudy/personality_thunderstorm/thunderstorm.gd" id="1_joicu"]
+[ext_resource type="Script" uid="uid://fkod0mybmell" path="res://gameplay/mod_characters/cloudy/personality_thunderstorm/secondary_a.gd" id="3_nilxp"]
+[ext_resource type="Script" uid="uid://d00amevqv6g82" path="res://gameplay/mod_characters/cloudy/personality_thunderstorm/secondary_b.gd" id="4_3tgk4"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="4_nilxp"]
+[ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="5_f50qp"]
+[ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/attr_bar.gd" id="6_c2u3s"]
+
+[node name="Thunderstorm" type="Node2D"]
+script = ExtResource("1_joicu")
+drunkness = 50.0
+beer = 3
+export_mode = 1
+
+[node name="AbilityStun" type="Timer" parent="."]
+script = ExtResource("1_avg26")
+
+[node name="SecondaryA" type="Node2D" parent="." node_paths=PackedStringArray("AbilityStun", "sg", "export_under")]
+script = ExtResource("3_nilxp")
+stun_time_sec = 1.0
+AbilityStun = NodePath("../AbilityStun")
+strength = 25.0
+beer_amount = 1
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="Cooldown" type="Timer" parent="SecondaryA"]
+script = ExtResource("1_avg26")
+
+[node name="SecondaryB" type="Node2D" parent="." node_paths=PackedStringArray("ability_stun", "sg", "export_under")]
+script = ExtResource("4_3tgk4")
+beer_loss = 1
+beer_gain_hi = 3
+stuntime = 5.0
+ability_stun = NodePath("../AbilityStun")
+arrest_chance = 100
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="Cooldown" type="Timer" parent="SecondaryB"]
+script = ExtResource("1_avg26")
+
+[node name="SecondaryC" type="Node2D" parent="."]
+
+[node name="Cooldown" type="Timer" parent="SecondaryC"]
+script = ExtResource("1_avg26")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 150.0
+theme = ExtResource("4_nilxp")
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 0
+anchor_left = 0.02
+anchor_right = 1.015
+anchor_bottom = 0.146667
+text = "Thunderstorm -- Cloudy"
+script = ExtResource("5_f50qp")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.045
+anchor_top = 0.16
+anchor_right = 0.92
+anchor_bottom = 0.98
+metadata/_edit_use_anchors_ = true
+
+[node name="Drunkness" type="ProgressBar" parent="Control/Panel/VBoxContainer" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+script = ExtResource("6_c2u3s")
+property_name = "drunkness"
+check = NodePath("../../../..")
+sg = NodePath("../../../..")
+export_under = NodePath("../..")
+export_mode = 3
+
+[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/Drunkness"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 48.0
+offset_bottom = 28.0
+text = "Drunk"
+
+[node name="Beer" type="ProgressBar" parent="Control/Panel/VBoxContainer" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+max_value = 5.0
+step = 1.0
+script = ExtResource("6_c2u3s")
+property_name = "beer"
+check = NodePath("../../../..")
+sg = NodePath("../../../..")
+export_under = NodePath("../..")
+export_mode = 3
+
+[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/Beer"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 42.0
+offset_bottom = 28.0
+text = "Beer"

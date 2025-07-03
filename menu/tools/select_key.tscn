@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwv7rgrmhn6sa"]
+
+[ext_resource type="Script" uid="uid://4whov3pebfr6" path="res://menu/tools/select_key_eff.gd" id="1_0bo5b"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_ldonj"]
+
+[node name="SelectKey" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_ldonj")
+text = "Select key..."
+script = ExtResource("1_0bo5b")

@@ -13,6 +13,7 @@ func load_character(scene, character_num):
 	var character = scene.instantiate()
 	character.position = Vector2(LeftSidePadding + character_num * (PixelsPerCharacter + XPositionSeperation), YPosition)
 	character.export_name = "%d" % [character_num]
+	character.name = character.export_name
 	$CharacterHolder.add_child(character)
 
 var mode = "game"

@@ -1,8 +1,16 @@
 extends KURO_Effect
+class_name EffectSummonDialouge
 
-@export var rich_text: String
+@export_multiline var rich_text: String
 @export var character_texture: Texture
 @export var character_name: String
+@export var button_group: ButtonGroup = preload("res://dialouge/dialouge_buttongroup.tres")
+@export_category("Default button")
+@export var default_button_allowed: bool = true
+@export var default_button: EffectAppendDialougeButton
+var user_responce: BaseButton:  # Virtual attribute
+	get:
+		return button_group.get_pressed_button()
 
 enum PositionMode {
 	EXPLICIT,
@@ -27,7 +35,7 @@ func resolve_position_mode(mode: PositionMode, pos: Vector2) -> Vector2:
 		_:
 			return Vector2i(0, 0)
 
-@export var position_preset: PositionMode
+@export var position_preset: PositionMode = PositionMode.EXPLICIT
 @export var position: Vector2i
 
 func apply():
@@ -36,17 +44,23 @@ func apply():
 	dialouge.texture = character_texture
 	dialouge.title = character_name
 	dialouge.position = resolve_position_mode(position_preset, position)
-
 	self.add_child(dialouge)
 	await apply_in_succession(dialouge)
 	dialouge.queue_free()
 	return
 
-var buttons = []
 func apply_in_succession(dialouge):
-	for child in self.get_children():
-		if not child.has_method("apply"): return
+	var children = self.get_children()
+	if len(children) <= 1 and default_button_allowed:
+		print("Default button\n")
+		default_button.dialouge = dialouge
+		await default_button.apply()
+		
+	for child in children:
+		if not child.has_method("apply"): continue
 		print("[SummonDialouge.gd] set up child %s" % child)
 		child.dialouge = dialouge
 		await child.apply()
-  
+
+	var pressed_button = await button_group.pressed
+	return pressed_button

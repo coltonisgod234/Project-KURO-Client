@@ -1,44 +1,52 @@
 extends KURO_Effect
+class_name EffectAttributeModify
 
-@export var node: Node
-@export var attribute_name: String
+var last_result
+
+@export var operation: Ops
+@export_category("Source A")
+@export var node_source_a: Node
+@export var attribute_name_source_a: String
+@export var literal_a: String
+@export_category("Source B")
+@export var node_source_b: Node
+@export var attribute_name_source_b: String
+@export var literal_b: String
+@export_category("Destination")
+@export var node_destination: Node
+@export var attribute_name_destination: String
 enum Ops {
 	ADD,
 	SUBTRACT,
 	MULTIPLY,
 	RANDOMIZE_INT,
-	RANDOMIZE_FLOAT
+	RANDOMIZE_FLOAT,
 }
-@export var operation: Ops
-@export var b0: float
-@export var b1: float
-@export var b_operation: Ops
 
-func preform_op(a, b, op):
+func perform_op(a, b, op):
+	var result
 	match op:
 		Ops.ADD:
-			a += b
+			result = float(a) + float(b)
 		Ops.SUBTRACT:
-			a -= b
+			result = float(a) - float(b)
 		Ops.MULTIPLY:
-			a *= b
+			result = float(a) * float(b)
 		Ops.RANDOMIZE_INT:
-			a = randi_range(a, b)
+			result = randi_range(float(a), float(b))
 		Ops.RANDOMIZE_FLOAT:
-			a = randf_range(a, b)
+			result = randf_range(float(a), float(b))
 	
-	return a
+	return result
 
 func apply():
-	node.set(
-		attribute_name,
-		preform_op(
-			node.get(attribute_name),
-			preform_op(
-				b0,
-				b1,
-				b_operation
-			),
-			operation
-		)
+	var value = perform_op(
+		node_source_a.get(attribute_name_source_a) if literal_a == "" else literal_a,
+		node_source_b.get(attribute_name_source_b) if literal_b == "" else literal_b,
+		operation
 	)
+	node_destination.set(
+		attribute_name_destination,
+		value
+	)
+	last_result = value

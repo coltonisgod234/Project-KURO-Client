@@ -2,6 +2,7 @@ extends Node
 
 func load_map(filepath:String):
 	var file = FileAccess.open(filepath, FileAccess.READ)
+	print(file)
 
 	var json = JSON.new()
 	var error = json.parse(file.get_as_text())

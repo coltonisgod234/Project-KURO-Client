@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgckseg6sp7o2"]
+
+[ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="1_km4as"]
+
+[node name="0" type="Node"]
+script = ExtResource("1_km4as")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmgex7syuryjt"]
+[gd_scene load_steps=13 format=3 uid="uid://cmgex7syuryjt"]
 
 [ext_resource type="Script" uid="uid://dps14rr14c7gt" path="res://menu/songsel/songselect.gd" id="1_321uk"]
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_f1ku7"]
@@ -6,6 +6,8 @@
 [ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_ekoy7"]
 [ext_resource type="Script" uid="uid://xhupiqd5xq61" path="res://menu/songsel/diff/diffscontainer.gd" id="5_ath0l"]
 [ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="6_ath0l"]
+[ext_resource type="Script" uid="uid://bd0c158pa4kva" path="res://menu/songsel/open_teambuilder.gd" id="6_gifws"]
+[ext_resource type="Script" uid="uid://dldaxo8wq8hhh" path="res://gameplay/mod_effect/files/open_user_data_dir.gd" id="6_snpii"]
 
 [sub_resource type="Animation" id="Animation_ath0l"]
 length = 0.001
@@ -233,16 +235,72 @@ text = "Options"
 label_settings = ExtResource("2_ekoy7")
 vertical_alignment = 1
 
-[node name="StartButton" type="Button" parent="Options"]
-layout_mode = 0
-anchor_left = 0.155914
-anchor_top = 0.058642
-anchor_right = 0.962366
-anchor_bottom = 0.12037
+[node name="VBoxContainer" type="VBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.0
+offset_top = 26.0
+offset_right = 84.0
+offset_bottom = 638.0
+grow_horizontal = 2
+
+[node name="StartButton" type="Button" parent="Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 mouse_default_cursor_shape = 3
 theme = ExtResource("1_f1ku7")
 text = "Start"
 metadata/_edit_use_anchors_ = true
+
+[node name="Header0" type="HSeparator" parent="Options/VBoxContainer"]
+layout_mode = 2
+
+[node name="OpenTeambuilder" type="Button" parent="Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+mouse_default_cursor_shape = 3
+text = "Team Builder"
+script = ExtResource("6_gifws")
+
+[node name="Header1" type="HSeparator" parent="Options/VBoxContainer"]
+layout_mode = 2
+
+[node name="OpenDataDirectory" type="Button" parent="Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_f1ku7")
+text = "Open user dir"
+metadata/_edit_use_anchors_ = true
+
+[node name="OpenDataDirectory" type="Node" parent="Options/VBoxContainer/OpenDataDirectory"]
+script = ExtResource("6_snpii")
+
+[node name="OpenSongDirectory" type="Button" parent="Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_f1ku7")
+text = "Open songs dir"
+metadata/_edit_use_anchors_ = true
+
+[node name="OpenSongDirectory" type="Node" parent="Options/VBoxContainer/OpenSongDirectory"]
+script = ExtResource("6_snpii")
+path = "songs"
+
+[node name="OpenTeamsDirectory" type="Button" parent="Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_f1ku7")
+text = "Open teams dir"
+metadata/_edit_use_anchors_ = true
+
+[node name="OpenTeamsDirectory" type="Node" parent="Options/VBoxContainer/OpenTeamsDirectory"]
+script = ExtResource("6_snpii")
+path = "teams"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sg", "export_under")]
 libraries = {
@@ -252,4 +310,8 @@ script = ExtResource("6_ath0l")
 sg = NodePath("..")
 export_under = NodePath("..")
 
-[connection signal="pressed" from="Options/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Options/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Options/VBoxContainer/OpenTeambuilder" to="Options/VBoxContainer/OpenTeambuilder" method="apply"]
+[connection signal="pressed" from="Options/VBoxContainer/OpenDataDirectory" to="Options/VBoxContainer/OpenDataDirectory/OpenDataDirectory" method="apply"]
+[connection signal="pressed" from="Options/VBoxContainer/OpenSongDirectory" to="Options/VBoxContainer/OpenSongDirectory/OpenSongDirectory" method="apply"]
+[connection signal="pressed" from="Options/VBoxContainer/OpenTeamsDirectory" to="Options/VBoxContainer/OpenTeamsDirectory/OpenTeamsDirectory" method="apply"]

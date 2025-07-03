@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://6jv3pc3ybutt"]
+
+[ext_resource type="Script" uid="uid://c0d21gql6povt" path="res://dialouge/dialouge_exec.gd" id="1_lxf85"]
+[ext_resource type="Script" uid="uid://up8o2q1bj33c" path="res://gameplay/mod_effect/generic/match.gd" id="2_4ft2c"]
+[ext_resource type="Script" uid="uid://dtkvtfngw82l5" path="res://gameplay/mod_effect/popup/SummonDialouge.gd" id="2_4288v"]
+[ext_resource type="Script" uid="uid://bc5bg0qssn6dc" path="res://gameplay/mod_effect/popup/DialougeButton.gd" id="3_jj1t1"]
+[ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="5_jj1t1"]
+
+[node name="Test00" type="Node"]
+script = ExtResource("1_lxf85")
+metadata/_custom_type_script = "uid://c0d21gql6povt"
+
+[node name="KURO_Effect_SummonDialouge" type="Node" parent="."]
+script = ExtResource("2_4288v")
+rich_text = "Test..."
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="A" type="Node" parent="KURO_Effect_SummonDialouge"]
+script = ExtResource("3_jj1t1")
+text = "A"
+metadata/_custom_type_script = "uid://bc5bg0qssn6dc"
+
+[node name="B" type="Node" parent="KURO_Effect_SummonDialouge"]
+script = ExtResource("3_jj1t1")
+text = "B"
+metadata/_custom_type_script = "uid://bc5bg0qssn6dc"
+
+[node name="C" type="Node" parent="KURO_Effect_SummonDialouge"]
+script = ExtResource("3_jj1t1")
+text = "C"
+metadata/_custom_type_script = "uid://bc5bg0qssn6dc"
+
+[node name="match" type="Node" parent="." node_paths=PackedStringArray("conditions", "check")]
+script = ExtResource("2_4ft2c")
+conditions = {
+"got.text == \"A\"": NodePath("A"),
+"got.text == \"B\"": NodePath("B"),
+"got.text == \"C\"": NodePath("C")
+}
+check = NodePath("../KURO_Effect_SummonDialouge")
+attribute = "user_responce"
+metadata/_custom_type_script = "uid://up8o2q1bj33c"
+
+[node name="A" type="Node" parent="match"]
+script = ExtResource("5_jj1t1")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="0" type="Node" parent="match/A"]
+script = ExtResource("2_4288v")
+rich_text = "it was [as]A[/as]"
+character_name = "Asahi"
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="A" type="Node" parent="match/A/0"]
+script = ExtResource("3_jj1t1")
+text = "A"
+metadata/_custom_type_script = "uid://bc5bg0qssn6dc"
+
+[node name="B" type="Node" parent="match"]
+script = ExtResource("5_jj1t1")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="0" type="Node" parent="match/B"]
+script = ExtResource("2_4288v")
+rich_text = "it was [as]B[/as]"
+character_name = "Asahi"
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="A" type="Node" parent="match/B/0"]
+script = ExtResource("3_jj1t1")
+text = "A"
+metadata/_custom_type_script = "uid://bc5bg0qssn6dc"
+
+[node name="C" type="Node" parent="match"]
+script = ExtResource("5_jj1t1")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="0" type="Node" parent="match/C"]
+script = ExtResource("2_4288v")
+rich_text = "it was [as]C[/as]"
+character_name = "Asahi"
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="A" type="Node" parent="match/C/0"]
+script = ExtResource("3_jj1t1")
+text = "A"
+metadata/_custom_type_script = "uid://bc5bg0qssn6dc"

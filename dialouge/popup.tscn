@@ -1,51 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcl6l2tla8n6i"]
+[gd_scene load_steps=9 format=3 uid="uid://bcl6l2tla8n6i"]
 
 [ext_resource type="Script" uid="uid://boc1mu5sssb6c" path="res://dialouge/popup.gd" id="1_kjhma"]
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_w3n60"]
 [ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_kjhma"]
+[ext_resource type="ButtonGroup" uid="uid://c0n38a2yir7t2" path="res://dialouge/dialouge_buttongroup.tres" id="2_xds0v"]
 [ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="4_5f5jl"]
+[ext_resource type="Texture2D" uid="uid://dpek4fkde28un" path="res://dialouge/assets/miiku_test.webp" id="6_bp37c"]
+[ext_resource type="Script" uid="uid://ddecykgv7ciqu" path="res://dialouge/asahicode/asahi_red.gd" id="6_u0lnv"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_5f5jl"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w3n60"]
-width = 128
-height = 128
-
-[sub_resource type="Animation" id="Animation_xds0v"]
-resource_name = "create"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1.62451, 0.31864),
-"update": 0,
-"values": [Vector2(0.125, 0.125), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_u0lnv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_bp37c"]
-_data = {
-&"RESET": SubResource("Animation_u0lnv"),
-&"create": SubResource("Animation_xds0v")
-}
+[sub_resource type="RichTextEffect" id="RichTextEffect_u0lnv"]
+script = ExtResource("6_u0lnv")
+metadata/_custom_type_script = "uid://ddecykgv7ciqu"
 
 [node name="CharacterDialougeBox" type="Control" node_paths=PackedStringArray("button_container")]
 layout_mode = 3
@@ -57,8 +22,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_kjhma")
-button_group = SubResource("ButtonGroup_5f5jl")
-button_container = NodePath("Panel/VBoxContainer/LeftThingy")
+button_group = ExtResource("2_xds0v")
+button_container = NodePath("Panel/VBoxContainer/Info/LeftThingy")
 export_name = "DialougeBox"
 export_mode = 1
 
@@ -68,19 +33,19 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -652.0
-offset_bottom = -328.0
+offset_bottom = -388.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_w3n60")
 
 [node name="Label" type="Label" parent="Panel" node_paths=PackedStringArray("check", "sg", "export_under")]
 layout_mode = 2
-offset_left = 17.0
-offset_right = 501.0
+offset_left = 16.0
+offset_right = 496.0
 offset_bottom = 23.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
-text = "Title"
+text = "Miiku"
 label_settings = ExtResource("2_kjhma")
 script = ExtResource("4_5f5jl")
 property_name = "title"
@@ -102,17 +67,22 @@ custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/Info"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = SubResource("NoiseTexture2D_w3n60")
-stretch_mode = 2
+texture = ExtResource("6_bp37c")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer/Info" node_paths=PackedStringArray("check", "sg", "export_under")]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_w3n60")
 bbcode_enabled = true
-text = "Text!"
+text = "My balls hurt"
+tab_size = 5
+custom_effects = [SubResource("RichTextEffect_u0lnv")]
 script = ExtResource("4_5f5jl")
 property_name = "text"
 check = NodePath("../../../..")
@@ -121,11 +91,7 @@ fstring = "%s"
 sg = NodePath("../../../..")
 export_under = NodePath("../../../..")
 
-[node name="LeftThingy" type="HBoxContainer" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 24)
+[node name="LeftThingy" type="VBoxContainer" parent="Panel/VBoxContainer/Info"]
 layout_mode = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bp37c")
-}
+size_flags_horizontal = 8
+theme = ExtResource("1_w3n60")

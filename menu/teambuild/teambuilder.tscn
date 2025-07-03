@@ -22,8 +22,9 @@ script = ExtResource("1_dmwfu")
 custom_minimum_size = Vector2(370, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.308333
-anchor_bottom = 0.271605
+anchor_right = 0.0950158
+anchor_bottom = 0.272059
+offset_right = 260.542
 offset_bottom = 1.52588e-05
 theme = ExtResource("1_01o83")
 metadata/_edit_use_anchors_ = true
@@ -31,7 +32,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
 offset_left = 25.0
-offset_right = 133.0
+offset_right = 141.0
 offset_bottom = 22.0
 theme = ExtResource("1_01o83")
 text = "Team Builder"
@@ -42,7 +43,7 @@ layout_mode = 0
 offset_left = 15.0
 offset_top = 26.0
 offset_right = 346.0
-offset_bottom = 162.0
+offset_bottom = 169.0
 
 [node name="Buttons" type="VBoxContainer" parent="Panel/WindowContent"]
 layout_mode = 2

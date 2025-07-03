@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c52go1avivc2k"]
+[gd_scene load_steps=8 format=3 uid="uid://c52go1avivc2k"]
 
 [ext_resource type="Script" uid="uid://blls5y0lx5cd2" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://b4sb85uby5c68" path="res://shared/nullcomponent.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="3_1bvp3"]
 
 [sub_resource type="Animation" id="Animation_ath0l"]
 length = 0.001
@@ -146,3 +147,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_snpii")
 }
 script = ExtResource("2_0xm2m")
+
+[node name="Enter" type="Node" parent="."]
+script = ExtResource("3_1bvp3")

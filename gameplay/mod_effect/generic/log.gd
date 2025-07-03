@@ -1,4 +1,5 @@
 extends KURO_Effect
+class_name EffectLog
 
 @export var text: String
 enum LogTypes {

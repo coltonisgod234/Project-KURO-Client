@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://dno6ualuuih7b"]
+
+[ext_resource type="Script" uid="uid://rmbjyjvl0l82" path="res://menu/debug/profile/counter.gd" id="1_4n3gq"]
+[ext_resource type="LabelSettings" uid="uid://75j526cfj8tt" path="res://UI_stuff/small_font_monospace_label_settings.tres" id="2_fa61o"]
+[ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="2_kl611"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="4_fa61o"]
+[ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/attr_bar.gd" id="5_frxbf"]
+
+[node name="Counter" type="Control"]
+custom_minimum_size = Vector2(0, 11)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1086.0
+offset_bottom = -654.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_4n3gq")
+target_name = "/root/"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 11)
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 14.0
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Name" type="Label" parent="HBoxContainer" node_paths=PackedStringArray("check")]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+localize_numeral_system = false
+label_settings = ExtResource("2_fa61o")
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("2_kl611")
+property_name = "target_name"
+check = NodePath("../..")
+constantly_check = false
+fstring = "%s"
+
+[node name="Time" type="Label" parent="HBoxContainer" node_paths=PackedStringArray("check")]
+layout_mode = 2
+size_flags_horizontal = 0
+localize_numeral_system = false
+text = "Time"
+label_settings = ExtResource("2_fa61o")
+vertical_alignment = 1
+script = ExtResource("2_kl611")
+property_name = "profiled"
+check = NodePath("../..")
+operation_mode = 1
+fstring = "%8sµs"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer" node_paths=PackedStringArray("check", "sg", "export_under")]
+custom_minimum_size = Vector2(50, 11)
+layout_mode = 2
+size_flags_horizontal = 3
+localize_numeral_system = false
+theme = ExtResource("4_fa61o")
+max_value = 1000.0
+show_percentage = false
+script = ExtResource("5_frxbf")
+property_name = "profiled"
+check = NodePath("../..")
+operation_mode = 1
+precision_change_step = 20.0
+sg = NodePath("../..")
+export_under = NodePath("../..")

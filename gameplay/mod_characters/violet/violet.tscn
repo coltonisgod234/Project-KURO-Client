@@ -20,6 +20,7 @@ positive_effect_threshold = 0.5
 negative_effect_threshold = -0.1
 sg = NodePath(".")
 export_mode = 1
+metadata/tab5_allowed_attributes = ["motivation", "life"]
 
 [node name="Executor" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
 script = ExtResource("5_c3i78")

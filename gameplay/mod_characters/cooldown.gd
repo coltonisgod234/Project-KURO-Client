@@ -1,4 +1,5 @@
 extends Timer
+class_name KURO_CharacterStunTimer
 
 func stun_for(t: float):
 	self.one_shot = true

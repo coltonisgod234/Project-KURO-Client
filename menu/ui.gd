@@ -1,18 +1,30 @@
 extends KURO_Component
 
 var game
+@export var not_ui_names: Array[String]
 
-func kuro_init(): # TEST ONLY!!!
-	#start("user://songs/test_song_the_2nd/testmap.json", "user://songs/test_song_the_2nd", [])
-	pass  # Good I remembered to remove from release...
+func kuro_init():
+	start("user://songs/fuck2/0.json", "user://songs/fuck2", [Scenes.CharacterTab5, Scenes.CharacterViolet])
 
 func hide_all_ui():
 	for child in self.get_children():
-		child.visible = false  # trans kids
+		if child.name in not_ui_names:  # Skip
+			continue
+			
+		Globals.set_all_process(child, false, true)
+		child.visible = false
+	
+	# No exit yet
 
 func show_all_ui():  # Man I wish I was good at coding
 	for child in self.get_children():
-		child.visible = true  # cisgender kids
+		if child.name in not_ui_names:  # Skip
+			continue
+
+		child.visible = true
+		Globals.set_all_process(child, true, true)
+	
+	$Enter.apply_in_succession()
 
 func do_songselect_bullshit():
 	## This code was written on the weekend after a field trip
@@ -60,11 +72,11 @@ func start(file: String, root: String, characters_to_load: Array):
 	print("Map song is %s" % game.map_song)
 	game.map_num_keys = MapParser.parse_map_num_lanes(game.map)
 	game.map_length = MapParser.parse_map_length_usec(game.map)
+	#game.map_length = 10_000_000  # debug
 	game.load_characters = characters_to_load
 	game.position = Vector2(0.0, 0.0)
 	print("\n\n\nMAIN SCENE READY. It'll either crash horribly or work completely fine.\n\n\n")
 	Globals.reset_global_timer()  # So main doesn't FREAK OUT
-
 	hide_all_ui()
 	add_child(game)
 
