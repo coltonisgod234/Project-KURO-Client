@@ -61,10 +61,10 @@ theme = ExtResource("3_0xafl")
 script = ExtResource("2_vg7a0")
 key0_corruption = 5.0
 key1_corruption = 5.0
-key2_corruption = 0.05
-key3_corruption = 0.05
-up_strength = 0.5
-down_strength = -0.5
+key2_corruption = 0.01
+key3_corruption = 0.01
+up_strength = 0.6
+down_strength = -0.6
 sg = NodePath("../..")
 export_under = NodePath("../..")
 

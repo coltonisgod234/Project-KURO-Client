@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bf8s2br2g3q67"]
+[gd_scene load_steps=14 format=3 uid="uid://bf8s2br2g3q67"]
 
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_1i3nd"]
 [ext_resource type="Script" uid="uid://dhfxsv2ilbgt0" path="res://menu/teambuild/char/selector/selector.gd" id="1_kyx2x"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cy7o87heqfp3x" path="res://gameplay/mod_characters/violet/violet.tscn" id="5_florp"]
 [ext_resource type="PackedScene" uid="uid://dsb1hmgms8hml" path="res://gameplay/mod_characters/kuro/kuro.tscn" id="7_pxf31"]
 [ext_resource type="PackedScene" uid="uid://byyvlpwrfcm4u" path="res://gameplay/mod_characters/cloudy/cloudy.tscn" id="7_xmff5"]
+[ext_resource type="PackedScene" uid="uid://d13mtyk7g6rdi" path="res://gameplay/mod_characters/Tab5/tab5.tscn" id="9_ign7u"]
 
 [sub_resource type="Animation" id="Animation_ath0l"]
 length = 0.001
@@ -211,6 +212,18 @@ character = ExtResource("7_pxf31")
 sg = NodePath("..")
 export_under = NodePath("..")
 
+[node name="Button3" type="Button" parent="Panel/WindowContent/ScrollContainer/Buttons" node_paths=PackedStringArray("sg", "export_under")]
+custom_minimum_size = Vector2(272, 24)
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 3
+text = "Tab5"
+script = ExtResource("4_y1wg1")
+character_name = "Tab5"
+character = ExtResource("9_ign7u")
+sg = NodePath("..")
+export_under = NodePath("..")
+
 [node name="Button4" type="Button" parent="Panel/WindowContent/ScrollContainer/Buttons" node_paths=PackedStringArray("sg", "export_under")]
 visible = false
 custom_minimum_size = Vector2(272, 24)
@@ -221,16 +234,6 @@ text = "Cloudy"
 script = ExtResource("4_y1wg1")
 character_name = "Cloudy"
 character = ExtResource("7_xmff5")
-sg = NodePath("..")
-export_under = NodePath("..")
-
-[node name="Button3" type="Button" parent="Panel/WindowContent/ScrollContainer/Buttons" node_paths=PackedStringArray("sg", "export_under")]
-custom_minimum_size = Vector2(272, 24)
-layout_mode = 2
-mouse_force_pass_scroll_events = false
-mouse_default_cursor_shape = 3
-text = "Tab5"
-script = ExtResource("4_y1wg1")
 sg = NodePath("..")
 export_under = NodePath("..")
 
