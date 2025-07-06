@@ -51,5 +51,4 @@ func apply():
 		Modes.SCRIPT_EXPORTED_ONLY:
 			return get_good_props_script_exported_only(obj)
 		_:
-			print("what the fuc")
 			return []

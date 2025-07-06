@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bgmwggnpcg5r" path="res://shared/kuro_component.gd" id="2_sm2qb"]
 
 [node name="CharacterManager" type="Node2D" node_paths=PackedStringArray("sg")]
-position = Vector2(0, 400)
+position = Vector2(0, 370)
 script = ExtResource("1_kvcu0")
 PixelsPerCharacter = 240.0
 sg = NodePath(".")

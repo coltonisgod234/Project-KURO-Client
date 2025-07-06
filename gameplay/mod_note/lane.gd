@@ -26,6 +26,8 @@ func fabricate_handle(judge_type, note=null):
 			$Key.hit(note, lane_num)
 		Globals.JUDGE_MISS:
 			$Key.miss(note, lane_num)
+		_:
+			Globals.crash("lane: unknown judgement type (can't figure out which one to emit)")
 
 func _ready():
 	print("[Lane%d] ready!" % lane_num)

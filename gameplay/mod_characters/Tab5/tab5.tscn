@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://d13mtyk7g6rdi"]
+[gd_scene load_steps=9 format=3 uid="uid://d13mtyk7g6rdi"]
 
 [ext_resource type="Script" uid="uid://bq81uhbjbo38h" path="res://gameplay/mod_characters/Tab5/tab_5.gd" id="1_u3kyl"]
 [ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="2_tf1xw"]
 [ext_resource type="PackedScene" uid="uid://dt4ggy47qpa6v" path="res://gameplay/mod_characters/Tab5/autohotkey/AutoHotKey.tscn" id="3_2rrlx"]
 [ext_resource type="Script" uid="uid://cs8dwmqmvxlr5" path="res://gameplay/mod_characters/Tab5/note_recover.gd" id="5_jp6qn"]
 [ext_resource type="PackedScene" uid="uid://c157rgaj0j83v" path="res://gameplay/mod_characters/Tab5/HexEditor/HexEditor.tscn" id="5_qgenx"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="6_eo868"]
 [ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/attr_bar.gd" id="7_u34pu"]
+[ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="8_qgenx"]
 
 [node name="Tab5" type="Node2D" node_paths=PackedStringArray("AbilityStun", "sg")]
 script = ExtResource("1_u3kyl")
@@ -36,13 +38,73 @@ script = ExtResource("2_tf1xw")
 
 [node name="HUD" type="Panel" parent="."]
 offset_right = 242.0
-offset_bottom = 136.0
+offset_bottom = 184.0
+theme = ExtResource("6_eo868")
+
+[node name="Label" type="Label" parent="HUD" node_paths=PackedStringArray("check")]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 233.0
+offset_bottom = 22.0
+text = "0 -- Tab5"
+script = ExtResource("8_qgenx")
+property_name = "export_name"
+check = NodePath("../..")
+constantly_check = false
+fstring = "%s -- Tab5"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
-custom_minimum_size = Vector2(242, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
-offset_right = 242.0
-offset_bottom = 136.0
+offset_left = 11.0
+offset_top = 25.0
+offset_right = 227.0
+offset_bottom = 180.0
+
+[node name="Execute" type="ProgressBar" parent="HUD/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+allow_greater = true
+show_percentage = false
+
+[node name="Label" type="Label" parent="HUD/VBoxContainer/Execute"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 8.0
+offset_right = 93.0
+offset_bottom = 30.0
+text = "Execute"
+
+[node name="AHK" type="ProgressBar" parent="HUD/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+allow_greater = true
+show_percentage = false
+
+[node name="Label" type="Label" parent="HUD/VBoxContainer/AHK"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 8.0
+offset_right = 93.0
+offset_bottom = 30.0
+text = "AutoHotKey"
+
+[node name="HXD" type="ProgressBar" parent="HUD/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+allow_greater = true
+show_percentage = false
+
+[node name="Label" type="Label" parent="HUD/VBoxContainer/HXD"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 8.0
+offset_right = 93.0
+offset_bottom = 30.0
+text = "HexEditor"
+
+[node name="HSeparator" type="HSeparator" parent="HUD/VBoxContainer"]
+layout_mode = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="HUD/VBoxContainer" node_paths=PackedStringArray("check")]
 layout_mode = 2
@@ -51,6 +113,22 @@ script = ExtResource("7_u34pu")
 property_name = "corruption"
 check = NodePath("../../..")
 export_mode = 3
+
+[node name="Max" type="Label" parent="HUD/VBoxContainer/ProgressBar"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = -3.0
+offset_right = 215.0
+offset_bottom = 19.0
+text = "FULL"
+
+[node name="Label" type="Label" parent="HUD/VBoxContainer/ProgressBar"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 8.0
+offset_right = 93.0
+offset_bottom = 30.0
+text = "Corruption"
 
 [node name="ProgressBar2" type="ProgressBar" parent="HUD/VBoxContainer" node_paths=PackedStringArray("check")]
 custom_minimum_size = Vector2(0, 24)
@@ -62,3 +140,19 @@ script = ExtResource("7_u34pu")
 property_name = "time_left"
 check = NodePath("../../../AbilityStun")
 export_mode = 3
+
+[node name="Max" type="Label" parent="HUD/VBoxContainer/ProgressBar2"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = -3.0
+offset_right = 215.0
+offset_bottom = 19.0
+text = "5s"
+
+[node name="Label" type="Label" parent="HUD/VBoxContainer/ProgressBar2"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 8.0
+offset_right = 93.0
+offset_bottom = 30.0
+text = "Ability Stun"

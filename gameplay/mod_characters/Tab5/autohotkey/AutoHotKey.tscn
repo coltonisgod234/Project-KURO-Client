@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dt4ggy47qpa6v"]
+[gd_scene load_steps=7 format=3 uid="uid://dt4ggy47qpa6v"]
 
 [ext_resource type="Script" uid="uid://b15quj2jkvmd" path="res://gameplay/mod_characters/Tab5/autohotkey/program.gd" id="1_jjihp"]
 [ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="1_mxvht"]
 [ext_resource type="Script" uid="uid://bvomr8fnr6agf" path="res://gameplay/mod_effect/gamestate/missable.gd" id="2_jjihp"]
 [ext_resource type="Script" uid="uid://br6dgp2vin25w" path="res://gameplay/mod_characters/cooldown.gd" id="4_wxwbi"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="5_f78uv"]
 [ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/attr_bar.gd" id="5_y8c6r"]
 
 [node name="AutoHotKey" type="Node2D" node_paths=PackedStringArray("StopTimer", "Executor")]
@@ -38,15 +39,29 @@ script = ExtResource("4_wxwbi")
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 292.0
-offset_bottom = 179.0
+offset_bottom = 58.0
+theme = ExtResource("5_f78uv")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 1.0
+offset_right = 100.0
+offset_bottom = 23.0
+theme = ExtResource("5_f78uv")
+text = "AutoHotKey"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_right = 291.0
-offset_bottom = 203.0
+offset_left = 9.0
+offset_top = 24.0
+offset_right = 277.0
+offset_bottom = 48.0
+theme = ExtResource("5_f78uv")
 
 [node name="ProgressBar" type="ProgressBar" parent="Panel/VBoxContainer" node_paths=PackedStringArray("check")]
 layout_mode = 2
+theme = ExtResource("5_f78uv")
 max_value = 10.0
 allow_greater = true
 allow_lesser = true
@@ -54,3 +69,12 @@ script = ExtResource("5_y8c6r")
 property_name = "time_left"
 check = NodePath("../../../StopTimer")
 export_mode = 3
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/ProgressBar"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 74.0
+offset_bottom = 27.0
+theme = ExtResource("5_f78uv")
+text = "Progress"

@@ -4,7 +4,8 @@ var game
 @export var not_ui_names: Array[String]
 
 func kuro_init():
-	start("user://songs/fuck2/0.json", "user://songs/fuck2", [Scenes.CharacterTab5, Scenes.CharacterViolet])
+	#start("user://songs/fuck2/0.json", "user://songs/fuck2", [Scenes.CharacterTab5, Scenes.CharacterViolet])
+	return
 
 func hide_all_ui():
 	for child in self.get_children():

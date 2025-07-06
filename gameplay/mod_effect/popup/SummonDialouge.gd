@@ -37,6 +37,7 @@ func resolve_position_mode(mode: PositionMode, pos: Vector2) -> Vector2:
 
 @export var position_preset: PositionMode = PositionMode.EXPLICIT
 @export var position: Vector2i
+@export var node_parent: Node = self
 
 func apply():
 	var dialouge = Scenes.CharacterDialougeBox.instantiate()
@@ -44,7 +45,11 @@ func apply():
 	dialouge.texture = character_texture
 	dialouge.title = character_name
 	dialouge.position = resolve_position_mode(position_preset, position)
-	self.add_child(dialouge)
+	
+	if self.node_parent == null:
+		self.add_child(dialouge)
+	else:
+		node_parent.add_child(dialouge)
 	await apply_in_succession(dialouge)
 	dialouge.queue_free()
 	return

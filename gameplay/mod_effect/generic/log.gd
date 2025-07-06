@@ -1,7 +1,7 @@
 extends KURO_Effect
 class_name EffectLog
 
-@export var text: String
+@export_multiline var text: String
 enum LogTypes {
 	CONSOLE,
 	WARNING,
@@ -22,6 +22,8 @@ func apply():
 		LogTypes.ERROR:
 			push_error(text)
 		LogTypes.CRASH:
-			OS.crash(text)
+			Globals.crash(text)
 		LogTypes.QUIT:
 			get_tree().quit(return_code)
+		_:
+			Globals.crash("log: unknown destination, attempted message: %s" % text)

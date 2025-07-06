@@ -177,6 +177,16 @@ script = ExtResource("3_7wr03")
 sg = NodePath("../../../..")
 export_under = NodePath("../../../..")
 
+[node name="Nobody" type="Button" parent="Panel/WindowContent/ScrollContainer/Buttons" node_paths=PackedStringArray("sg", "export_under")]
+custom_minimum_size = Vector2(272, 24)
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 3
+text = "No character"
+script = ExtResource("4_y1wg1")
+sg = NodePath("..")
+export_under = NodePath("..")
+
 [node name="Button" type="Button" parent="Panel/WindowContent/ScrollContainer/Buttons" node_paths=PackedStringArray("sg", "export_under")]
 custom_minimum_size = Vector2(272, 24)
 layout_mode = 2
@@ -202,6 +212,7 @@ sg = NodePath("..")
 export_under = NodePath("..")
 
 [node name="Button4" type="Button" parent="Panel/WindowContent/ScrollContainer/Buttons" node_paths=PackedStringArray("sg", "export_under")]
+visible = false
 custom_minimum_size = Vector2(272, 24)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
@@ -214,7 +225,6 @@ sg = NodePath("..")
 export_under = NodePath("..")
 
 [node name="Button3" type="Button" parent="Panel/WindowContent/ScrollContainer/Buttons" node_paths=PackedStringArray("sg", "export_under")]
-visible = false
 custom_minimum_size = Vector2(272, 24)
 layout_mode = 2
 mouse_force_pass_scroll_events = false

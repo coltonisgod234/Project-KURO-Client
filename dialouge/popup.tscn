@@ -13,6 +13,9 @@ script = ExtResource("6_u0lnv")
 metadata/_custom_type_script = "uid://ddecykgv7ciqu"
 
 [node name="CharacterDialougeBox" type="Control" node_paths=PackedStringArray("button_container")]
+top_level = true
+z_index = 999
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,6 +31,8 @@ export_name = "DialougeBox"
 export_mode = 1
 
 [node name="Panel" type="Panel" parent="."]
+z_index = 999
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,6 +44,8 @@ grow_vertical = 2
 theme = ExtResource("1_w3n60")
 
 [node name="Label" type="Label" parent="Panel" node_paths=PackedStringArray("check", "sg", "export_under")]
+z_index = 999
+z_as_relative = false
 layout_mode = 2
 offset_left = 16.0
 offset_right = 496.0
@@ -56,6 +63,8 @@ sg = NodePath("../..")
 export_under = NodePath("../..")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+z_index = 999
+z_as_relative = false
 layout_mode = 0
 offset_left = 17.0
 offset_top = 27.0
@@ -63,10 +72,14 @@ offset_right = 478.0
 offset_bottom = 255.0
 
 [node name="Info" type="HBoxContainer" parent="Panel/VBoxContainer"]
+z_index = 999
+z_as_relative = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/Info"]
+z_index = 999
+z_as_relative = false
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = ExtResource("6_bp37c")
@@ -74,6 +87,8 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer/Info" node_paths=PackedStringArray("check", "sg", "export_under")]
+z_index = 999
+z_as_relative = false
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -92,6 +107,10 @@ sg = NodePath("../../../..")
 export_under = NodePath("../../../..")
 
 [node name="LeftThingy" type="VBoxContainer" parent="Panel/VBoxContainer/Info"]
+z_index = 999
+z_as_relative = false
 layout_mode = 2
 size_flags_horizontal = 8
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
 theme = ExtResource("1_w3n60")

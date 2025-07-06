@@ -26,4 +26,6 @@ func _process(_delta):
 				return
 			
 			self.value = got
+		_:
+			Globals.crash("Invalid operation mode for attr_bar")
 	#print(self.value)

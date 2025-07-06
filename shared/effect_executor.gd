@@ -2,7 +2,7 @@ extends KURO_Component
 class_name KURO_EffectExecutor
 
 func apply_argument(effect_name: String, propname: String, value):
-	print("Applying arg... %s, %s = %s" % [effect_name, propname, value])
+	#print("Applying arg... %s, %s = %s" % [effect_name, propname, value])
 	var effect_object = self.get_node(effect_name)
 	if effect_object == null:
 		print("Wtf its null")
@@ -13,7 +13,7 @@ func apply_argument(effect_name: String, propname: String, value):
 func apply(name: String):
 	var node = self.get_node(name)
 	if node.has_method("apply"):
-		return node.apply()
+		return await node.apply()
 	else: return "wtf no apply method"
 
 func apply_random_effect_bagged_random(last_effect_applied):
@@ -44,7 +44,7 @@ func apply_in_succession():
 
 func apply_argument_to_all(propname: String, value):
 	for child in self.get_children():
-		print("[effect_executor.gd] applying argument %s = %s on %s..." % [propname, value, child])
+		#print("[effect_executor.gd] applying argument %s = %s on %s..." % [propname, value, child])
 		child.set(propname, value)
 
 func apply_arguments_from_dictionary(d:Dictionary):

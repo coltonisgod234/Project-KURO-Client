@@ -32,3 +32,5 @@ func apply():
 			return apply_engine()
 		Method.SAMPLES:
 			return apply_samples(get_process_delta_time())
+		_:
+			Globals.crash("get_fps: Unknown FPS get method")

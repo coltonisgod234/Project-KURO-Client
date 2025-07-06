@@ -70,3 +70,5 @@ func _process(_delta):
 		if AbilityStun.is_stunned(): return
 		print("%s at full corruption" % self)
 		AbilityStun.stun_for(fully_corrupt_stun_time)
+		clear_program()
+		corruption = 0.0

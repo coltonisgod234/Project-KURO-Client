@@ -20,12 +20,12 @@ func ExportUnder(parent, me_myself_and_i, name=null):
 		name = me_myself_and_i.name
 	
 	if me_myself_and_i == null or parent == null:
-		print("STUPID FUCKING BUG!!! %s" % self)
+		print("Possibly silly bug %s" % self)
 		return
 	
 	print("[%s] (BASE) Exporting... %s UNDER %s AS %s" % [self.name, me_myself_and_i.name, parent.name, name])
 	if not "exports" in parent:
-		print("[%s] (BASE) You did a stupid Colton" % [self.name])
+		Globals.crash("kuro_component: parent has no `exports` dictionary")
 		return
 	parent.exports.set(name, me_myself_and_i)
 	#print("Done")

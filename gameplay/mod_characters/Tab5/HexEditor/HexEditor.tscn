@@ -1,22 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://c157rgaj0j83v"]
+[gd_scene load_steps=5 format=3 uid="uid://c157rgaj0j83v"]
 
 [ext_resource type="Script" uid="uid://d3sw2d1e6bhnl" path="res://gameplay/mod_characters/Tab5/HexEditor/hexeditor.gd" id="1_8qjbq"]
 [ext_resource type="Script" uid="uid://c7ygmfeyw5rco" path="res://gameplay/mod_characters/Tab5/HexEditor/v_box_container.gd" id="2_vg7a0"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="3_0xafl"]
+[ext_resource type="Script" uid="uid://bxshnlfug7ihq" path="res://UI_stuff/attr_bar.gd" id="4_0xafl"]
 
 [node name="HexEditor" type="Node2D" node_paths=PackedStringArray("vboxcontainer")]
 script = ExtResource("1_8qjbq")
 vboxcontainer = NodePath("Panel/VBoxContainer")
 
 [node name="Panel" type="Panel" parent="."]
-custom_minimum_size = Vector2(252, 128)
+custom_minimum_size = Vector2(252, 136)
 offset_right = 252.0
-offset_bottom = 128.0
+offset_bottom = 168.0
+theme = ExtResource("3_0xafl")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 74.0
+offset_bottom = 22.0
+text = "HexEdit"
+
+[node name="TimeLeft" type="ProgressBar" parent="Panel" node_paths=PackedStringArray("check")]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 25.0
+offset_right = 235.0
+offset_bottom = 49.0
+max_value = 10.0
+script = ExtResource("4_0xafl")
+property_name = "time_left"
+check = NodePath("../../StopTimer")
+
+[node name="Label" type="Label" parent="Panel/TimeLeft"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 83.0
+offset_bottom = 28.0
+text = "time_left"
+
+[node name="Max" type="Label" parent="Panel/TimeLeft"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = -3.0
+offset_right = 224.0
+offset_bottom = 19.0
+theme = ExtResource("3_0xafl")
+text = "10s"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel" node_paths=PackedStringArray("sg", "export_under")]
-custom_minimum_size = Vector2(252, 128)
+custom_minimum_size = Vector2(225, 0)
 layout_mode = 0
-offset_right = 252.0
-offset_bottom = 128.0
+offset_left = 10.0
+offset_top = 51.0
+offset_right = 235.0
+offset_bottom = 161.0
+theme = ExtResource("3_0xafl")
 script = ExtResource("2_vg7a0")
 key0_corruption = 5.0
 key1_corruption = 5.0
@@ -28,6 +69,6 @@ sg = NodePath("../..")
 export_under = NodePath("../..")
 
 [node name="StopTimer" type="Timer" parent="."]
-wait_time = 1.23189e+11
+wait_time = 10.0
 one_shot = true
 ignore_time_scale = true

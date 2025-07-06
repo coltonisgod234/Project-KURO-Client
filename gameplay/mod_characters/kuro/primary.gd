@@ -7,3 +7,5 @@ func activate():
 			sg.secondaryA(true, true)
 		1:
 			sg.secondaryB(true, true)
+		_:  # PREVENT a crash!
+			print("Not an ability!")

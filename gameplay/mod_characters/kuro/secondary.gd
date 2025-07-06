@@ -18,6 +18,8 @@ func activate():
 			sg.life -= LifeLostPerBadEffect
 		MultiplexedGoodChildName:
 			sg.life += LifeGainedPerGoodEffect
+		_:
+			Globals.crash("kuro: child name is not valid")
 	
 	sg.LastEffectMultiplexed = child
 	sg.LastEffectApplied = effect_applied

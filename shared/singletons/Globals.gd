@@ -58,3 +58,14 @@ func get_global_timer() -> int:
 	if not _started:
 		return 0
 	return Time.get_ticks_usec() - _offset
+
+func crash(msg: String):
+	## Crashes the game
+	##
+	## @experemental CURRENTLY DOESN'T WORK!
+	var text = $CrashDialouge/msg.get("rich_text")
+	text = text.replace("{CrashMessageGoesHere}", msg)
+	$CrashDialouge/msg.set("rich_text", text)
+	$CrashDialouge/msg.set("node_parent", get_tree().root)
+	await $CrashDialouge/msg.apply()
+	get_tree().quit()

@@ -22,5 +22,6 @@ func apply() -> void:
 	match mode:
 		Mode.STRING: value = apply_string()
 		Mode.EXPRESSION: value = apply_expression()
+		_: Globals.crash("open_dir: unknown path mode")
 
 	OS.shell_open(value)

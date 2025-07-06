@@ -8,6 +8,8 @@ func _process(_delta:float):
 	match go_up:
 		true:
 			position.y -= speed * _delta
-		false:
+		false, null:
 			position.y += speed * _delta
+		_:
+			Globals.crash("note: `go_up` was not set to a boolean value")
 	#print("NOTE PROCESSING AND MOVING Y TO %s" % position.y)

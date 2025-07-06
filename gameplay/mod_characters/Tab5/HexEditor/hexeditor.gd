@@ -13,10 +13,13 @@ func kuro_init():
 	var cholder = cmgr.s_wait_for_component("CharacterHolder")
 	var character = 0
 	match int(sg.export_name):
-		0:
+		0, 2:
 			character = int(sg.export_name) + 1
-		_:
+		1, 3:
 			character = int(sg.export_name) - 1
+		_:
+			print("tab5 error, no character")
+			Globals.crash("Tab5: unregognized character slot")
 
 	var char_obj = cholder.s_wait_for_component("%s" % character)
 	vboxcontainer.node = char_obj

@@ -31,3 +31,5 @@ func apply():
 			character.set(attribute, data * a)
 		Operations.DIVIDE:
 			character.set(attribute, data / a)
+		_:
+			Globals.crash("ModifyCharacterAttribute: unknown operation")

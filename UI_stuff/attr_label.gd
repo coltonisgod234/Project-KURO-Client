@@ -40,6 +40,8 @@ func update():
 			var x = Expression.new()
 			x.parse(expression, ["n"])
 			value = x.execute([got])
+		_:
+			Globals.crash("Invalid operation mode for attr_label")
 
 	if value is String:
 		if value == "":

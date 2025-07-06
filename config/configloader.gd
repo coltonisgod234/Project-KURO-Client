@@ -35,5 +35,5 @@ func reload_config(raw_json: String):
 	return ReloadConfigError.Ok
 
 func kuro_init(): #test
-	#var error = await reload_config(load_from_file("res://config.json"))
+	var error = await reload_config(load_from_file("res://config.json"))
 	return

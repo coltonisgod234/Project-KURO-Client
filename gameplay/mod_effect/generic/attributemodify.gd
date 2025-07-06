@@ -36,6 +36,8 @@ func perform_op(a, b, op):
 			result = randi_range(float(a), float(b))
 		Ops.RANDOMIZE_FLOAT:
 			result = randf_range(float(a), float(b))
+		_:
+			Globals.crash("attributemodify: unknown operation")
 	
 	return result
 

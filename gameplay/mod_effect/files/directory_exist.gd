@@ -25,3 +25,5 @@ func apply():
 			create(path)
 		Operations.DELETE:
 			delete(path)
+		_:
+			Globals.crash("dir_exist: Unknown directory operation")
