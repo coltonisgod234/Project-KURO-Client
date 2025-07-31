@@ -23,12 +23,12 @@ enum Tab5States {
 @export var fully_corrupt_stun_time: float
 
 func clear_program():
-	print("CLEAR PROG")
+	print("[Tab5] Cleared program")
 	if program != null:
 		program.queue_free()
 
 func set_program(name):
-	print("SET PROGRAM TO %s" % name)
+	print("[Tab5] setting program to %s" % name)
 	clear_program()
 
 	program = programs.get(name).instantiate()
@@ -38,7 +38,7 @@ func set_program(name):
 func primary():
 	if AbilityStun.is_stunned(): return
 	if program == null: return
-	print("ACTIVATE\n\n\n\n\n\n")
+	print("[Tab5] Executing program")
 	self.add_child(program)
 	self.move_child(program, 0)  # execute first
 	print_tree_pretty()
@@ -51,7 +51,7 @@ func secondaryA():
 		Tab5States.ALPHA:
 			set_program("ahk")
 		_:
-			print("shit")
+			print("[Tab5] out of range")
 	
 	AbilityStun.stun_for(installation_delay_sec)
 
@@ -61,14 +61,14 @@ func secondaryB():
 		Tab5States.ALPHA:
 			set_program("hexeditor")
 		_:
-			print("shit")
+			print("[Tab5] out of range")
 
 	AbilityStun.stun_for(installation_delay_sec)
 
 func _process(_delta):
 	if corruption >= max_corruption:
 		if AbilityStun.is_stunned(): return
-		print("%s at full corruption" % self)
+		print("[Tab5] at full corruption")
 		AbilityStun.stun_for(fully_corrupt_stun_time)
 		clear_program()
 		corruption = 0.0

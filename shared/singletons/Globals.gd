@@ -59,13 +59,22 @@ func get_global_timer() -> int:
 		return 0
 	return Time.get_ticks_usec() - _offset
 
-func crash(msg: String):
-	## Crashes the game
-	##
-	## @experemental CURRENTLY DOESN'T WORK!
-	var text = $CrashDialouge/msg.get("rich_text")
+func _crash(msg: String):
+	var popup = preload("res://shared/crash.tscn").instantiate()
+	var dia = popup.get_node("CrashDialouge")
+
+	var diamsg = dia.get_node("msg")
+	var text = diamsg.rich_text
 	text = text.replace("{CrashMessageGoesHere}", msg)
-	$CrashDialouge/msg.set("rich_text", text)
-	$CrashDialouge/msg.set("node_parent", get_tree().root)
-	await $CrashDialouge/msg.apply()
-	get_tree().quit()
+	diamsg.rich_text = text
+
+	add_child(popup)
+	diamsg.apply()
+	await popup.close_requested
+	OS.crash(msg)
+
+func crash(msg: String):
+	print("CRASH: %s" % msg)
+	push_error("Crash = %s" % msg)
+	await get_tree().create_timer(0.1, true, false, true).timeout  # wait a little bit for error to push to con
+	OS.crash(msg)

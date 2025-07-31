@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://5kk0qa8j4feg"]
+
+[ext_resource type="Script" uid="uid://c1oghmupqkdk7" path="res://gameplay/mod_replay/replay_system.gd" id="1_e6oc5"]
+[ext_resource type="Script" uid="uid://y3i3y1fia6v3" path="res://gameplay/mod_replay/listeners/kuro_lanemanager!note_judged.gd" id="2_nrrhe"]
+[ext_resource type="Script" uid="uid://cr3jptfk1t0dn" path="res://gameplay/mod_replay/listeners/kuro_lanemanager!map_complete.gd" id="3_4ww7y"]
+[ext_resource type="Script" uid="uid://dkulqb670abwa" path="res://gameplay/mod_replay/listeners/kuro_character_manager!character_loaded.gd" id="4_nmvif"]
+[ext_resource type="Script" uid="uid://dmcv4gof6o4sd" path="res://gameplay/mod_replay/listeners/kuro_character_manager!ability_activated.gd" id="5_2fu8u"]
+[ext_resource type="Script" uid="uid://dqt343fd85xax" path="res://gameplay/mod_replay/character_violet.gd" id="5_poy8h"]
+
+[node name="ReplaySystem" type="Node" node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("1_e6oc5")
+sg = NodePath(".")
+export_under = NodePath(".")
+export_mode = 2
+
+[node name="KURO_LaneManager!note_judged" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("2_nrrhe")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="KURO_LaneManager!map_complete" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("3_4ww7y")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="KURO_CharacterManager!character_loaded" type="Node" parent="." node_paths=PackedStringArray("Violet", "sg", "export_under")]
+script = ExtResource("4_nmvif")
+Violet = NodePath("CharacterViolet")
+sg = NodePath("..")
+export_under = NodePath("..")
+
+[node name="CharacterViolet" type="Node" parent="KURO_CharacterManager!character_loaded" node_paths=PackedStringArray("state_changed", "life_changed", "motivation_changed", "sg", "export_under")]
+script = ExtResource("5_poy8h")
+state_changed = NodePath("state_changed")
+life_changed = NodePath("life_changed")
+motivation_changed = NodePath("motivation_changed")
+sg = NodePath("../..")
+export_under = NodePath("..")
+
+[node name="state_changed" type="Node" parent="KURO_CharacterManager!character_loaded/CharacterViolet"]
+
+[node name="life_changed" type="Node" parent="KURO_CharacterManager!character_loaded/CharacterViolet"]
+
+[node name="motivation_changed" type="Node" parent="KURO_CharacterManager!character_loaded/CharacterViolet"]
+
+[node name="KURO_CharacterManager!ability_activated" type="Node" parent="." node_paths=PackedStringArray("sg", "export_under")]
+script = ExtResource("5_2fu8u")
+sg = NodePath("..")
+export_under = NodePath("..")

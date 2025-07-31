@@ -33,7 +33,7 @@ func reset_all_labels():
 func get_selected_label():
 	var attribute_lbl = self.get_child(selected_prop_idx)
 	if attribute_lbl == null:
-		print("Attribute label is null, attempting to fix (reset index to 0!!)")
+		print("[Tab5/HexEditor] Attribute label is null, attempting to fix (reset index to 0!!)")
 		selected_prop_idx = 0
 		return null
 	
@@ -43,7 +43,7 @@ func boooooooring_logic():
 	var attribute_lbl = get_selected_label()
 
 	self.reset_all_labels()
-	var n = attribute_lbl.get_meta("item_name", "?FAULT!:no_meta@hexeditor/vbc")
+	var n = attribute_lbl.get_meta("item_name", "[Tab5/HexEditor] ATTRIBUTE LABEL ITEM IS NULL.")
 	attribute_lbl.text = ">>> %s: %s" % [n, node.get(n)]
 
 func add_sub_attr_label(off):
@@ -51,7 +51,7 @@ func add_sub_attr_label(off):
 
 	var n = attribute_lbl.get_meta("item_name")
 	if n == null:
-		print("ATTRIBUTE LABEL ITEM NAME IS NULL. RETURNING ERROR")
+		print("[Tab5/HexEditor] ATTRIBUTE LABEL ITEM NAME IS NULL. RETURNING ERROR")
 		return ERR_INVALID_DATA
 
 	node.set(n, (node.get(n) + off))

@@ -10,8 +10,8 @@ func apply_argument(effect_name: String, propname: String, value):
 
 	effect_object.set(propname, value)
 
-func apply(name: String):
-	var node = self.get_node(name)
+func apply(name_: String):
+	var node = self.get_node(name_)
 	if node.has_method("apply"):
 		return await node.apply()
 	else: return "wtf no apply method"

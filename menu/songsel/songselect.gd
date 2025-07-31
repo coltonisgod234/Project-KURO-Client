@@ -1,12 +1,16 @@
 extends KURO_Component
 
 func fade_away():
-	self.s_wait_for_component("AnimationPlayer").play("fade_away")
-	Globals.set_all_process(self, false, true)
+	var player = self.s_wait_for_component("AnimationPlayer")
+	player.play("fade_away")
+	await player.animation_finished
+	#Globals.set_all_process(self, false, true)
 
 func come_back():
-	self.s_wait_for_component("AnimationPlayer").play("fade_in")
-	Globals.set_all_process(self, true, true)
+	var player = self.s_wait_for_component("AnimationPlayer")
+	player.play("fade_in")
+	await player.animation_finished
+	#Globals.set_all_process(self, true, true)
 
 func parse_character_shit(selection):
 	# DO A BUNCH OF REALLY DUMB SHIT
@@ -63,7 +67,7 @@ func add_chart_from_folder(path: String, chart_conf="chart.json"):
 		path
 	)
 
-func add_charts_from_folder(path: String, resurs: bool, chart_conf="chart.json"):
+func add_charts_from_folder(path: String, _resurs: bool, chart_conf="chart.json"):
 	for dir in DirAccess.get_directories_at(path):
 		dir = path.path_join(dir)
 		print("[SongSelect] Processing directory %s" % [dir])
@@ -73,3 +77,22 @@ func kuro_init():
 	#add_chart_from_folder("res://testdata/test_song")
 	print("[SongSelect] Your user:// folder is located in: %s" % OS.get_user_data_dir())
 	add_charts_from_folder("user://songs", false)
+
+func show_ui(scene):
+	await fade_away()
+	var ui = Globals.s_wait_for_component("Ui")
+	ui.hide_all_ui()
+
+	var interface = scene.instantiate()
+	ui.add_child(interface)
+	await interface.apply()
+	interface.queue_free()
+	await come_back()
+
+	ui.show_all_ui()
+
+func _on_settings_btn_press() -> void:
+	await show_ui(Scenes.SettingsUI)
+
+func _on_open_gacha_pressed() -> void:
+	await show_ui(Scenes.GachaUI)

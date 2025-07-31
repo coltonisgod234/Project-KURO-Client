@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd618ytta0jbm"]
+[gd_scene load_steps=4 format=3 uid="uid://bd618ytta0jbm"]
 
 [ext_resource type="Script" uid="uid://c0d21gql6povt" path="res://dialouge/dialouge_exec.gd" id="1_nbki8"]
 [ext_resource type="Script" uid="uid://cnt4wkpluhtbb" path="res://gameplay/mod_effect/files/directory_exist.gd" id="2_mtjik"]
+[ext_resource type="Script" uid="uid://bwl8h2uhnio6v" path="res://gameplay/mod_effect/files/copyfile.gd" id="3_7ehxq"]
 
 [node name="FirstTimeSetup" type="Node"]
 script = ExtResource("1_nbki8")
@@ -9,3 +10,9 @@ script = ExtResource("1_nbki8")
 [node name="CreateTeamsDirectory" type="Node" parent="."]
 script = ExtResource("2_mtjik")
 path = "user://teams"
+
+[node name="EffectCopyFile" type="Node" parent="."]
+script = ExtResource("3_7ehxq")
+source = "res://config.json"
+dest = "user://config.json"
+metadata/_custom_type_script = "uid://bwl8h2uhnio6v"

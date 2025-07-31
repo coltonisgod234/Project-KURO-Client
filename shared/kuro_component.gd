@@ -6,7 +6,12 @@ class_name KURO_Component
 const YOURE_NOT_PART_OF_ONE = null
 
 func wait_till_init(component):
-	print("[%s] (BASE) Waiting for initialization: %s" % [self.name, component])
+	print("[%s] (BASE) Get componenet: %s" % [self.name, component])
+	return component
+
+func actually_wait_for_component(component: KURO_Component):
+	print("[%s] (BASE) wait for componenet: %s" % [self.name, component])
+	await component.component_ready
 	return component
 
 func s_wait_for_component(component_name: String):

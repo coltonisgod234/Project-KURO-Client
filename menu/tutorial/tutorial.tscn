@@ -1,0 +1,207 @@
+[gd_scene load_steps=7 format=3 uid="uid://csw42gcphm7ie"]
+
+[ext_resource type="Script" uid="uid://c0d21gql6povt" path="res://dialouge/dialouge_exec.gd" id="1_80d03"]
+[ext_resource type="Script" uid="uid://bc5bg0qssn6dc" path="res://gameplay/mod_effect/popup/DialougeButton.gd" id="2_xumkv"]
+[ext_resource type="Script" uid="uid://dtkvtfngw82l5" path="res://gameplay/mod_effect/popup/SummonDialouge.gd" id="3_yjt82"]
+[ext_resource type="Script" uid="uid://up8o2q1bj33c" path="res://gameplay/mod_effect/generic/match.gd" id="4_yjt82"]
+[ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="5_ey74v"]
+[ext_resource type="Script" uid="uid://cqn5hare8sb6a" path="res://gameplay/mod_effect/generic/log.gd" id="6_ey74v"]
+
+[node name="dlg" type="Node"]
+script = ExtResource("1_80d03")
+metadata/_custom_type_script = "uid://c0d21gql6povt"
+
+[node name="defbtn" type="Node" parent="."]
+script = ExtResource("2_xumkv")
+text = "Next"
+metadata/_custom_type_script = "uid://bc5bg0qssn6dc"
+
+[node name="introduction 0" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "Hey, I'm [as]Asahi[/as].
+You [i]might[/i] know me.
+
+I wanna show you some of my music stuff!"
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="introduction 1" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "Maybe give you a few lessons.
+Show you some of my friends.
+Teach you how things work around here."
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="introduction 2" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "Okay?"
+character_name = "Asahi"
+default_button_allowed = false
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="yes" type="Node" parent="introduction 2"]
+script = ExtResource("2_xumkv")
+text = "Sure!"
+metadata/_custom_type_script = "uid://bc5bg0qssn6dc"
+
+[node name="no" type="Node" parent="introduction 2"]
+script = ExtResource("2_xumkv")
+text = "I don't want to."
+metadata/_custom_type_script = "uid://bc5bg0qssn6dc"
+
+[node name="yesno 0" type="Node" parent="." node_paths=PackedStringArray("conditions", "check")]
+script = ExtResource("4_yjt82")
+conditions = {
+"got.text == \"I don't want to.\"": NodePath("onno"),
+"got.text == \"Sure!\"": NodePath("onyes")
+}
+check = NodePath("../introduction 2")
+attribute = "user_responce"
+metadata/_custom_type_script = "uid://up8o2q1bj33c"
+
+[node name="onyes" type="Node" parent="yesno 0"]
+script = ExtResource("5_ey74v")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="introduction 0" type="Node" parent="yesno 0/onyes" node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "Yay!!!"
+character_name = "Asahi"
+default_button = NodePath("../../../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="onno" type="Node" parent="yesno 0"]
+script = ExtResource("5_ey74v")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="introduction 0" type="Node" parent="yesno 0/onno" node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "You...
+Why would I even want to anyway?"
+character_name = "Asahi"
+default_button = NodePath("../../../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="crash" type="Node" parent="yesno 0/onno"]
+script = ExtResource("6_ey74v")
+text = "[as]Why would I even want to anyway?[/as]"
+to = 3
+metadata/_custom_type_script = "uid://cqn5hare8sb6a"
+
+[node name="notes 0 lane" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "This is a [as]lane[/as].
+
+[as]notes[/as] fall from the top of the lane to the bottom.
+[as]notes[/as] can also be diffrent speeds."
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="notes 1 key" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "This is a [as]key[/as].
+
+As soon as the [as]note[/as] touches the [as]key[/as], you need to press the [as]lane[/as]'s corresponding button.
+
+The keys are:
+- lane 1: [as]D[/as] (leftmost lane)
+- lane 2: [as]F[/as] (middle-left lane)
+- lane 3: [as]J[/as] (middle-right lane)
+- lane 4:: [as]K[/as] (rightmost lane)"
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="notes 2 judge" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "If you do it correctly, the [as]note[/as] will disappear and you will be awarded a [as]hit[/as].
+If you're too late, the [as]note[/as] will disappear and you will be awarded a [as]miss[/as]."
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="notes 3 combo" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "This is your [as]combo[/as].
+
+This number goes up by [i]one[/i] when you [as]hit[/as]
+(why does that sound wrong...)
+
+It resets back to [i]zero[/i] when you [as]miss[/as]."
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="notes 4 score" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "This is your [as]score[/as].
+
+It goes up or down by a certain amount when you [as]hit[/as] or [as]miss[/as] notes."
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="characters 1 intro" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "Now let's talk about [as]characters[/as]!
+
+Characters are my friends! I make music with them."
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="characters 2 abilities" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "[as]characters[/as] have ab[i]i[/i]lities.
+
+They can do anything!
+
+Hitting [as]note[/as]s on the playfield
+Your [as][i]m[/i]om[/as].
+[i]S[/i]etting other [i]c[/i]haracter's [i]a[/i]ttributes
+Manipulate the fabric of [i]re[/i]ality.
+A lot of [i]d[/i]iffrent things"
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="characters 3 activation" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "To [as]activate[/as] an [as]ability[/as],
+first hold down (or press) [as]spacebar[/as].
+then, press the key corresponding to your [as]character[/as]:
+- [as]Key 1[/as] for the first [as]character[/as]
+- [as]Key 2[/as] for the second
+- [as]Key 3[/as] for the third
+- [as]Key 4[/as] for the fourth
+
+then, press the key corresponding to your [as]ability[/as]:
+- [as]Key 1[/as] for the [as]primary ability[/as]
+- [as]Key 2[/as] for the 1st [as]secondary ability[/as]
+- [as]Key 3[/as] for the 2nd [as]secondary ability[/as]
+- [as]Key 4[/as] for the 3rd [as]secondary ability[/as]
+"
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="characters 3 tips" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "Remember to keep an eye on your [as]character[/as]'s stats, they're constantly changing!
+If you don't pay attention to these sudden changes, something [i]bad[/i] might happen to them! [i]oh noooo[i/]"
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="gambling 1" type="Node" parent="." node_paths=PackedStringArray("default_button")]
+script = ExtResource("3_yjt82")
+rich_text = "There's funny gacha elements in this game.
+Come back when I actually WRITE THEM"
+character_name = "Asahi"
+default_button = NodePath("../defbtn")
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"

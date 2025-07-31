@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://djby1v6cg6n76"]
+
+[ext_resource type="Script" uid="uid://b4dalaxiuek74" path="res://menu/config/settings.gd" id="1_4mkt3"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_xy6c5"]
+[ext_resource type="PackedScene" uid="uid://bqrqxnjng54u1" path="res://menu/config/pages/account.tscn" id="2_4mkt3"]
+[ext_resource type="PackedScene" uid="uid://0cwkxr4d5dst" path="res://menu/config/pages/general.tscn" id="4_kkafq"]
+
+[node name="Settings" type="Control" node_paths=PackedStringArray("DoneButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4mkt3")
+DoneButton = NodePath("VBoxContainer/HBoxContainer/Done")
+export_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 681.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Save" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_xy6c5")
+text = "Save"
+
+[node name="Done" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_xy6c5")
+text = "Done"
+
+[node name="Apply" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_xy6c5")
+text = "Apply"
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xy6c5")
+current_tab = 0
+
+[node name="General" parent="VBoxContainer/TabContainer" instance=ExtResource("4_kkafq")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Account" parent="VBoxContainer/TabContainer" instance=ExtResource("2_4mkt3")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Apply" to="." method="_on_apply_pressed"]

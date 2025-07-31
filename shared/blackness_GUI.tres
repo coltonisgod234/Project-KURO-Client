@@ -5,12 +5,7 @@
 [ext_resource type="StyleBox" uid="uid://cyx7q2ixdpv6v" path="res://UI_stuff/panel.tres" id="3_3s1ly"]
 [ext_resource type="StyleBox" uid="uid://dj7k6isakd2qq" path="res://UI_stuff/panel_stylebox_focus.tres" id="3_urgq6"]
 [ext_resource type="StyleBox" uid="uid://b284ud64f54wb" path="res://UI_stuff/button_stylebox_normal_flat.tres" id="3_wi18t"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v451e"]
-bg_color = Color(1, 0.219608, 0.270588, 1)
-skew = Vector2(0.1, 0)
-border_width_right = 14
-border_color = Color(1, 1, 1, 1)
+[ext_resource type="StyleBox" uid="uid://m8xboc2oytna" path="res://UI_stuff/button_stylebox_pressed.tres" id="4_v451e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1diy"]
 bg_color = Color(1, 0.380392, 0.34902, 1)
@@ -97,10 +92,9 @@ skew = Vector2(0, 0.2)
 [resource]
 default_font = ExtResource("1_64nlc")
 Button/fonts/font = ExtResource("1_64nlc")
-Button/styles/focus = ExtResource("2_64nlc")
 Button/styles/hover = ExtResource("2_64nlc")
 Button/styles/normal = ExtResource("3_wi18t")
-Button/styles/pressed = SubResource("StyleBoxFlat_v451e")
+Button/styles/pressed = ExtResource("4_v451e")
 ButtonPanel/base_type = &"Button"
 ButtonPanel/styles/focus = ExtResource("3_urgq6")
 ButtonPanel/styles/hover = ExtResource("3_urgq6")

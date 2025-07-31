@@ -302,6 +302,19 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("6_snpii")
 path = "teams"
 
+[node name="HSeparator" type="HSeparator" parent="Options/VBoxContainer"]
+layout_mode = 2
+
+[node name="OpenSettings" type="Button" parent="Options/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 3
+text = "Settings"
+
+[node name="OpenGacha" type="Button" parent="Options/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 3
+text = "Gacha UI"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sg", "export_under")]
 libraries = {
 &"": SubResource("AnimationLibrary_snpii")
@@ -315,3 +328,5 @@ export_under = NodePath("..")
 [connection signal="pressed" from="Options/VBoxContainer/OpenDataDirectory" to="Options/VBoxContainer/OpenDataDirectory/OpenDataDirectory" method="apply"]
 [connection signal="pressed" from="Options/VBoxContainer/OpenSongDirectory" to="Options/VBoxContainer/OpenSongDirectory/OpenSongDirectory" method="apply"]
 [connection signal="pressed" from="Options/VBoxContainer/OpenTeamsDirectory" to="Options/VBoxContainer/OpenTeamsDirectory/OpenTeamsDirectory" method="apply"]
+[connection signal="pressed" from="Options/VBoxContainer/OpenSettings" to="." method="_on_settings_btn_press"]
+[connection signal="pressed" from="Options/VBoxContainer/OpenGacha" to="." method="_on_open_gacha_pressed"]

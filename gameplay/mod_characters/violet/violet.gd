@@ -18,6 +18,10 @@ var note_hit_counter := 0
 @export var negative_effect_threshold: float = -0.3
 @export var multiplication: float = 0.01
 
+signal state_change(new_state: float, old_state: float)
+signal life_changed(new_life: float)
+signal motivation_changed(motivation: float)
+
 func toggle_state():
 	if state == STATE_VIOLET_EUPHORIC:
 		state = STATE_VIOLET_DYSPHORIC
@@ -62,4 +66,3 @@ func _process(__delta:float):
 	
 	else:
 		ReadableStatus = "OK"
-		

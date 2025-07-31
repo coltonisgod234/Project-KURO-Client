@@ -8,6 +8,12 @@
 	"MaxFPS": {
 		"value": 1000
 	},
+	"WindowDimensions": {
+		"pos_x": 1080,
+		"pos_y": 0,
+		"size_x": 2560,
+		"size_y": 1440
+	},
 	"ScaleMode": {
 		"stretch": 0,
 		"aspect": 1,

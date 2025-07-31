@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcl6l2tla8n6i"]
+[gd_scene load_steps=10 format=3 uid="uid://bcl6l2tla8n6i"]
 
 [ext_resource type="Script" uid="uid://boc1mu5sssb6c" path="res://dialouge/popup.gd" id="1_kjhma"]
 [ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_w3n60"]
 [ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="2_kjhma"]
 [ext_resource type="ButtonGroup" uid="uid://c0n38a2yir7t2" path="res://dialouge/dialouge_buttongroup.tres" id="2_xds0v"]
 [ext_resource type="Script" uid="uid://b5412jqplg8og" path="res://UI_stuff/attr_label.gd" id="4_5f5jl"]
-[ext_resource type="Texture2D" uid="uid://dpek4fkde28un" path="res://dialouge/assets/miiku_test.webp" id="6_bp37c"]
+[ext_resource type="Texture2D" uid="uid://cwueetf1navg5" path="res://textures/infoicon.png" id="6_rtk1e"]
 [ext_resource type="Script" uid="uid://ddecykgv7ciqu" path="res://dialouge/asahicode/asahi_red.gd" id="6_u0lnv"]
+[ext_resource type="Script" uid="uid://bpept18e8fqpx" path="res://UI_stuff/attr_texture.gd" id="7_rtk1e"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_u0lnv"]
 script = ExtResource("6_u0lnv")
@@ -16,12 +17,11 @@ metadata/_custom_type_script = "uid://ddecykgv7ciqu"
 top_level = true
 z_index = 999
 z_as_relative = false
+custom_minimum_size = Vector2(500, 285)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 609.0
+offset_bottom = 339.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_kjhma")
@@ -33,14 +33,10 @@ export_mode = 1
 [node name="Panel" type="Panel" parent="."]
 z_index = 999
 z_as_relative = false
+custom_minimum_size = Vector2(500, 285)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -652.0
-offset_bottom = -388.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 596.0
+offset_bottom = 339.0
 theme = ExtResource("1_w3n60")
 
 [node name="Label" type="Label" parent="Panel" node_paths=PackedStringArray("check", "sg", "export_under")]
@@ -68,36 +64,50 @@ z_as_relative = false
 layout_mode = 0
 offset_left = 17.0
 offset_top = 27.0
-offset_right = 478.0
-offset_bottom = 255.0
+offset_right = 573.0
+offset_bottom = 330.0
 
 [node name="Info" type="HBoxContainer" parent="Panel/VBoxContainer"]
 z_index = 999
 z_as_relative = false
-custom_minimum_size = Vector2(0, 250)
+custom_minimum_size = Vector2(460, 250)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/Info"]
+[node name="Control" type="Control" parent="Panel/VBoxContainer/Info"]
+clip_contents = true
+custom_minimum_size = Vector2(128, 300)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/Info/Control" node_paths=PackedStringArray("check", "sg", "export_under")]
 z_index = 999
 z_as_relative = false
-custom_minimum_size = Vector2(128, 128)
+clip_contents = true
 layout_mode = 2
-texture = ExtResource("6_bp37c")
-expand_mode = 1
-stretch_mode = 6
+offset_right = 128.0
+offset_bottom = 300.0
+size_flags_horizontal = 0
+texture = ExtResource("6_rtk1e")
+stretch_mode = 4
+script = ExtResource("7_rtk1e")
+property_name = "texture"
+check = NodePath("../../../../..")
+sg = NodePath("../../../../..")
+export_under = NodePath("../../../../..")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer/Info" node_paths=PackedStringArray("check", "sg", "export_under")]
 z_index = 999
 z_as_relative = false
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(350, 200)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 2
 theme = ExtResource("1_w3n60")
 bbcode_enabled = true
 text = "My balls hurt"
+fit_content = true
 tab_size = 5
 custom_effects = [SubResource("RichTextEffect_u0lnv")]
+selection_enabled = true
 script = ExtResource("4_5f5jl")
 property_name = "text"
 check = NodePath("../../../..")
@@ -109,8 +119,10 @@ export_under = NodePath("../../../..")
 [node name="LeftThingy" type="VBoxContainer" parent="Panel/VBoxContainer/Info"]
 z_index = 999
 z_as_relative = false
+custom_minimum_size = Vector2(50, 250)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_w3n60")

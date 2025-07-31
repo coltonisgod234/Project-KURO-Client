@@ -1,4 +1,9 @@
 extends KURO_Component
+class_name KURO_CharacterManager
+
+signal character_loaded(slot: int, name_: String, scene: Node)
+signal ability_activated(slot: int, ability: int, scene: Node)  # ability is either 1, 2, 3 or 4
+signal ability_returned(slot: int, ability: int, scene: Node)  # ability is either 1, 2, 3 or 4
 
 @export_group("Character HUDs")
 @export var PixelsPerCharacter: float
@@ -13,8 +18,10 @@ func load_character(scene, character_num):
 	var character = scene.instantiate()
 	character.position = Vector2(LeftSidePadding + character_num * (PixelsPerCharacter + XPositionSeperation), YPosition)
 	character.export_name = "%d" % [character_num]
-	character.name = character.export_name
+	var character_name = character.name
+	#character.name = character.export_name 
 	$CharacterHolder.add_child(character)
+	character_loaded.emit(character_num, Scenes.CharacterList.get(character_name), character)
 
 var mode = "game"
 var selected_character = null
@@ -30,7 +37,7 @@ func handle_character_mode():
 
 		if Input.is_action_just_pressed(key) and mode == "character":
 			selected_character = children[i]
-			print("[CharacterManager] SELECTED CHARACTER %s" % [selected_character.name])
+			print("[CharacterManager] SELECTED CHARACTER %s" % [selected_character.export_name])
 			mode = "ability"
 			return false
 	
@@ -43,19 +50,28 @@ func handle_ability_mode(num_keys:int):
 	
 	elif Input.is_action_just_pressed("key0") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] SELECTED ability PRIMARY")
-		selected_character.primary()
+		ability_activated.emit(selected_character.export_name, 1, selected_character)
+		await selected_character.primary()
+		ability_returned.emit(selected_character.export_name, 1, selected_character)
 
 	elif Input.is_action_just_pressed("key1") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] RAN ability SECONDARY 1")
-		selected_character.secondaryA()
+		ability_activated.emit(selected_character.export_name, 2, selected_character)
+		await selected_character.secondaryA()
+		ability_returned.emit(selected_character.export_name, 2, selected_character)
 
 	elif Input.is_action_just_pressed("key2") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] RAN ability SECONDARY 2")
-		selected_character.secondaryB()
+		ability_activated.emit(selected_character.export_name, 3, selected_character)
+		await selected_character.secondaryB()
+		ability_returned.emit(selected_character.export_name, 3, selected_character)
 
 	elif Input.is_action_just_pressed("key3") and mode == "ability" and selected_character != null:
 		print("[CharacterManager] RAN ability SECONDARY 3")
-		selected_character.secondaryC()
+		ability_activated.emit(selected_character.export_name, 4, selected_character)
+		await selected_character.secondaryC()
+		ability_returned.emit(selected_character.export_name, 4, selected_character)
+
 	else: return
 	mode = "game"
 

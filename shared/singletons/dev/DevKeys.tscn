@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxutlqr5ut5u6"]
+
+[ext_resource type="Script" uid="uid://1pa3ebcn2p02" path="res://shared/singletons/dev/crash_key_listener.gd" id="1_lwuyr"]
+
+[node name="DevKeys" type="Node"]
+
+[node name="CrashKeyListener" type="Node" parent="."]
+script = ExtResource("1_lwuyr")

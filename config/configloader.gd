@@ -16,24 +16,20 @@ func load_from_file(path: String):
 	file.close()
 	return text
 
-enum ReloadConfigError {
-	Ok,
-	Error,
-	DataParseError
-}
 func reload_config(raw_json: String):
 	print("[configloader.gd] Reloading config...")
-	var json = JSON.new()
-	var settings = json.parse_string(raw_json)
+	var settings = JSON.parse_string(raw_json)
 	if settings is not Dictionary:
 		print("[configloader.gd] Error parsing data. Got %s" % settings)
-		return ReloadConfigError.DataParseError
+		return ERR_INVALID_DATA
+	
+	return await reload(settings)
 
+func reload(settings: Dictionary):
 	self.apply_arguments_from_dictionary(settings)
 	await self.apply_in_succession()
 	print("[configloader.gd] Ok")
-	return ReloadConfigError.Ok
+	return OK
 
 func kuro_init(): #test
-	var error = await reload_config(load_from_file("res://config.json"))
-	return
+	await reload_config(load_from_file("user://config.json"))

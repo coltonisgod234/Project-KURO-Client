@@ -15,7 +15,6 @@ func calculate_max_song_offset(notes: Array, spawn_y: float, hit_y: float) -> fl
 	for note in notes:
 		var speed = note.get("speed")
 		var travel_time = (spawn_y - hit_y) / speed
-		print("[SongPlayer] Looked at %f" % travel_time)
 		if travel_time > max_offset:
 			max_offset = travel_time
 			print("[SongPlayer] New largest! %f" % max_offset)

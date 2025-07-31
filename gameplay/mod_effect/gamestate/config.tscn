@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://ulxgnt4j5w80"]
+
+[ext_resource type="Script" uid="uid://dph8b0acuvwl3" path="res://gameplay/mod_effect/gamestate/config.gd" id="1_ja4h4"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_x0cad"]
+[ext_resource type="Script" uid="uid://4abl5ojs1cm1" path="res://gameplay/mod_effect/gamestate/setjsonkey.gd" id="2_cmlfm"]
+
+[node name="Config" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ja4h4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Read file"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Write file"
+
+[node name="Node" type="Node" parent="VBoxContainer"]
+script = ExtResource("2_cmlfm")
+
+[node name="VSyncOption" type="OptionButton" parent="VBoxContainer/Node"]
+offset_top = 70.0
+offset_right = 165.0
+offset_bottom = 93.0
+mouse_default_cursor_shape = 3
+theme = ExtResource("1_x0cad")
+selected = 0
+item_count = 4
+popup/item_0/text = "VSync Disabled"
+popup/item_0/id = 0
+popup/item_1/text = "VSync Enabled"
+popup/item_1/id = 1
+popup/item_2/text = "VSync Dynamic"
+popup/item_2/id = 2
+popup/item_3/text = "VSync Mailbox"
+popup/item_3/id = 3
+script = ExtResource("2_cmlfm")
+
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="load_file"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="write_file"]

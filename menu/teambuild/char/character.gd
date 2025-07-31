@@ -18,7 +18,7 @@ func set_selected_character_to_object(node):
 
 func update_character_information(character):
 	if character == null:
-		print("fuck off")
+		print("[Teambuilder] null character")
 		return
 	self.selected_character = character
 	self.text = character.get("character_name", "ERROR")

@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://cawqbugbkbfrb"]
+
+[ext_resource type="Script" uid="uid://b40mo4aosqlfe" path="res://gacha/BannerDisplay/banner_display.gd" id="1_uw55l"]
+[ext_resource type="Script" uid="uid://get68ea523qy" path="res://gameplay/mod_effect/gacha/getfromserver.gd" id="2_0ms14"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="3_7in1v"]
+[ext_resource type="LabelSettings" uid="uid://bxvmq0bc05oh2" path="res://UI_stuff/window_title_settings.tres" id="4_p1q8g"]
+[ext_resource type="Script" uid="uid://bjcgd8gongic1" path="res://gacha/BannerDisplay/pull.gd" id="5_6r685"]
+[ext_resource type="LabelSettings" uid="uid://75j526cfj8tt" path="res://UI_stuff/small_font_monospace_label_settings.tres" id="5_xd728"]
+[ext_resource type="Script" uid="uid://b6nn7oxgaruhe" path="res://gameplay/mod_effect/gacha/sendtoserver.gd" id="6_560ti"]
+[ext_resource type="Script" uid="uid://dtkvtfngw82l5" path="res://gameplay/mod_effect/popup/SummonDialouge.gd" id="7_560ti"]
+[ext_resource type="Texture2D" uid="uid://cwueetf1navg5" path="res://textures/infoicon.png" id="8_52bfy"]
+[ext_resource type="Script" uid="uid://bc5bg0qssn6dc" path="res://gameplay/mod_effect/popup/DialougeButton.gd" id="8_uorb7"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(300, 240)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_7in1v")
+script = ExtResource("1_uw55l")
+banner_name = "flowerfield"
+metadata/_edit_use_anchors_ = true
+
+[node name="Fetch" type="Node" parent="."]
+script = ExtResource("2_0ms14")
+apply_on_load = true
+metadata/_custom_type_script = "uid://get68ea523qy"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 300.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_7in1v")
+
+[node name="DisplayName" type="Label" parent="Panel"]
+editor_description = "DONT DELETE THIS THIS IS VERY IMPORTANT!!"
+layout_mode = 2
+offset_left = 9.0
+offset_right = 297.0
+offset_bottom = 24.0
+text = "error or waiting for server"
+label_settings = ExtResource("4_p1q8g")
+
+[node name="Content" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.048
+anchor_top = 0.135
+anchor_right = 0.935
+anchor_bottom = 0.964
+offset_left = -0.112
+offset_top = -0.0550003
+offset_right = 0.109985
+offset_bottom = -0.052002
+
+[node name="pull" type="Button" parent="Panel/Content" node_paths=PackedStringArray("sg")]
+layout_mode = 2
+mouse_default_cursor_shape = 3
+theme = ExtResource("3_7in1v")
+text = "Error or waiting for server"
+script = ExtResource("5_6r685")
+sg = NodePath("../../..")
+export_mode = 3
+
+[node name="Send" type="Node" parent="Panel/Content/pull"]
+script = ExtResource("6_560ti")
+metadata/_custom_type_script = "uid://b6nn7oxgaruhe"
+
+[node name="EffectSummonDialouge" type="Node" parent="Panel/Content/pull"]
+script = ExtResource("7_560ti")
+character_texture = ExtResource("8_52bfy")
+character_name = "Asahi"
+default_button_allowed = false
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"
+
+[node name="Okay" type="Node" parent="Panel/Content/pull/EffectSummonDialouge"]
+script = ExtResource("8_uorb7")
+text = "Okay"
+metadata/_custom_type_script = "uid://bc5bg0qssn6dc"
+
+[node name="DropList" type="Label" parent="Panel/Content"]
+layout_mode = 2
+text = "error or waiting for server"
+label_settings = ExtResource("5_xd728")
+
+[connection signal="display_name_available" from="." to="Panel/DisplayName" method="set_text"]
+[connection signal="drop_list_available" from="." to="Panel/Content/DropList" method="set_text"]
+[connection signal="pull_cost_available_as_str" from="." to="Panel/Content/pull" method="set_text"]
+[connection signal="pressed" from="Panel/Content/pull" to="Panel/Content/pull" method="_on_pressed"]

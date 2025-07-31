@@ -20,12 +20,14 @@ func init_CharacterManager():
 
 		print("[Main] Loading character... %s into slot %s" % [char, i])
 		character_manager.load_character(char, i)
+	await character_manager.component_ready
 
 var hud = null
 func init_HUD():
 	print("[Main] Initalizing HUD...")
 	hud = Scenes.HUD.instantiate()
 	self.add_child(hud)
+	#await replaysystem.component_ready
 
 var lanemgr = null
 func init_LaneManager():
@@ -36,20 +38,33 @@ func init_LaneManager():
 	
 	lanemgr.map_len_usec = map_length
 	self.add_child(lanemgr)
+	await lanemgr.component_ready
 
 var songplayer = null
 func init_SongPlayer():
 	print("[Main] Initalizing SongPlayer...")
 	songplayer = Scenes.SongPlayer.instantiate()
 	self.add_child(songplayer)
+	await songplayer.component_ready
+
+var replaysystem = null
+func init_ReplaySystem():
+	print("[Main] Initializing ReplaySystem....")
+	replaysystem = Scenes.ReplaySystem.instantiate()
+	self.add_child(replaysystem)
 
 func apply():
 	randomize()
-	print("[Main] Got map data: %s | %s | audiofile is %s | #%s keys" % [map, map_timings, map_song, map_num_keys])
+	#print("[Main] Got map data: %s | %s | audiofile is %s | #%s keys" % [map, map_timings, map_song, map_num_keys])
+	
+	# make a bunch of shit
 	init_SongPlayer()
 	init_LaneManager()
 	init_HUD()
 	init_CharacterManager()
+	
+	# not writing this
+	#init_ReplaySystem()
 	songplayer.start_song(map_song)
 	$Enter.apply_in_succession()
 
@@ -60,3 +75,11 @@ func apply():
 
 	$AnimationPlayer.play("fade_away")
 	await $AnimationPlayer.animation_finished
+	
+	# free the shit (dont leak memory thats bad)
+	songplayer.queue_free()
+	lanemgr.queue_free()
+	hud.queue_free()
+	character_manager.queue_free()
+
+	#replaysystem.queue_free()

@@ -9,4 +9,4 @@ func apply():
 		print("[DialougeButton.gd] No dialouge set. Nothing given, nothing done")
 		return
 
-	var btn = await dialouge.create_button(text)
+	var _btn = await dialouge.create_button(text)

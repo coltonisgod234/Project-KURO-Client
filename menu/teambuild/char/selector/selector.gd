@@ -19,9 +19,9 @@ func wire_signals():
 func apply():
 	wire_signals()
 	await fadein()
-	print("Aaaa")
+	print("[Selector] Stub log 1")
 	var selected_character = await selected  # Pray this works
-	print("Cool %s" % [selected_character])
+	print("[Selector] Stub log 2 %s" % [selected_character])
 	await fadeout()
 	return selected_character
 

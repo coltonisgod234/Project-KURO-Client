@@ -8,8 +8,8 @@ func kuro_init():
 	var lanemgr = Globals.s_wait_for_component("LaneManager")
 	lanemgr.note_judged.connect(_on_judgement)
 
-	var hud = Globals.s_wait_for_component("MainHUD")
-	var score = Globals.s_wait_for_component("Score")
+	var _hud = Globals.s_wait_for_component("MainHUD")
+	var _score = Globals.s_wait_for_component("Score")
 	$ExitTimer.timeout.connect(_on_secondary_end)
 
 func activate():

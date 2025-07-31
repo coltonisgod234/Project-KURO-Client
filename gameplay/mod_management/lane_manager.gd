@@ -1,4 +1,5 @@
 extends KURO_Component
+class_name KURO_LaneManager
 #extends Node2D
 
 signal note_judged(lane: Node2D, note: Node2D, real_judge, nonfabricated_judge)

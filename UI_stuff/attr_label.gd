@@ -22,10 +22,7 @@ func kuro_init():
 	#await self.wait_till_init(check)
 	update()
 
-func update():
-	if check == null:
-		return
-	
+func resolve():
 	var value
 	match operation_mode:
 		OperationMode.ATTIRBUTE:
@@ -42,6 +39,14 @@ func update():
 			value = x.execute([got])
 		_:
 			Globals.crash("Invalid operation mode for attr_label")
+	
+	return value
+
+func update():
+	if check == null:
+		return
+
+	var value = resolve()
 
 	if value is String:
 		if value == "":
@@ -49,6 +54,9 @@ func update():
 			return
 	
 	self.text = fstring % [value]
+
+func set_txt(s: String):
+	self.text = s
 
 func _process(_delta):
 	if constantly_check:

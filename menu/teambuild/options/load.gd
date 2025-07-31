@@ -14,6 +14,5 @@ func ld(full_path):
 	var file = FileAccess.open(full_path, FileAccess.READ)
 	var content = file.get_as_text()
 	var data = JSON.parse_string(content)
-	print(data)
 	file.close()
 	return data

@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctl446xnag73c"]
+
+[ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="1_b5roj"]
+[ext_resource type="Theme" uid="uid://c3jcrlkt7sab1" path="res://shared/blackness_GUI.tres" id="1_pu144"]
+[ext_resource type="Script" uid="uid://dtkvtfngw82l5" path="res://gameplay/mod_effect/popup/SummonDialouge.gd" id="2_pu144"]
+
+[node name="Window" type="Window"]
+title = "Project KURO Crashed"
+initial_position = 2
+size = Vector2i(500, 285)
+exclusive = true
+unresizable = true
+always_on_top = true
+popup_window = true
+force_native = true
+min_size = Vector2i(500, 285)
+keep_title_visible = true
+content_scale_mode = 2
+theme = ExtResource("1_pu144")
+
+[node name="CrashDialouge" type="Node" parent="."]
+script = ExtResource("1_b5roj")
+metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
+
+[node name="msg" type="Node" parent="CrashDialouge"]
+script = ExtResource("2_pu144")
+rich_text = "ちくしょう!!!
+The game crashed, fuck damn it!
+
+message: {CrashMessageGoesHere}
+
+Please [as][url=https://github.com/coltonisgod234/Project-KURO-Client/issues/new]file an issue here[/url][/as]!
+
+Please [i]only[/i] file new issues if:
+- You have verified nobody else has encountered your problem (if someone has, upvote their issue!)
+- You believe your problem is serious enough to actually impede gameplay (if you're seeing this message, it PROBABLY IS)
+
+Remember:
+- [url=https://dontasktoask.com/]Don't ask to ask![/url]
+- [url=https://nohello.net/]No \"hello\"[/url]
+- [url=https://xyproblem.info/]the XY problem (when contributing)[/url]"
+character_name = "Powerlessness."
+default_button_allowed = false
+metadata/_custom_type_script = "uid://dtkvtfngw82l5"

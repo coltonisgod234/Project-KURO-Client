@@ -17,7 +17,7 @@ func apply():
 
 	var node = on_true if result else on_false
 	var type = on_true_attr if result else on_false_attr
-	print(node, type)
+	print("[Condition]: debug info: node=%s type=%s" % [node, type])
 	if node.has_method("apply"):
 		var fn = Callable(node, type)
 		return await fn.call()

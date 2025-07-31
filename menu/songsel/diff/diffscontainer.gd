@@ -4,11 +4,11 @@ extends KURO_Component
 func set_root(root_path):
 	self.root = root_path
 
-func create(title: String, file: String, root: String):
+func create(title: String, file: String, root_: String):
 	var diffheader = Scenes.SongSelectDifficultyHeader.instantiate()
 	diffheader.title = title
 	diffheader.file = file
-	diffheader.root = root
+	diffheader.root = root_
 
 	var metadata_string = "%s" % [diffheader]
 	diffheader.export_name = metadata_string

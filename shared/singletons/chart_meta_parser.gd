@@ -2,7 +2,6 @@ extends Node
 
 func load_map(filepath:String):
 	var file = FileAccess.open(filepath, FileAccess.READ)
-	print(file)
 
 	var json = JSON.new()
 	var error = json.parse(file.get_as_text())
@@ -62,5 +61,4 @@ func parse_chart_diffs(json: JSON, root: String) -> Array:
 	for diff in diffs:
 		new_diffs.append(root.path_join(diff))
 	
-	print(new_diffs)
 	return new_diffs

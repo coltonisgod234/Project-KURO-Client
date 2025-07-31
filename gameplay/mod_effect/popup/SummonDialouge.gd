@@ -23,20 +23,6 @@ enum PositionMode {
 	BOTTOM_RIGHT
 }
 
-func resolve_position_mode(mode: PositionMode, pos: Vector2) -> Vector2:
-	var viewport_size = get_viewport().get_visible_rect().size
-	print("[resolve_position_mode] Viewport is %s X %s px" % [viewport_size.x, viewport_size.y])
-	print("[resolve_position_mode] Halved, this is %s X %s px" % [viewport_size.x/2.0, viewport_size.y/2.0])
-	match mode:
-		PositionMode.EXPLICIT:
-			return pos
-		PositionMode.CENTRE:
-			return Vector2(viewport_size.x/2.0, viewport_size.y/2.0)
-		_:
-			return Vector2i(0, 0)
-
-@export var position_preset: PositionMode = PositionMode.EXPLICIT
-@export var position: Vector2i
 @export var node_parent: Node = self
 
 func apply():
@@ -44,7 +30,6 @@ func apply():
 	dialouge.text = rich_text
 	dialouge.texture = character_texture
 	dialouge.title = character_name
-	dialouge.position = resolve_position_mode(position_preset, position)
 	
 	if self.node_parent == null:
 		self.add_child(dialouge)
@@ -57,7 +42,7 @@ func apply():
 func apply_in_succession(dialouge):
 	var children = self.get_children()
 	if len(children) <= 1 and default_button_allowed:
-		print("Default button\n")
+		print("[SummonDialouge.gd] using a default button\n")
 		default_button.dialouge = dialouge
 		await default_button.apply()
 		

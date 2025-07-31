@@ -12,7 +12,7 @@ func kuro_init():
 func activate():
 	StopTimer.stun_for(stun_time)
 	await StopTimer.timeout
-	print("\n\n\n\n\nTIMEOUT")
+	print("[Tab5/AutoHotKey] Stun timer ended")
 	Executor.apply("ResetMissable")
 	return
 
@@ -20,7 +20,6 @@ func _process(_delta):
 	Executor.apply("SetMissable")
 
 func _on_note_judged(lane: Node2D, note: Node2D, real_judge, nonfabricated_judge):
-	print("note judged yay")
 	if nonfabricated_judge == Globals.JUDGE_MISS and real_judge == Globals.JUDGE_HIT:
 		if (sg.corruption) <= sg.max_corruption:
 			sg.corruption += corruption_increase

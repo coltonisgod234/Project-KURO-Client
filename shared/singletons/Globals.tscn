@@ -1,41 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbsls5vdssjtp"]
+[gd_scene load_steps=2 format=3 uid="uid://cbsls5vdssjtp"]
 
 [ext_resource type="Script" uid="uid://0odhi6046nqm" path="res://shared/singletons/Globals.gd" id="1_o8xd4"]
-[ext_resource type="Script" uid="uid://bg1d1fp0qp3hk" path="res://shared/effect_executor.gd" id="2_yx27f"]
-[ext_resource type="Script" uid="uid://dtkvtfngw82l5" path="res://gameplay/mod_effect/popup/SummonDialouge.gd" id="3_8jcww"]
-[ext_resource type="Script" uid="uid://bc5bg0qssn6dc" path="res://gameplay/mod_effect/popup/DialougeButton.gd" id="4_j7rm2"]
 
 [node name="Globals" type="Node"]
 script = ExtResource("1_o8xd4")
 export_mode = 3
-
-[node name="CrashDialouge" type="Node" parent="."]
-script = ExtResource("2_yx27f")
-metadata/_custom_type_script = "uid://bg1d1fp0qp3hk"
-
-[node name="msg" type="Node" parent="CrashDialouge" node_paths=PackedStringArray("node_parent")]
-script = ExtResource("3_8jcww")
-rich_text = "ちくしょう!!!
-The game crashed, fuck damn it!
-
-message: {CrashMessageGoesHere}
-
-Please [as][url=https://github.com/coltonisgod234/Project-KURO-Client/issues/new]file an issue here[/url][/as]!
-
-Please only file new issues if:
-- You have verified nobody else has encountered your problem (if someone has, upvote their issue!)
-- You believe your problem is serious enough to actually impede gameplay (if you're seeing this message, it PROBABLY IS)
-
-Remember:
-- [url=https://dontasktoask.com/]Don't ask to ask![/url]
-- [url=https://nohello.net/]No \"hello\"[/url]
-- No \"me too.\" just upvote"
-character_name = "Project KURO crashed!"
-default_button_allowed = false
-node_parent = NodePath("")
-metadata/_custom_type_script = "uid://dtkvtfngw82l5"
-
-[node name="ok" type="Node" parent="CrashDialouge/msg"]
-script = ExtResource("4_j7rm2")
-text = "Okay..."
-metadata/_custom_type_script = "uid://bc5bg0qssn6dc"
